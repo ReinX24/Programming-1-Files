@@ -3,8 +3,8 @@ import java.util.Scanner;
 public class LegalAgeExercise {
 
     public static void main(String[] args) {
-        
-        // We will now create code that will accept a number, 
+
+        // We will now create code that will accept a number,
         // will check if that number is above legal age or 18,
         // and return the result
 
@@ -37,5 +37,5 @@ public class LegalAgeExercise {
         scanOne.close(); // closes the Scanner
 
     }
-    
+
 }

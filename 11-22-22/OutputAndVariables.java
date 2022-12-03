@@ -32,10 +32,10 @@ public class OutputAndVariables { // remember that the file name should always b
         // Non reference types
         String myString = "This is a string"; // Strings
         // For now we will only use strings
-        int[] myArray = {1, 2, 3, 4, 5}; // Arrays
-        LinkedList <Integer> listOne = new LinkedList<Integer>(); // Linked lists
-        Queue <Integer> queueOne = new LinkedList<Integer>(); // Queues
-        Stack <Integer> stackOne = new Stack<>(); // Stacks
+        int[] myArray = { 1, 2, 3, 4, 5 }; // Arrays
+        LinkedList<Integer> listOne = new LinkedList<Integer>(); // Linked lists
+        Queue<Integer> queueOne = new LinkedList<Integer>(); // Queues
+        Stack<Integer> stackOne = new Stack<>(); // Stacks
         // Tuples, will not demonstrate yet
 
         // Displaying values and messages using the print method
@@ -67,8 +67,6 @@ public class OutputAndVariables { // remember that the file name should always b
         System.out.println("Double: " + myDouble + " [Ang pogi ni sir]");
         System.out.println("Your answer: " + myBool + " love na ata to");
         System.out.println("Character: " + myChar + "mongus");
-
-
 
     }
 

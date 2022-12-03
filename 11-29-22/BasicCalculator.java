@@ -50,8 +50,10 @@ public class BasicCalculator {
             case '/': // checks if myOperator is a / sign
                 myResult = inputOne / inputTwo;
                 System.out.println("Quotient of the two numbers: " + myResult);
-                // Note: Dividing integers may cause problems, ex. 3 / 6 will result in zero instead of 0.5
-                // This is because integers rounds towards 0, it would be much better to use float instead
+                // Note: Dividing integers may cause problems, ex. 3 / 6 will result in zero
+                // instead of 0.5
+                // This is because integers rounds towards 0, it would be much better to use
+                // float instead
                 // of int in this case but for demonstration purposes, we will use int for now
                 break;
 

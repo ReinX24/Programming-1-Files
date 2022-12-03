@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class AdditionCalculator {
 
     public static void main(String[] args) {
-        
+
         // Adding 2 numbers using the Scanner class
 
         // Create a Scanner instance
@@ -27,8 +27,8 @@ public class AdditionCalculator {
         // Display the sum of the two numbers
         System.out.println("Sum of the two numbers: " + mySum);
 
-        
+        scanOne.close(); // closes the scanner
 
     }
-    
+
 }

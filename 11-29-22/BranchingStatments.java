@@ -1,3 +1,12 @@
+/*
+ * Author: Rein Aldwin E. Solis
+ * Programming Language: Java
+ * Creation Date: 12/3/22
+ * School: Universidad De Dagupan
+ * Description: Branching Statements
+ * 
+ */
+
 class BranchingStatements {
 
     public static void main(String[] args) {

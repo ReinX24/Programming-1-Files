@@ -1,5 +1,14 @@
 import java.util.Scanner;
 
+/*
+ * Author: Rein Aldwin E. Solis
+ * Programming Language: Java
+ * Creation Date: 12/3/22
+ * School: Universidad De Dagupan
+ * Description: Legal Age exercise using Branching Statements
+ * 
+ */
+
 public class LegalAgeExercise {
 
     public static void main(String[] args) {

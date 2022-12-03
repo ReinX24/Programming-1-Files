@@ -1,5 +1,14 @@
 import java.util.Scanner; // we will need to import this to use the Scanner class
 
+/*
+ * Author: Rein Aldwin E. Solis
+ * Programming Language: Java
+ * Creation Date: 12/3/22
+ * School: Universidad De Dagupan
+ * Description: Scanner Class
+ * 
+ */
+
 public class InputScanner {
 
     public static void main(String[] args) {

@@ -1,5 +1,14 @@
 import java.util.Scanner;
 
+/*
+ * Author: Rein Aldwin E. Solis
+ * Programming Language: Java
+ * Creation Date: 12/3/22
+ * School: Universidad De Dagupan
+ * Description: Basic Addition Calculator
+ * 
+ */
+
 public class AdditionCalculator {
 
     public static void main(String[] args) {

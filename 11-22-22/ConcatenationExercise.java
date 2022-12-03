@@ -1,4 +1,4 @@
-public class ConatenationExercise {
+public class ConcatenationExercise {
 
     public static void main(String[] args) {
 

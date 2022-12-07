@@ -197,7 +197,7 @@ class BasicCalculatorMethods {
 
         try {
 
-            System.out.println("[Input must be a Positive Integer (> 0)]"); // user input must be greater than 0
+            System.out.println("[Input must be a Positive Integer (>0)]"); // user input must be greater than 0
             System.out.print("Input radius: ");
             inputOne = scanOne.nextDouble();
 
@@ -230,7 +230,7 @@ class BasicCalculatorMethods {
 
         try {
 
-            System.out.println("[Input must be a Positive Integer (> 0)]");
+            System.out.println("[Input must be a Positive Integer (>0)]");
             System.out.print("Input radius: ");
             inputOne = scanOne.nextDouble();
 

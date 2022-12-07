@@ -24,12 +24,13 @@ class BasicCalculatorMethods {
 
     // Variables to hold user input, static so that they could be accessed by
     // methods directly
-    static float inputOne = 0;
-    static float inputTwo = 0;
+    static double inputOne = 0;
+    static double inputTwo = 0;
     static char myOperator = ' ';
-    static float myResult = 0;
+    static double myResult = 0;
     static boolean appOn = true;
     static int userChoice = 0;
+    static float myResultFloat = 0;
 
     // Create a Scanner, static so that all methods in the class can use it
     static Scanner scanOne = new Scanner(System.in);
@@ -49,15 +50,17 @@ class BasicCalculatorMethods {
 
     public static void mainMenu() { // method that contains our main menu
 
+        resetNum(); // resets inputOne, inputTwo, myOperator, myResult, userChoice, myResultFloat
         System.out.println("=========================");
         System.out.println("[  2 Number Calculator  ]");
         System.out.println("[1] Calculator");
-        System.out.println("[2] Close Application");
+        System.out.println("[2] Area (Circle)");
+        System.out.println("[3] Circumference (Circle)");
+        System.out.println("[4] Close Application");
         System.out.println("=========================");
 
         try {
 
-            resetNum(); // resets inputOne, inputTwo, myOperator, myResult
             System.out.print("Input: "); // asks for user input
             userChoice = scanOne.nextInt(); // stores it in userChoice
 
@@ -78,6 +81,14 @@ class BasicCalculatorMethods {
                 break;
 
             case 2:
+                areaCalc(); // calculate the area of a circle
+                break;
+
+            case 3:
+                circumCalc(); // calculate the circumference of the circle
+                break;
+
+            case 4:
                 closeApp(); // closes the application
                 break;
 
@@ -142,36 +153,36 @@ class BasicCalculatorMethods {
 
     }
 
-    public static void addNum() { // no parameters needed since the variables are static
+    public static void addNum() { // method that adds numbers
+        // no parameters needed since the variables are static
 
         myResult = inputOne + inputTwo;
-        System.out.println("[Sum of the two numbers: " + myResult + "]");
+        myResultFloat = (float) myResult; // makes the results shorter
+        System.out.println("[Sum of the two numbers: " + myResultFloat + "]");
 
     }
 
-    public static void minNum() {
+    public static void minNum() { // subtracts numbers
 
         myResult = inputOne - inputTwo;
-        System.out.println("[Difference of the two numbers: " + myResult + "]");
+        myResultFloat = (float) myResult;
+        System.out.println("[Difference of the two numbers: " + myResultFloat + "]");
 
     }
 
-    public static void mulNum() {
+    public static void mulNum() { // multiplies numbers
 
         myResult = inputOne * inputTwo;
-        System.out.println("[Product of the two numbers: " + myResult + "]");
+        myResultFloat = (float) myResult;
+        System.out.println("[Product of the two numbers: " + myResultFloat + "]");
 
     }
 
-    public static void divNum() {
+    public static void divNum() { // divides numbers
 
         myResult = inputOne / inputTwo;
-        System.out.println("[Quotient of the two numbers: " + myResult + "]");
-        // Note: Dividing integers may cause problems, ex. 3 / 6 will result in zero
-        // instead of 0.5
-        // This is because integers rounds towards 0, it would be much better to use
-        // float instead
-        // of int in this case but for demonstration purposes, we will use int for now
+        myResultFloat = (float) myResult;
+        System.out.println("[Quotient of the two numbers: " + myResultFloat + "]");
 
     }
 
@@ -182,12 +193,80 @@ class BasicCalculatorMethods {
 
     }
 
+    public static void areaCalc() { // calculates the area of a circle using a radius
+
+        try {
+
+            System.out.println("[Input must be a Positive Integer (> 0)]"); // user input must be greater than 0
+            System.out.print("Input radius: ");
+            inputOne = scanOne.nextDouble();
+
+        }
+
+        catch (InputMismatchException ex) {
+
+            scanOne.nextLine(); // goes to else statement if an exception occurs
+
+        }
+
+        if (inputOne > 0) {
+
+            myResult = (Math.PI * Math.pow(inputOne, 2));
+            myResultFloat = (float) myResult; // turns myResult into a float, we do this to get a shorter answer
+            System.out.println("[Area (Circle): " + myResultFloat + "]");
+
+        }
+
+        else {
+
+            System.out.println("[Error Occurred, Try Again]");
+            mainMenu(); // returns to mainMenu
+
+        }
+
+    }
+
+    public static void circumCalc() {
+
+        try {
+
+            System.out.println("[Input must be a Positive Integer (> 0)]");
+            System.out.print("Input radius: ");
+            inputOne = scanOne.nextDouble();
+
+        }
+
+        catch (InputMismatchException ex) {
+
+            scanOne.nextLine(); // goes to the else statement
+
+        }
+
+        if (inputOne > 0) {
+
+            myResult = (2 * Math.PI * inputOne);
+            myResultFloat = (float) myResult;
+            System.out.println("Circumference (Circle): " + myResultFloat + "]");
+
+        }
+
+        else {
+
+            System.out.println("[Error Occurred, Try Again]");
+            mainMenu(); // returns to mainMenu
+
+        }
+
+    }
+
     public static void resetNum() { // method that resets certain values
 
         inputOne = 0;
         inputTwo = 0;
         myOperator = ' ';
         myResult = 0;
+        userChoice = 0;
+        myResultFloat = 0;
 
     }
 

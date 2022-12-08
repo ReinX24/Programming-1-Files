@@ -12,51 +12,77 @@ import java.util.Scanner;
 
 class BasicCalculatorMethods {
 
-    // NOTE: This is an advanced version of the Basic Java Calculator exercise, the
-    // code inside this file
-    // makes use of static methods, static variables, loops, exception handling and
-    // more.
-    // The code below has NOT been demonstrated by the professor as of the writing
-    // of this note, so if you
-    // do not understand the algorithm or logic below, do not worry too much for
-    // they will be taught
-    // eventually in the future (probably Programming 2).
+    /*
+     * NOTE: This is an advanced version of the Basic Java Calculator exercise, the
+     * code inside this file
+     * makes use of static methods, static variables, loops, exception handling and
+     * more.
+     * The code below has NOT been demonstrated by the professor as of the writing
+     * of this note, so if you
+     * do not understand the algorithm or logic below, do not worry too much for
+     * they will be taught
+     * eventually in the future (probably Programming 2).
+     * 
+     */
 
-    // Variables to hold user input, static so that they could be accessed by
-    // methods directly
-    static double inputOne = 0;
-    static double inputTwo = 0;
-    static char myOperator = ' ';
-    static double myResult = 0;
-    static boolean appOn = true;
-    static int userChoice = 0;
-    static float myResultFloat = 0;
-
-    // Create a Scanner, static so that all methods in the class can use it
-    static Scanner scanOne = new Scanner(System.in);
+    /*
+     * 12/8/22 moved the static variables within the main method to make use of
+     * parameters.
+     * 
+     * The code resulted to being somewhat less readable than before since we used
+     * the parameters of the methods that we have made.
+     * 
+     * Also removed the method that resets all the numbers, this is because after
+     * the
+     * mainMenu performs an operation or an exception occurs, it returns to mainMenu
+     * and all of the variables are reset since the original variable values are not
+     * modified through the methods. This is except for the appOn variable, where
+     * its
+     * value could be directly changed if the user closes the application.
+     * 
+     */
 
     public static void main(String[] args) {
+
+        // Scanner to accept user input
+        Scanner scanOne = new Scanner(System.in);
+
+        // Placed variables inside main method to make use of parameters
+        // Apparently, all the values reset to values in the main method after an
+        // operation within the mainMenu method
+        float inputOne = 0;
+        float inputTwo = 0;
+        char myOperator = ' ';
+        float myResult = 0;
+        int userChoice = 0;
+        boolean appOn = true;
 
         // We will now create a Basic Calculator using the Scanner class and Branching
         // Statements
 
-        while (appOn) {
+        while (appOn) { // loops mainMenu until appOn is false
 
-            mainMenu(); // loops mainMenu until loop is broken
+            appOn = mainMenu(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
+            // the appOn in the main method will be reassigned to the new boolean from the
+            // mainMenu method
 
         }
 
+        scanOne.close(); // closes the Scanner when the while loop above is broken
+
     }
 
-    public static void mainMenu() { // method that contains our main menu
+    public static boolean mainMenu(int userChoice, float inputOne, float inputTwo, char myOperator, float myResult,
+            Scanner scanOne, boolean appOn) { // method that contains our main menu
 
-        resetNum(); // resets inputOne, inputTwo, myOperator, myResult, userChoice, myResultFloat
+        resetNum(userChoice, inputOne, inputTwo, myOperator, myResult); // resets all values to avoid bugs
         System.out.println("=========================");
         System.out.println("[  2 Number Calculator  ]");
         System.out.println("[1] Calculator");
         System.out.println("[2] Area (Circle)");
         System.out.println("[3] Circumference (Circle)");
-        System.out.println("[4] Close Application");
+        System.out.println("[4] Diameter (Circle)");
+        System.out.println("[5] Close Application");
         System.out.println("=========================");
 
         try {
@@ -76,31 +102,42 @@ class BasicCalculatorMethods {
         switch (userChoice) { // switch case that uses userChoice
 
             case 1:
-                userChoice = 0; // resets userChoice to zero
-                calcMenu(); // goes to calcMenu method
+                // goes to calcMenu method
+                calcMenu(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
                 break;
 
             case 2:
-                areaCalc(); // calculate the area of a circle
+                // calculate the area of a circle
+                areaCalc(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
                 break;
 
             case 3:
-                circumCalc(); // calculate the circumference of the circle
+                // calculate the circumference of the circle
+                circumCalc(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
                 break;
 
             case 4:
-                closeApp(); // closes the application
+                userChoice = 0;
+                diamCalc(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
+                break;
+
+            case 5:
+                appOn = closeApp(appOn, scanOne); // closes the application by making appOn false
+                // the result of appOn will then return to the main method
                 break;
 
             default:
                 System.out.println("[Invalid Input, Try Again]"); // prints when default occurs
-                mainMenu(); // returns to mainMenu
+                mainMenu(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn); // returns to mainMenu
 
         }
 
+        return appOn; // returns appOn
+
     }
 
-    public static void calcMenu() { // runs if userInput is 1
+    public static void calcMenu(int userChoice, float inputOne, float inputTwo, char myOperator, float myResult,
+            Scanner scanOne, boolean appOn) { // runs if userInput is 1
 
         try {
 
@@ -129,77 +166,67 @@ class BasicCalculatorMethods {
         switch (myOperator) {
 
             case '+': // checks if myOperator is a + sign, will run code below if is is a + sign
-                addNum(); // method that adds the two numbers
+                addNum(inputOne, inputTwo, myResult); // method that adds the two numbers
                 break;
 
             case '-': // checks if myOperator is a - sign
-                minNum(); // subtracts the two numbers
+                minNum(inputOne, inputTwo, myResult); // subtracts the two numbers
                 break;
 
             case 'x': // checks if myOperator is a x sign
-                mulNum(); // multiplies the two numbers
+                mulNum(inputOne, inputTwo, myResult); // multiplies the two numbers
                 break;
 
             case '/': // checks if myOperator is a / sign
-                divNum(); // divides the two numbers
+                divNum(inputOne, inputTwo, myResult); // divides the two numbers
                 break;
 
             default: // will run this if all cases return false
                 System.out.println("[Error Occurred, Try Again]");
-                mainMenu(); // returns the user to mainMenu
+                mainMenu(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn); // mainMenu
                 break;
 
         }
 
     }
 
-    public static void addNum() { // method that adds numbers
+    public static void addNum(float inputOne, float inputTwo, float myResult) { // method that adds numbers
         // no parameters needed since the variables are static
 
         myResult = inputOne + inputTwo;
-        myResultFloat = (float) myResult; // makes the results shorter
-        System.out.println("[Sum of the two numbers: " + myResultFloat + "]");
+        System.out.println("[Sum of the two numbers: " + myResult + "]");
 
     }
 
-    public static void minNum() { // subtracts numbers
+    public static void minNum(float inputOne, float inputTwo, float myResult) { // subtracts numbers
 
         myResult = inputOne - inputTwo;
-        myResultFloat = (float) myResult;
-        System.out.println("[Difference of the two numbers: " + myResultFloat + "]");
+        System.out.println("[Difference of the two numbers: " + myResult + "]");
 
     }
 
-    public static void mulNum() { // multiplies numbers
+    public static void mulNum(float inputOne, float inputTwo, float myResult) { // multiplies numbers
 
         myResult = inputOne * inputTwo;
-        myResultFloat = (float) myResult;
-        System.out.println("[Product of the two numbers: " + myResultFloat + "]");
+        System.out.println("[Product of the two numbers: " + myResult + "]");
 
     }
 
-    public static void divNum() { // divides numbers
+    public static void divNum(float inputOne, float inputTwo, float myResult) { // divides numbers
 
         myResult = inputOne / inputTwo;
-        myResultFloat = (float) myResult;
-        System.out.println("[Quotient of the two numbers: " + myResultFloat + "]");
+        System.out.println("[Quotient of the two numbers: " + myResult + "]");
 
     }
 
-    public static void closeApp() { // method that closes or stops the application
-
-        scanOne.close(); // closes Scanner
-        appOn = false; // breaks appOn while loop
-
-    }
-
-    public static void areaCalc() { // calculates the area of a circle using a radius
+    public static void areaCalc(int userChoice, float inputOne, float inputTwo, char myOperator, float myResult,
+            Scanner scanOne, boolean appOn) { // calculates the area of a circle using a radius
 
         try {
 
             System.out.println("[Input must be a Positive Integer (>0)]"); // user input must be greater than 0
             System.out.print("Input radius: ");
-            inputOne = scanOne.nextDouble();
+            inputOne = scanOne.nextFloat();
 
         }
 
@@ -211,28 +238,28 @@ class BasicCalculatorMethods {
 
         if (inputOne > 0) {
 
-            myResult = (Math.PI * Math.pow(inputOne, 2));
-            myResultFloat = (float) myResult; // turns myResult into a float, we do this to get a shorter answer
-            System.out.println("[Area (Circle): " + myResultFloat + "]");
+            myResult = (float) (Math.PI * Math.pow(inputOne, 2));
+            System.out.println("[Area (Circle): " + myResult + "]");
 
         }
 
         else {
 
             System.out.println("[Error Occurred, Try Again]");
-            mainMenu(); // returns to mainMenu
+            mainMenu(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn); // returns to mainMenu
 
         }
 
     }
 
-    public static void circumCalc() {
+    public static void circumCalc(int userChoice, float inputOne, float inputTwo, char myOperator, float myResult,
+            Scanner scanOne, boolean appOn) { // circumference of the circle
 
         try {
 
             System.out.println("[Input must be a Positive Integer (>0)]");
             System.out.print("Input radius: ");
-            inputOne = scanOne.nextDouble();
+            inputOne = scanOne.nextFloat();
 
         }
 
@@ -244,29 +271,70 @@ class BasicCalculatorMethods {
 
         if (inputOne > 0) {
 
-            myResult = (2 * Math.PI * inputOne);
-            myResultFloat = (float) myResult;
-            System.out.println("Circumference (Circle): " + myResultFloat + "]");
+            myResult = (float) (2 * Math.PI * inputOne);
+            System.out.println("Circumference (Circle): " + myResult + "]");
 
         }
 
         else {
 
             System.out.println("[Error Occurred, Try Again]");
-            mainMenu(); // returns to mainMenu
+            mainMenu(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn); // returns to mainMenu
 
         }
 
     }
 
-    public static void resetNum() { // method that resets certain values
+    public static void diamCalc(int userChoice, float inputOne, float inputTwo, char myOperator, float myResult,
+            Scanner scanOne, boolean appOn) { // diameter of the circle
+
+        try {
+
+            System.out.println("[Input must be a Positive Integer (>0)]");
+            System.out.print("Input radius: ");
+            inputOne = scanOne.nextFloat();
+
+        }
+
+        catch (InputMismatchException ex) {
+
+            scanOne.nextLine(); // goes to the else statement
+
+        }
+
+        if (inputOne > 0) {
+
+            myResult = (float) (2 * inputOne);
+            System.out.println("Diameter (Circle): " + myResult + "]");
+
+        }
+
+        else {
+
+            System.out.println("[Error Occurred, Try Again]");
+            mainMenu(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn); // returns to mainMenu
+
+        }
+
+    }
+
+    // closes the application
+    public static boolean closeApp(boolean appOn, Scanner scanOne) { // method that closes or stops the application
+
+        System.out.println("[Application Closed]");
+        appOn = false; // breaks appOn while loop
+        return appOn; // returns appOn as false
+
+    }
+
+    // method that resets certain values
+    public static void resetNum(int userChoice, float inputOne, float inputTwo, char myOperator, float myResult) {
 
         inputOne = 0;
         inputTwo = 0;
         myOperator = ' ';
         myResult = 0;
         userChoice = 0;
-        myResultFloat = 0;
 
     }
 

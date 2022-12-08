@@ -1,12 +1,12 @@
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.InputMismatchException; // import for handling InputMismatchExceptions
+import java.util.Scanner; // import for Scanner class
 
 /*
  * Author: Rein Aldwin E. Solis
  * Programming Language: Java
  * Creation Date: 12/6/22
  * School: Universidad De Dagupan
- * Description: Basic Calculator with Methods, Loops, and Exception Handling
+ * Description: Basic Calculator with Methods, Parameters, Loops, and Exception Handling
  * 
  */
 
@@ -14,14 +14,13 @@ class BasicCalculatorMethods {
 
     /*
      * NOTE: This is an advanced version of the Basic Java Calculator exercise, the
-     * code inside this file
-     * makes use of static methods, static variables, loops, exception handling and
-     * more.
+     * code inside this file makes use of static methods, static variables, loops,
+     * exception handling and more.
+     * 
      * The code below has NOT been demonstrated by the professor as of the writing
-     * of this note, so if you
-     * do not understand the algorithm or logic below, do not worry too much for
-     * they will be taught
-     * eventually in the future (probably Programming 2).
+     * of this note, so if you do not understand the algorithm or logic below, do
+     * not worry too much for they will be taught eventually in the future
+     * (probably Programming 2).
      * 
      */
 
@@ -33,12 +32,11 @@ class BasicCalculatorMethods {
      * the parameters of the methods that we have made.
      * 
      * Also removed the method that resets all the numbers, this is because after
-     * the
-     * mainMenu performs an operation or an exception occurs, it returns to mainMenu
-     * and all of the variables are reset since the original variable values are not
-     * modified through the methods. This is except for the appOn variable, where
-     * its
-     * value could be directly changed if the user closes the application.
+     * the mainMenu performs an operation or an exception occurs, it returns to
+     * mainMenu and all of the variables are reset since the original variable
+     * values are not modified through the methods. This is except for the appOn
+     * variable, where its value could be directly changed if the user closes
+     * the application.
      * 
      */
 
@@ -48,8 +46,8 @@ class BasicCalculatorMethods {
         Scanner scanOne = new Scanner(System.in);
 
         // Placed variables inside main method to make use of parameters
-        // Apparently, all the values reset to values in the main method after an
-        // operation within the mainMenu method
+        // All the values reset to values in the main method after an operation within
+        // another method
         float inputOne = 0;
         float inputTwo = 0;
         char myOperator = ' ';
@@ -63,21 +61,29 @@ class BasicCalculatorMethods {
         while (appOn) { // loops mainMenu until appOn is false
 
             appOn = mainMenu(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
+            // we will be using all of the variables inserted as parameters for the entirety
+            // of our program
             // the appOn in the main method will be reassigned to the new boolean from the
             // mainMenu method
 
         }
 
-        scanOne.close(); // closes the Scanner
+        if (appOn == false) {
+
+            scanOne.close(); // closes the Scanner after the while loop is broken and appOn is false
+
+        }
 
     }
 
     public static boolean mainMenu(int userChoice, float inputOne, float inputTwo, char myOperator, float myResult,
             Scanner scanOne, boolean appOn) { // method that contains our main menu
+        // All variables are inside the parameters since we will be using them
+        // throughout our various methods
 
-        userChoice = 0;
+        userChoice = 0; // resets userChoice when mainMenu is invoked, for avoiding bugs
         System.out.println("=========================");
-        System.out.println("[  2 Number Calculator  ]");
+        System.out.println("[  2 Number Calculator  ]"); // these will be the "interface" of our main menu
         System.out.println("[1] Calculator");
         System.out.println("[2] Radius (Circle)");
         System.out.println("[3] Area (Circle)");
@@ -100,7 +106,7 @@ class BasicCalculatorMethods {
 
         }
 
-        switch (userChoice) { // switch case that uses userChoice
+        switch (userChoice) { // switch case that has userChoice as its variable
 
             case 1:
                 // goes to calcMenu method
@@ -108,7 +114,8 @@ class BasicCalculatorMethods {
                 break;
 
             case 2:
-                // calculate the radius of a circle
+                // calculate the radius of a circle using inputted area, circumference, or
+                // diameter
                 radiCalc(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
                 break;
 
@@ -128,8 +135,9 @@ class BasicCalculatorMethods {
                 break;
 
             case 6:
-                appOn = closeApp(appOn, scanOne); // closes the application by making appOn false
-                // the result of appOn will then return to the main method
+                appOn = closeApp(appOn); // closes the application by making appOn false
+                // the result of appOn will then return to the main method through the mainMenu
+                // method
                 break;
 
             default:
@@ -138,7 +146,7 @@ class BasicCalculatorMethods {
 
         }
 
-        return appOn; // returns appOn
+        return appOn; // returns appOn, returns false only when the user choices to close the app
 
     }
 
@@ -157,10 +165,6 @@ class BasicCalculatorMethods {
             System.out.print("Enter operator(+,-,x,/): ");
             myOperator = scanOne.next().charAt(0); // how to put user input in myOperator
 
-            // We will now use the Switch case syntax for our calculator
-            // We will use the Switch case rather than the If - else if - nested if syntax
-            // so that we could demonstrate how the Switch case works
-
         }
 
         catch (InputMismatchException ex) { // executes when an exception occurs in any of the input process
@@ -168,6 +172,10 @@ class BasicCalculatorMethods {
             scanOne.nextLine(); // goes to default statement when an exception occurs
 
         }
+
+        // We will now use the Switch case syntax for our calculator
+        // We will use the Switch case rather than the If - else if - nested if syntax
+        // so that we could demonstrate how the Switch case works
 
         switch (myOperator) {
 
@@ -197,7 +205,6 @@ class BasicCalculatorMethods {
     }
 
     public static void addNum(float inputOne, float inputTwo, float myResult) { // method that adds numbers
-        // no parameters needed since the variables are static
 
         myResult = inputOne + inputTwo;
         System.out.println("[Sum of the two numbers: " + myResult + "]");
@@ -250,15 +257,19 @@ class BasicCalculatorMethods {
         switch (userChoice) {
 
             case 1:
-                radiCalcArea(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
+                radiCalcArea(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn); // calculates radius
+                                                                                                    // using area
                 break;
 
             case 2:
-                radiCalcCircum(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
+                radiCalcCircum(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn); // calculates
+                                                                                                      // radius using
+                                                                                                      // circumference
                 break;
 
             case 3:
-                radiCalcDiam(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
+                radiCalcDiam(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn); // calculates radius
+                                                                                                    // using diameter
                 break;
 
             default:
@@ -270,7 +281,7 @@ class BasicCalculatorMethods {
     }
 
     public static void radiCalcArea(int userChoice, float inputOne, float inputTwo, char myOperator, float myResult,
-            Scanner scanOne, boolean appOn) { // calculates the radius of a circle using a radius
+            Scanner scanOne, boolean appOn) { // calculates the radius of a circle using area
 
         try {
 
@@ -288,7 +299,8 @@ class BasicCalculatorMethods {
 
         if (inputOne > 0) {
 
-            myResult = (float) (Math.sqrt(inputOne / Math.PI));
+            myResult = (float) (Math.sqrt(inputOne / Math.PI)); // converts the result to a float,
+            // this is because using methods in the Math class return a double value
             System.out.println("[Radius (Circle): " + myResult + "]");
 
         }
@@ -303,7 +315,7 @@ class BasicCalculatorMethods {
     }
 
     public static void radiCalcCircum(int userChoice, float inputOne, float inputTwo, char myOperator, float myResult,
-            Scanner scanOne, boolean appOn) { // calculates the radius of a circle using a radius
+            Scanner scanOne, boolean appOn) { // calculates the radius of a circle using circumference
 
         try {
 
@@ -336,7 +348,7 @@ class BasicCalculatorMethods {
     }
 
     public static void radiCalcDiam(int userChoice, float inputOne, float inputTwo, char myOperator, float myResult,
-            Scanner scanOne, boolean appOn) { // calculates the radius of a circle using a radius
+            Scanner scanOne, boolean appOn) { // calculates the radius of a circle using diameter
 
         try {
 
@@ -468,7 +480,7 @@ class BasicCalculatorMethods {
     }
 
     // closes the application
-    public static boolean closeApp(boolean appOn, Scanner scanOne) { // method that closes or stops the application
+    public static boolean closeApp(boolean appOn) { // method that closes or stops the application
 
         System.out.println("[Application Closed]");
         appOn = false; // breaks appOn while loop
@@ -477,13 +489,14 @@ class BasicCalculatorMethods {
     }
 
     // method that resets certain values, commented out for now
-    // public static void resetNum(int userChoice, float inputOne, float inputTwo, char myOperator, float myResult) {
+    // public static void resetNum(int userChoice, float inputOne, float inputTwo,
+    // char myOperator, float myResult) {
 
-    //     inputOne = 0;
-    //     inputTwo = 0;
-    //     myOperator = ' ';
-    //     myResult = 0;
-    //     userChoice = 0;
+    // inputOne = 0;
+    // inputTwo = 0;
+    // myOperator = ' ';
+    // myResult = 0;
+    // userChoice = 0;
 
     // }
 

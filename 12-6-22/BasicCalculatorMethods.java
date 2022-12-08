@@ -68,21 +68,22 @@ class BasicCalculatorMethods {
 
         }
 
-        scanOne.close(); // closes the Scanner when the while loop above is broken
+        scanOne.close(); // closes the Scanner
 
     }
 
     public static boolean mainMenu(int userChoice, float inputOne, float inputTwo, char myOperator, float myResult,
             Scanner scanOne, boolean appOn) { // method that contains our main menu
 
-        resetNum(userChoice, inputOne, inputTwo, myOperator, myResult); // resets all values to avoid bugs
+        userChoice = 0;
         System.out.println("=========================");
         System.out.println("[  2 Number Calculator  ]");
         System.out.println("[1] Calculator");
-        System.out.println("[2] Area (Circle)");
-        System.out.println("[3] Circumference (Circle)");
-        System.out.println("[4] Diameter (Circle)");
-        System.out.println("[5] Close Application");
+        System.out.println("[2] Radius (Circle)");
+        System.out.println("[3] Area (Circle)");
+        System.out.println("[4] Circumference (Circle)");
+        System.out.println("[5] Diameter (Circle)");
+        System.out.println("[6] Close Application");
         System.out.println("=========================");
 
         try {
@@ -107,21 +108,26 @@ class BasicCalculatorMethods {
                 break;
 
             case 2:
+                // calculate the radius of a circle
+                radiCalc(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
+                break;
+
+            case 3:
                 // calculate the area of a circle
                 areaCalc(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
                 break;
 
-            case 3:
-                // calculate the circumference of the circle
+            case 4:
+                // calculate the circumference of a circle
                 circumCalc(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
                 break;
 
-            case 4:
-                userChoice = 0;
+            case 5:
+                // calculate the diameter of a circle
                 diamCalc(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
                 break;
 
-            case 5:
+            case 6:
                 appOn = closeApp(appOn, scanOne); // closes the application by making appOn false
                 // the result of appOn will then return to the main method
                 break;
@@ -216,6 +222,149 @@ class BasicCalculatorMethods {
 
         myResult = inputOne / inputTwo;
         System.out.println("[Quotient of the two numbers: " + myResult + "]");
+
+    }
+
+    public static void radiCalc(int userChoice, float inputOne, float inputTwo, char myOperator, float myResult,
+            Scanner scanOne, boolean appOn) { // calculates the radius of a circle
+
+        userChoice = 0;
+        System.out.println("[Calculate Radius]");
+        System.out.println("[1] Area");
+        System.out.println("[2] Circumference");
+        System.out.println("[3] Diameter");
+
+        try {
+
+            System.out.print("Input: ");
+            userChoice = scanOne.nextInt();
+
+        }
+
+        catch (InputMismatchException ex) {
+
+            scanOne.nextLine(); // goes to else statement if an exception occurs
+
+        }
+
+        switch (userChoice) {
+
+            case 1:
+                radiCalcArea(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
+                break;
+
+            case 2:
+                radiCalcCircum(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
+                break;
+
+            case 3:
+                radiCalcDiam(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
+                break;
+
+            default:
+                System.out.println("[Error Occurred, Try Again]");
+                mainMenu(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn); // returns to mainMenu
+
+        }
+
+    }
+
+    public static void radiCalcArea(int userChoice, float inputOne, float inputTwo, char myOperator, float myResult,
+            Scanner scanOne, boolean appOn) { // calculates the radius of a circle using a radius
+
+        try {
+
+            System.out.println("[Input must be a Positive Integer (>0)]"); // user input must be greater than 0
+            System.out.print("Input area: ");
+            inputOne = scanOne.nextFloat();
+
+        }
+
+        catch (InputMismatchException ex) {
+
+            scanOne.nextLine(); // goes to else statement if an exception occurs
+
+        }
+
+        if (inputOne > 0) {
+
+            myResult = (float) (Math.sqrt(inputOne / Math.PI));
+            System.out.println("[Radius (Circle): " + myResult + "]");
+
+        }
+
+        else {
+
+            System.out.println("[Error Occurred, Try Again]");
+            mainMenu(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn); // returns to mainMenu
+
+        }
+
+    }
+
+    public static void radiCalcCircum(int userChoice, float inputOne, float inputTwo, char myOperator, float myResult,
+            Scanner scanOne, boolean appOn) { // calculates the radius of a circle using a radius
+
+        try {
+
+            System.out.println("[Input must be a Positive Integer (>0)]"); // user input must be greater than 0
+            System.out.print("Input circumference: ");
+            inputOne = scanOne.nextFloat();
+
+        }
+
+        catch (InputMismatchException ex) {
+
+            scanOne.nextLine(); // goes to else statement if an exception occurs
+
+        }
+
+        if (inputOne > 0) {
+
+            myResult = (float) (inputOne / (2 * Math.PI));
+            System.out.println("[Radius (Circle): " + myResult + "]");
+
+        }
+
+        else {
+
+            System.out.println("[Error Occurred, Try Again]");
+            mainMenu(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn); // returns to mainMenu
+
+        }
+
+    }
+
+    public static void radiCalcDiam(int userChoice, float inputOne, float inputTwo, char myOperator, float myResult,
+            Scanner scanOne, boolean appOn) { // calculates the radius of a circle using a radius
+
+        try {
+
+            System.out.println("[Input must be a Positive Integer (>0)]"); // user input must be greater than 0
+            System.out.print("Input diameter: ");
+            inputOne = scanOne.nextFloat();
+
+        }
+
+        catch (InputMismatchException ex) {
+
+            scanOne.nextLine(); // goes to else statement if an exception occurs
+
+        }
+
+        if (inputOne > 0) {
+
+            myResult = (float) (inputOne / 2);
+            System.out.println("[Radius (Circle): " + myResult + "]");
+
+        }
+
+        else {
+
+            System.out.println("[Error Occurred, Try Again]");
+            mainMenu(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn); // returns to mainMenu
+
+        }
 
     }
 
@@ -327,15 +476,15 @@ class BasicCalculatorMethods {
 
     }
 
-    // method that resets certain values
-    public static void resetNum(int userChoice, float inputOne, float inputTwo, char myOperator, float myResult) {
+    // method that resets certain values, commented out for now
+    // public static void resetNum(int userChoice, float inputOne, float inputTwo, char myOperator, float myResult) {
 
-        inputOne = 0;
-        inputTwo = 0;
-        myOperator = ' ';
-        myResult = 0;
-        userChoice = 0;
+    //     inputOne = 0;
+    //     inputTwo = 0;
+    //     myOperator = ' ';
+    //     myResult = 0;
+    //     userChoice = 0;
 
-    }
+    // }
 
 }

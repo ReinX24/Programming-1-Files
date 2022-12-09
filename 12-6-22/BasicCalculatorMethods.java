@@ -40,6 +40,17 @@ class BasicCalculatorMethods {
      * 
      */
 
+    /*
+     * 12/9/22 a bug where the loop is not immediately broken when appOn is set to
+     * false happens when trying to close the app.
+     * 
+     * This bug prompts the user to enter the command twice rather than only one
+     * time.
+     * To solve this issue, we directly stop our program indefinitely by using
+     * System.exit(0);.
+     * 
+     */
+
     public static void main(String[] args) {
 
         // Scanner to accept user input
@@ -58,25 +69,17 @@ class BasicCalculatorMethods {
         // We will now create a Basic Calculator using the Scanner class and Branching
         // Statements
 
-        while (appOn) { // loops mainMenu until appOn is false
+        while (appOn) { // loops mainMenu
 
-            appOn = mainMenu(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
+            mainMenu(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
             // we will be using all of the variables inserted as parameters for the entirety
             // of our program
-            // the appOn in the main method will be reassigned to the new boolean from the
-            // mainMenu method
-
-        }
-
-        if (appOn == false) {
-
-            scanOne.close(); // closes the Scanner after the while loop is broken and appOn is false
 
         }
 
     }
 
-    public static boolean mainMenu(int userChoice, float inputOne, float inputTwo, char myOperator, float myResult,
+    public static void mainMenu(int userChoice, float inputOne, float inputTwo, char myOperator, float myResult,
             Scanner scanOne, boolean appOn) { // method that contains our main menu
         // All variables are inside the parameters since we will be using them
         // throughout our various methods
@@ -104,10 +107,6 @@ class BasicCalculatorMethods {
 
         }
 
-        if (userChoice == 3) { // temporary fix, might replace later
-            pythaCalc(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
-        }
-
         switch (userChoice) { // switch case that has userChoice as its variable
 
             case 1:
@@ -118,26 +117,25 @@ class BasicCalculatorMethods {
             case 2:
                 // goes to circle calculator
                 cirCalc(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
+                break;
 
             case 3:
                 // pythagorean theorem calculator
-                // pythaCalc(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne,
-                // appOn); // causing issues, unknown for now
+                pythaCalc(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
                 break;
 
             case 4:
-                appOn = closeApp(appOn); // closes the application by making appOn false
-                // the result of appOn will then return to the main method through the mainMenu
-                // method
+                // closes application
+                System.out.println("[Application Closed]");
+                System.exit(0);
                 break;
 
             default:
                 System.out.println("[Invalid Input, Try Again]"); // prints when default occurs
                 mainMenu(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn); // returns to mainMenu
+                break;
 
         }
-
-        return appOn; // returns appOn, returns false only when the user choices to close the app
 
     }
 
@@ -227,6 +225,7 @@ class BasicCalculatorMethods {
             Scanner scanOne, boolean appOn) {
 
         userChoice = 0;
+        System.out.println("=========================");
         System.out.println("[Circle Calculator]");
         System.out.println("[1] Radius");
         System.out.println("[2] Area");
@@ -289,6 +288,7 @@ class BasicCalculatorMethods {
             Scanner scanOne, boolean appOn) { // calculates the radius of a circle
 
         userChoice = 0;
+        System.out.println("=========================");
         System.out.println("[Calculate Radius]");
         System.out.println("[1] Area");
         System.out.println("[2] Circumference");
@@ -327,6 +327,7 @@ class BasicCalculatorMethods {
             default:
                 System.out.println("[Error Occurred, Try Again]");
                 mainMenu(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn); // returns to mainMenu
+                break;
 
         }
 
@@ -354,7 +355,6 @@ class BasicCalculatorMethods {
             myResult = (float) (Math.sqrt(inputOne / Math.PI)); // converts the result to a float,
             // this is because using methods in the Math class return a double value
             System.out.println("[Radius (Circle): " + myResult + "]");
-            mainMenu(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
 
         }
 
@@ -388,7 +388,6 @@ class BasicCalculatorMethods {
 
             myResult = (float) (inputOne / (2 * Math.PI));
             System.out.println("[Radius (Circle): " + myResult + "]");
-            mainMenu(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
 
         }
 
@@ -422,7 +421,6 @@ class BasicCalculatorMethods {
 
             myResult = (float) (inputOne / 2);
             System.out.println("[Radius (Circle): " + myResult + "]");
-            mainMenu(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
 
         }
 
@@ -456,7 +454,6 @@ class BasicCalculatorMethods {
 
             myResult = (float) (Math.PI * Math.pow(inputOne, 2));
             System.out.println("[Area (Circle): " + myResult + "]");
-            mainMenu(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
 
         }
 
@@ -490,7 +487,6 @@ class BasicCalculatorMethods {
 
             myResult = (float) (2 * Math.PI * inputOne);
             System.out.println("Circumference (Circle): " + myResult + "]");
-            mainMenu(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
 
         }
 
@@ -524,7 +520,6 @@ class BasicCalculatorMethods {
 
             myResult = (float) (2 * inputOne);
             System.out.println("Diameter (Circle): " + myResult + "]");
-            mainMenu(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
 
         }
 
@@ -542,6 +537,7 @@ class BasicCalculatorMethods {
             Scanner scanOne, boolean appOn) {
 
         userChoice = 0;
+        System.out.println("=========================");
         System.out.println("[Pythagorean Theorem Calculator]");
         System.out.println("[1] Hypotenuse");
         System.out.println("[2] Perpendicular (A leg)");
@@ -567,15 +563,19 @@ class BasicCalculatorMethods {
             case 1:
                 hypotenuseCalculate(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
                 break;
+
             case 2:
                 perpendicularCalculate(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
                 break;
+
             case 3:
                 baseCalculate(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
                 break;
+
             case 4:
                 mainMenu(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
                 break;
+
             default:
                 System.out.println("[Error Occurred, Try Again]");
                 mainMenu(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
@@ -613,7 +613,6 @@ class BasicCalculatorMethods {
         if (myResult != 0) { // it is impossible for a hypotenuse to have a length of zero
 
             System.out.printf("The hypotenuse of triangle: %.2f\n", myResult); // roounded off to 2 decimal places
-            mainMenu(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
 
         }
 
@@ -652,9 +651,8 @@ class BasicCalculatorMethods {
         if (inputTwo > inputOne) { // hypotenuse needs to be longer than base
 
             myResult = (float) Math.sqrt(Math.pow(inputTwo, 2) - Math.pow(inputOne, 2));
-            System.out.printf("The perpendicular of triangle: %.2f\n", myResult); // shows the perpendicular of the
-                                                                                  // trangle
-            mainMenu(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
+            System.out.printf("The perpendicular of triangle: %.2f\n", myResult);
+            // shows the perpendicular of the trangle
 
         }
 
@@ -693,7 +691,6 @@ class BasicCalculatorMethods {
 
             myResult = (float) Math.sqrt(Math.pow(inputTwo, 2) - Math.pow(inputOne, 2));
             System.out.printf("The base of triangle: %.2f\n", myResult);
-            mainMenu(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
 
         }
 
@@ -707,13 +704,14 @@ class BasicCalculatorMethods {
     }
 
     // closes the application
-    public static boolean closeApp(boolean appOn) { // method that closes or stops the application
+    // public static boolean closeApp(boolean appOn) { // method that closes or
+    // // stops the application
 
-        System.out.println("[Application Closed]");
-        appOn = false; // breaks appOn while loop
-        return appOn; // returns appOn as false
+    // System.out.println("[Application Closed]");
+    // appOn = false;
+    // return appOn;
 
-    }
+    // }
 
     // method that resets certain values, commented out for now
     // public static void resetNum(int userChoice, float inputOne, float inputTwo,

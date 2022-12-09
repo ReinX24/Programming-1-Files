@@ -84,12 +84,11 @@ class BasicCalculatorMethods {
         userChoice = 0; // resets userChoice when mainMenu is invoked, for avoiding bugs
         System.out.println("=========================");
         System.out.println("[  2 Number Calculator  ]"); // these will be the "interface" of our main menu
-        System.out.println("[1] Calculator");
-        System.out.println("[2] Radius (Circle)");
-        System.out.println("[3] Area (Circle)");
-        System.out.println("[4] Circumference (Circle)");
-        System.out.println("[5] Diameter (Circle)");
-        System.out.println("[6] Close Application");
+        System.out.println("[1] 2 No. Calculator");
+        System.out.println("[2] Circle Calculator");
+        System.out.println("[3] Pythagorean Theorem");
+        System.out.println("[4] Close Application");
+
         System.out.println("=========================");
 
         try {
@@ -114,27 +113,14 @@ class BasicCalculatorMethods {
                 break;
 
             case 2:
-                // calculate the radius of a circle using inputted area, circumference, or
-                // diameter
-                radiCalc(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
-                break;
+                // goes to circle calculator
+                cirCalc(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
 
             case 3:
-                // calculate the area of a circle
-                areaCalc(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
+                // pythagorean theorem calculator method here
                 break;
 
             case 4:
-                // calculate the circumference of a circle
-                circumCalc(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
-                break;
-
-            case 5:
-                // calculate the diameter of a circle
-                diamCalc(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
-                break;
-
-            case 6:
                 appOn = closeApp(appOn); // closes the application by making appOn false
                 // the result of appOn will then return to the main method through the mainMenu
                 // method
@@ -232,6 +218,68 @@ class BasicCalculatorMethods {
 
     }
 
+    public static void cirCalc(int userChoice, float inputOne, float inputTwo, char myOperator, float myResult,
+            Scanner scanOne, boolean appOn) {
+
+        userChoice = 0;
+        System.out.println("[Circle Calculator]");
+        System.out.println("[1] Radius");
+        System.out.println("[2] Area");
+        System.out.println("[3] Circumference");
+        System.out.println("[4] Diameter");
+        System.out.println("[5] Main Menu");
+        System.out.println("=========================");
+
+        try {
+
+            System.out.print("Input: ");
+            userChoice = scanOne.nextInt(); 
+
+        }
+
+        catch (InputMismatchException ex) {
+
+            scanOne.nextLine();
+
+        }
+
+        switch (userChoice) {
+
+            case 1:
+                // calculate the radius of a circle using inputted area, circumference, or
+                // diameter
+                radiCalc(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
+                break;
+
+            case 2:
+                // calculate the area of a circle
+                areaCalc(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
+                break;
+
+            case 3:
+                // calculate the circumference of a circle
+                circumCalc(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
+                break;
+
+            case 4:
+                // calculate the diameter of a circle
+                diamCalc(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
+                break;
+
+            case 5:
+                // returns to main menu
+                mainMenu(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
+                break;
+
+            default:
+                System.out.println("[Error Occurred, Try Again]");
+                mainMenu(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
+                break;
+
+        }
+
+    }
+
     public static void radiCalc(int userChoice, float inputOne, float inputTwo, char myOperator, float myResult,
             Scanner scanOne, boolean appOn) { // calculates the radius of a circle
 
@@ -257,19 +305,18 @@ class BasicCalculatorMethods {
         switch (userChoice) {
 
             case 1:
-                radiCalcArea(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn); // calculates radius
-                                                                                                    // using area
+            // calculates radius using area
+                radiCalcArea(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn); 
                 break;
 
             case 2:
-                radiCalcCircum(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn); // calculates
-                                                                                                      // radius using
-                                                                                                      // circumference
+             // calculates radius using circumference
+                radiCalcCircum(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);                                                                         
                 break;
 
             case 3:
-                radiCalcDiam(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn); // calculates radius
-                                                                                                    // using diameter
+            // calculates radius using diameter
+                radiCalcDiam(userChoice, inputO // e, inputTwo, myOperator, myResult, scanOne, appOn);                                                                              
                 break;
 
             default:

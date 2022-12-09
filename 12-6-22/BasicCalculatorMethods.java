@@ -104,6 +104,10 @@ class BasicCalculatorMethods {
 
         }
 
+        if (userChoice == 3) { // temporary fix, might replace later
+            pythaCalc(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
+        }
+
         switch (userChoice) { // switch case that has userChoice as its variable
 
             case 1:
@@ -117,7 +121,8 @@ class BasicCalculatorMethods {
 
             case 3:
                 // pythagorean theorem calculator
-                pythaCalc(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
+                // pythaCalc(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne,
+                // appOn); // causing issues, unknown for now
                 break;
 
             case 4:
@@ -233,7 +238,7 @@ class BasicCalculatorMethods {
         try {
 
             System.out.print("Input: ");
-            userChoice = scanOne.nextInt(); 
+            userChoice = scanOne.nextInt();
 
         }
 
@@ -305,18 +310,18 @@ class BasicCalculatorMethods {
         switch (userChoice) {
 
             case 1:
-            // calculates radius using area
-                radiCalcArea(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn); 
+                // calculates radius using area
+                radiCalcArea(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
                 break;
 
             case 2:
-             // calculates radius using circumference
-                radiCalcCircum(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);                                                                         
+                // calculates radius using circumference
+                radiCalcCircum(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
                 break;
 
             case 3:
-            // calculates radius using diameter
-                radiCalcDiam(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);                                                                              
+                // calculates radius using diameter
+                radiCalcDiam(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
                 break;
 
             default:
@@ -349,6 +354,7 @@ class BasicCalculatorMethods {
             myResult = (float) (Math.sqrt(inputOne / Math.PI)); // converts the result to a float,
             // this is because using methods in the Math class return a double value
             System.out.println("[Radius (Circle): " + myResult + "]");
+            mainMenu(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
 
         }
 
@@ -382,6 +388,7 @@ class BasicCalculatorMethods {
 
             myResult = (float) (inputOne / (2 * Math.PI));
             System.out.println("[Radius (Circle): " + myResult + "]");
+            mainMenu(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
 
         }
 
@@ -415,6 +422,7 @@ class BasicCalculatorMethods {
 
             myResult = (float) (inputOne / 2);
             System.out.println("[Radius (Circle): " + myResult + "]");
+            mainMenu(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
 
         }
 
@@ -448,6 +456,7 @@ class BasicCalculatorMethods {
 
             myResult = (float) (Math.PI * Math.pow(inputOne, 2));
             System.out.println("[Area (Circle): " + myResult + "]");
+            mainMenu(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
 
         }
 
@@ -481,6 +490,7 @@ class BasicCalculatorMethods {
 
             myResult = (float) (2 * Math.PI * inputOne);
             System.out.println("Circumference (Circle): " + myResult + "]");
+            mainMenu(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
 
         }
 
@@ -514,6 +524,7 @@ class BasicCalculatorMethods {
 
             myResult = (float) (2 * inputOne);
             System.out.println("Diameter (Circle): " + myResult + "]");
+            mainMenu(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
 
         }
 
@@ -528,7 +539,7 @@ class BasicCalculatorMethods {
 
     // Pythagorean Theorem calculator
     public static void pythaCalc(int userChoice, float inputOne, float inputTwo, char myOperator, float myResult,
-    Scanner scanOne, boolean appOn) {
+            Scanner scanOne, boolean appOn) {
 
         userChoice = 0;
         System.out.println("[Pythagorean Theorem Calculator]");
@@ -536,7 +547,7 @@ class BasicCalculatorMethods {
         System.out.println("[2] Perpendicular (A leg)");
         System.out.println("[3] Base (B leg)");
         System.out.println("[4] Main Menu");
-        System.out.println("================================"); 
+        System.out.println("=========================");
 
         try {
 
@@ -560,13 +571,13 @@ class BasicCalculatorMethods {
                 perpendicularCalculate(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
                 break;
             case 3:
-                // baseCalculate(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
+                baseCalculate(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
                 break;
             case 4:
                 mainMenu(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
                 break;
             default:
-                System.out.println("[Invalid Input, try again]");
+                System.out.println("[Error Occurred, Try Again]");
                 mainMenu(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
                 break;
 
@@ -575,8 +586,9 @@ class BasicCalculatorMethods {
     }
 
     // Calculates for hypotenuse
-    public static void hypotenuseCalculate(int userChoice, float inputOne, float inputTwo, char myOperator, float myResult,
-    Scanner scanOne, boolean appOn) {
+    public static void hypotenuseCalculate(int userChoice, float inputOne, float inputTwo, char myOperator,
+            float myResult,
+            Scanner scanOne, boolean appOn) {
 
         try {
 
@@ -601,106 +613,98 @@ class BasicCalculatorMethods {
         if (myResult != 0) { // it is impossible for a hypotenuse to have a length of zero
 
             System.out.printf("The hypotenuse of triangle: %.2f\n", myResult); // roounded off to 2 decimal places
+            mainMenu(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
 
         }
 
         else {
 
-            System.out.println("[Not a valid input, try again]");
+            System.out.println("[Invalid Input, Try Again]");
             mainMenu(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
 
         }
 
     }
 
-        // Calculate the perpendicular
-        public static void perpendicularCalculate(int userChoice, float inputOne, float inputTwo, char myOperator, float myResult,
-        Scanner scanOne, boolean appOn) {
+    // Calculate the perpendicular
+    public static void perpendicularCalculate(int userChoice, float inputOne, float inputTwo, char myOperator,
+            float myResult,
+            Scanner scanOne, boolean appOn) {
 
-            try {
-    
-                System.out.print("Input Base or B leg: ");
-                inputOne = scanOne.nextFloat();
-    
-                System.out.print("Input Hypotenuse or C leg: ");
-                inputTwo = scanOne.nextFloat();
-    
-            }
-    
-            catch (InputMismatchException ex) {
-    
-                scanOne.nextLine(); // goes to else block
-    
-            }
-    
-            if (inputTwo > inputOne) { // hypotenuse needs to be longer than base
-    
-                myResult = (float) Math.sqrt(Math.pow(inputTwo, 2) - Math.pow(inputOne, 2));
-    
-                System.out.printf("The perpendicular of triangle: %.2f\n", myResult); // shows the perpendicular of the trangle
-    
-            }
-    
-            else if (inputTwo <= inputOne) {
-    
-                System.out.println("[Invalid input, the hypotenuse must be greater than the base]");
-                mainMenu(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
-    
-            }
-    
-            else { // executes when an exception occurs
-    
-                System.out.println("[Not a valid input, try again]");
-                mainMenu(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
-    
-            }
-    
+        System.out.println("[Note: The hypotenuse must be greater than the base]");
+
+        try {
+
+            System.out.print("Input Base or B leg: ");
+            inputOne = scanOne.nextFloat();
+
+            System.out.print("Input Hypotenuse or C leg: ");
+            inputTwo = scanOne.nextFloat();
+
         }
 
-        // Calculate the base
-        public static void baseCalculate(int userChoice, float inputOne, float inputTwo, char myOperator, float myResult,
-        Scanner scanOne, boolean appOn) {
+        catch (InputMismatchException ex) {
 
-            try {
-    
-                System.out.print("Input Perpendicular or A leg: ");
-                inputOne = scanOne.nextFloat();
-    
-                System.out.print("Input Hypotenuse or C leg: ");
-                inputTwo = scanOne.nextFloat();
-    
-            }
-    
-            catch (InputMismatchException ex) {
-    
-                System.out.println("[Not a valid input, try again]");
-                scanOne.nextLine(); // goes to else block
-    
-            }
-    
-            if (inputTwo > inputOne) { // hypotenuse needs to be longer than the perpendicular
-    
-                myResult = (float) Math.sqrt(Math.pow(inputTwo, 2) - Math.pow(inputOne, 2));
-    
-                System.out.printf("The base of triangle: %.2f\n", myResult);
-    
-            }
-    
-            else if (inputTwo <= inputOne) {
-    
-                System.out.println("[Invalid input, the hypotenuse must be greater than the perpendicular]");
-                mainMenu(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
-    
-            }
-    
-            else {
-    
-                System.out.println("[Not a valid input, try again]");
-                mainMenu(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn); 
-    
-            }
-    
+            scanOne.nextLine(); // goes to else block
+
         }
+
+        if (inputTwo > inputOne) { // hypotenuse needs to be longer than base
+
+            myResult = (float) Math.sqrt(Math.pow(inputTwo, 2) - Math.pow(inputOne, 2));
+            System.out.printf("The perpendicular of triangle: %.2f\n", myResult); // shows the perpendicular of the
+                                                                                  // trangle
+            mainMenu(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
+
+        }
+
+        else { // executes when an exception occurs
+
+            System.out.println("[Invalid Input, Try Again]");
+            mainMenu(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
+
+        }
+
+    }
+
+    // Calculate the base
+    public static void baseCalculate(int userChoice, float inputOne, float inputTwo, char myOperator, float myResult,
+            Scanner scanOne, boolean appOn) {
+
+        System.out.println("[Note: The hypotenuse must be greater than the base]");
+
+        try {
+
+            System.out.print("Input Perpendicular or A leg: ");
+            inputOne = scanOne.nextFloat();
+
+            System.out.print("Input Hypotenuse or C leg: ");
+            inputTwo = scanOne.nextFloat();
+
+        }
+
+        catch (InputMismatchException ex) {
+
+            scanOne.nextLine(); // goes to else block
+
+        }
+
+        if (inputTwo > inputOne) { // hypotenuse needs to be longer than the perpendicular
+
+            myResult = (float) Math.sqrt(Math.pow(inputTwo, 2) - Math.pow(inputOne, 2));
+            System.out.printf("The base of triangle: %.2f\n", myResult);
+            mainMenu(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
+
+        }
+
+        else {
+
+            System.out.println("[Invalid Input, Try Again]");
+            mainMenu(userChoice, inputOne, inputTwo, myOperator, myResult, scanOne, appOn);
+
+        }
+
+    }
 
     // closes the application
     public static boolean closeApp(boolean appOn) { // method that closes or stops the application

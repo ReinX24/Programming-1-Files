@@ -43,7 +43,7 @@ public class CalcAverage {
                 break;
 
             case 2:
-                // method that resets ArrayList
+                deleteArrMenu(); // menu for clearing Array List
                 break;
 
             case 3:
@@ -111,17 +111,17 @@ public class CalcAverage {
         try {
 
             System.out.print("Input number: ");
-            Double numHolder = scanOne.nextDouble();
+            Double numHolder = scanOne.nextDouble(); // numHolder will hold our input
 
-            numUserAdd = numHolder.floatValue();
+            numUserAdd = numHolder.floatValue(); // assigns the float value of numHolder to numUserAdd
 
-        if (numUserAdd == numHolder.floatValue()) { // adds number to ArrayList when it is a number
+            if (numUserAdd == numHolder.floatValue()) { // checks in numUserAdd has the same float value of numHolder
 
-            addNum(numUserAdd);
-            System.out.println("Number added!"); // tells user their number has been added
-            addNumMenu(); // return to menu before
+                addNum(numUserAdd);
+                System.out.println("Number added!"); // tells user their number has been added
+                addNumMenu(); // return to menu before
 
-        }
+            }
 
         }
 
@@ -137,6 +137,46 @@ public class CalcAverage {
     public void addNum(Float paramNum) { // method that adds inputted number to the ArrayList
 
         numArr.add(paramNum);
+
+    }
+
+    public void deleteArrMenu() {
+
+        userChoice = 0;
+        System.out.println("====================");
+        System.out.println("[Clear Array Elements]");
+        System.out.println("Current Array: ");
+        System.out.println(numArr);
+
+        System.out.println("[1] Clear Array");
+        System.out.println("[2] Main Menu");
+        System.out.println("====================");
+
+        try {
+
+            System.out.print("Input: ");
+            userChoice = scanOne.nextInt();
+
+        }
+
+        catch (InputMismatchException ex) {
+
+            scanOne.nextLine();
+
+        }
+
+        if (userChoice == 1) {
+
+            numArr.removeAll(numArr);
+            System.out.println("Cleared Array!");
+
+        }
+
+        else {
+
+            errorReset();
+
+        }
 
     }
 
@@ -167,24 +207,7 @@ public class CalcAverage {
         switch (userChoice) {
 
             case 1:
-
-                try {
-
-                    Collections.sort(numArr); // sorts the array
-                    System.out.println("====================");
-                    System.out.println("Sorting array...");
-                    Thread.sleep(3000); // delays printing next line
-                    System.out.println("Array sorted!");
-                    System.out.println("====================");
-                    showArr(); // shows Array List but sorted this time
-                }
-
-                catch (InterruptedException ex) {
-
-                    ex.printStackTrace();
-
-                }
-
+                sortArray(); // method that sorts the array
                 break;
 
             case 2:
@@ -194,6 +217,26 @@ public class CalcAverage {
             default:
                 errorReset();
                 break;
+
+        }
+
+    }
+
+    public void sortArray() {
+
+        try {
+
+            Collections.sort(numArr); // sorts the array
+            System.out.println("====================");
+            System.out.println("Sorting array...");
+            Thread.sleep(3000); // delays printing next line
+            System.out.println("Array sorted!");
+            showArr(); // shows Array List but sorted this time
+        }
+
+        catch (InterruptedException ex) {
+
+            ex.printStackTrace();
 
         }
 

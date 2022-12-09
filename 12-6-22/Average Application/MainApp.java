@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.Scanner;
-
 /*
  * Author: Rein Aldwin E. Solis
  * Programming Language: Java
@@ -38,19 +35,6 @@ class MainApp {
         aveOne.mainMenu();
 
         }
-
-        // ArrayList<Float> floatArr = new ArrayList<Float>();
-
-        // Scanner scanOne = new Scanner(System.in);
-        // Float fOne = null;
-
-        // System.out.println("Insert Element");
-        // fOne = scanOne.nextFloat();
-        // floatArr.add(fOne);
-        // System.out.println(floatArr);
-        
-        
-
 
     }
 

@@ -541,15 +541,13 @@ public class CalcAverage {
 
     }
 
-    // TODO: Fix mode calculator
     public void calcMode() { // calculates for mode
 
-            try {
+        try {
 
-                if (numArr.size() > 1) {
+            if (numArr.size() > 1) {
 
                 ArrayList<Float> arrClone = new ArrayList<Float>(numArr); // clones original array list
-                Collections.sort(arrClone); // sorts the array
                 LinkedHashSet<Float> modeSet = new LinkedHashSet<Float>(); // LinkedHashSet holds our mode/s
                 // LinkedHashSet because this type of Set merges any duplicates in its Set
                 System.out.println("Finding mode/s...");
@@ -566,7 +564,7 @@ public class CalcAverage {
 
                     for (int j = 0; j < arrClone.size(); j++) { // another loop that goes through our list
 
-                        if (arrClone.get(i) == arrClone.get(j)) {
+                        if (arrClone.get(i).equals(arrClone.get(j))) { // .equals for array list elements
                             // if the iterated number is similar to the second iterated number, increment
                             // numCounter by one
                             ++numCounter;
@@ -597,44 +595,33 @@ public class CalcAverage {
 
                     }
 
-
                 } // end of outer for loop
 
-                System.out.println("Mode/s found!");
-                System.out.println("Mode/s: " + modeSet);
+                if (modeSet.size() > 0) { // if there are any modes, print elements
 
-                // if (modeSet.size() > 0) { // if there are any modes, print elements
+                    System.out.println("Mode/s found!");
+                    System.out.println("Mode/s: " + modeSet);
 
-                //     System.out.println("Mode/s found!");
-                //     System.out.println("Mode/s: " + modeSet);
+                }
 
-                // }
+                else {
 
-                // else {
+                    System.out.println("No mode found!");
+                    System.out.println("[None of the elements repeat]");
 
-                //     System.out.println("No mode found!");
-                //     System.out.println("[None of the elements repeat]");
-        
-                // }
+                }
 
-            }
-
-            else {
-
-                System.out.println("No mode found!");
-                System.out.println("[Need more numbers]");
-    
             }
 
             mainMenu(); // returns to main menu after all operations executed
 
         }
 
-            catch (InterruptedException ex) {
+        catch (InterruptedException ex) {
 
-                errorReset();
+            errorReset();
 
-            }
+        }
 
     }
 

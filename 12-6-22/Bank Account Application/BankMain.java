@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 class BankMain {
 
     public static void main(String[] args) {
@@ -16,13 +14,10 @@ class BankMain {
          * When the user logs out, it saves their account in the machine
          */
 
-        BankAccount machOne = new BankAccount();
+        BankAccount machOne = new BankAccount(); // object where all our operations will happen
 
-        while (true) {
+        machOne.terminalMenu(); // as a challenge, we will not use an infinite while loop
 
-        machOne.terminalMenu();
-
-        }
 
     }
 

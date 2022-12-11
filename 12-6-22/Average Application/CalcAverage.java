@@ -16,11 +16,14 @@ public class CalcAverage {
         userChoice = 0; // resets user choice to avoid bugs, an example is when it takes the
         // last input as userChoice as a decision when an exception is supposed to occur
         System.out.println("====================");
-        System.out.println("[Average Calculator]");
+        System.out.println("[Measure of Central Tendency Calculator]");
+        System.out.println("====================");
+        System.out.println("Array List Contents:");
+        System.out.println(numArr);
         System.out.println("====================");
         System.out.println("[1] Add No. to Array");
         System.out.println("[2] Clear Array");
-        System.out.println("[3] Show|Sort Array");
+        System.out.println("[3] Sort Array");
         System.out.println("[4] Average of Array");
         System.out.println("[5] Median of Array");
         System.out.println("[6] Mode of Array");
@@ -64,6 +67,7 @@ public class CalcAverage {
 
             case 6:
                 modeMenu(); // method that goes to mode menu
+                break;
 
             case 7:
                 exitApp(); // exits application
@@ -82,6 +86,10 @@ public class CalcAverage {
         userChoice = 0;
         System.out.println("====================");
         System.out.println("[Add Number to Array]");
+        System.out.println("====================");
+        System.out.println("Array List Contents:");
+        System.out.println(numArr);
+        System.out.println("====================");
         System.out.println("[1] Add a Number");
         System.out.println("[2] Description");
         System.out.println("[3] Main Menu");

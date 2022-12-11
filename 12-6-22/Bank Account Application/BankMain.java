@@ -21,11 +21,13 @@ class BankMain {
          * - Logout
          * 
          * When the user logs out, it saves their account in the machine
+         * All user data is lost when program is terminated
+         * 
          */
 
         /*
          * 12/11/22
-         * To do:
+         * To do: (To be debugged and further tested)
          * - Add functionality that transfers an account's funds to another account
          * For us to finish this, we would need to input an account name that exists, get that
          * account's corresponding balance, and transfer funds to that account.

@@ -205,12 +205,13 @@ public class BankAccount {
         System.out.println("=======================");
         System.out.println("[RSE ATM Menu]");
         System.out.println("=======================");
-        System.out.println("[Welcome " + accName + " pesos]");
+        System.out.println("[Welcome " + accName + "]");
         System.out.println("[Current funds: P" + machFund.get(accName) + "]"); // gets the value or funds of account
         System.out.println("=======================");
         System.out.println("[1] Deposit Funds");
         System.out.println("[2] Withdraw Funds");
-        System.out.println("[3] Logout");
+        System.out.println("[3] Transfer Funds");
+        System.out.println("[4] Logout");
         System.out.println("=======================");
 
         try {
@@ -237,6 +238,10 @@ public class BankAccount {
             break;
 
             case 3:
+            transferMenu(accName); // transfers funds to another account
+            break;
+
+            case 4:
             logOutAcc(); // log out of account, return to main menu
             break;
 
@@ -369,26 +374,26 @@ public class BankAccount {
 
     public void minFunds(String accName) {
 
-        Integer withFundAmout = 0;
+        Integer withFundAmount = 0;
         System.out.println("=======================");
         System.out.println("[Input Amount to Withdraw]");
 
         try {
 
         System.out.print("Input: ");
-        withFundAmout = scanOne.nextInt();
+        withFundAmount = scanOne.nextInt();
         
-        if (withFundAmout < machFund.get(accName)) { // checks if withdrawal amount less than existing balance
+        if (withFundAmount < machFund.get(accName)) { // checks if withdrawal amount less than existing balance
 
-            machFund.put(accName, machFund.get(accName) - withFundAmout);
+            machFund.put(accName, machFund.get(accName) - withFundAmount);
             System.out.println("Withdrawing funds...");
             Thread.sleep(1000); // 1 second delay
-            System.out.println("[P" + withFundAmout + " Withdrawn]");
+            System.out.println("[P" + withFundAmount + " Withdrawn]");
             mainMenu(accName); // returns to main menu
 
         }
 
-        else if (withFundAmout > machFund.get(accName)) { // if withdraw amount is greater than 
+        else if (withFundAmount > machFund.get(accName)) { // if withdraw amount is greater than 
 
             System.out.println("[Insufficient Balance]");
             mainMenu(accName); // returns to main menu
@@ -411,6 +416,112 @@ public class BankAccount {
     }
 
 }
+
+    public void transferMenu(String accName) {
+
+        userChoice = 0;
+        System.out.println("=======================");
+        System.out.println("[Transfer Funds]");
+        System.out.println("------------------");
+        System.out.println("< Transfer an amount");
+        System.out.println("from your account to");
+        System.out.println("another account. >");
+        System.out.println("------------------");
+        System.out.println("[Account Balance: P" + machFund.get(accName) + "]");
+        System.out.println("=======================");
+        System.out.println("[1] Transfer Funds");
+        System.out.println("[2] Main Menu");
+        System.out.println("=======================");
+
+        try {
+
+        System.out.print("Input: ");
+        userChoice = scanOne.nextInt();
+
+        }
+
+        catch (InputMismatchException ex) {
+
+            scanOne.nextLine();
+
+        }
+
+
+        switch (userChoice) {
+
+            case 1:
+            sendFunds(accName); // menu that asks for funds to transfer and account to transfer to
+            break;
+
+            case 2:
+            mainMenu(accName);
+            break;
+
+            default:
+            returnMenu(accName);
+            break;
+
+        }
+
+    }
+
+    public void sendFunds(String accName) { // sends funds to another account
+
+        Integer sendFundAmount = 0;
+        System.out.println("=======================");
+
+        try {
+            
+        System.out.println("[Input Account Recipient]");
+        System.out.print("Input: ");
+        String accRecip = scanOne.next();
+        System.out.println("[Input Amount to Transfer]");
+        System.out.print("Input: ");
+        sendFundAmount = scanOne.nextInt();
+
+        if (machFund.containsKey(accRecip)) { // checks if account exists
+        
+        if (sendFundAmount < machFund.get(accName)) { // checks if transfer amount less than existing balance
+
+            machFund.put(accName, machFund.get(accName) - sendFundAmount); // subtracted funds to be transferred
+            System.out.println("Transferring funds...");
+            machFund.put(accRecip, machFund.get(accRecip) + sendFundAmount); // adds subtracted funds
+            Thread.sleep(1000); // 1 second delay
+            System.out.println("[P" + sendFundAmount + " Transferred]");
+            mainMenu(accName); // returns to main menu
+
+        }
+
+        else if (sendFundAmount > machFund.get(accName)) { // if withdraw amount is greater than 
+
+            System.out.println("[Insufficient Balance]");
+            mainMenu(accName); // returns to main menu
+
+        }
+
+        else {
+
+            returnMenu(accName); // returns to main menu if input not part of choices
+
+        }
+
+    }
+
+    else { // if account does not exist
+
+        System.out.println("[Recipient Not Found]");
+
+    }
+
+    }
+
+    catch (InputMismatchException | InterruptedException ex) {
+
+        scanOne.nextLine();
+        returnMenu(accName); // returns if an exception occurs
+
+    }
+    }
 
     public void logOutAcc() { // logouts of account
 

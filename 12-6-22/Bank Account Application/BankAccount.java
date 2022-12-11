@@ -4,14 +4,15 @@ import java.util.Scanner;
 public class BankAccount {
 
     Scanner scanOne = new Scanner(System.in); // user inputs
-    int userChoice = 0;
+    int userChoice = 0; // user choice
 
-    // Testing hashset
-    HashMap<String, String> machAcc = new HashMap<String, String>();
+    HashMap<String, String> machAcc = new HashMap<String, String>(); // storing name and password
+    HashMap<String, Double> machFund = new HashMap<String, Double>(); // storing name and account funds
 
     public void terminalMenu() {
 
         // login menu
+        userChoice = 0;
         System.out.println("[RSE ATM Dagupan]");
         System.out.println("[1] Login");
         System.out.println("[2] Sign Up");
@@ -38,21 +39,24 @@ public class BankAccount {
 
     public void loginAcc() {
 
-        String accName;
-        String accPass;
+        String accName = null;
+        String accPass = null;
 
         // logging into an account
-        System.out.println("[Login Account]");
-        System.out.println("Insert Name");
-        System.out.print("> ");
-        accName = scanOne.nextLine();
-        System.out.println("\nInsert Password");
-        System.out.print("> ");
-        accPass = scanOne.nextLine();
 
-        if (machAcc.containsKey(accName) && machAcc.containsKey(accPass)) {
+        accName = checkName(accName);
+
+        if (accName != null) {
+
+            accPass = checkPass(accPass);
+
+        }
+
+
+        if (machAcc.containsKey(accName) && machAcc.containsValue(accPass)) {
 
             System.out.println("Account logged in!");
+            mainMenu(accName);
 
         }
 
@@ -79,34 +83,67 @@ public class BankAccount {
 
         }
 
+        else {
+
+            System.out.println("[Error, must insert name]");
+
+        }
+
         System.out.println("[Account Created]");
         machAcc.put(newName, newPass);
+        
 
     }
 
     public String makeName(String newName) {
 
         System.out.println("[Sign Up New Account]");
-        System.out.println("Insert Name"); // name for new account
-        System.out.print("> ");
-        newName = scanOne.nextLine();
+        System.out.print("===============");
+        System.out.println("Insert Name: "); // name for new account
+        newName = scanOne.next();
         return newName;
 
     }
 
     public String makePass(String newPass) {
 
-        System.out.println("Insert Password"); // password for new account
-        System.out.print("> ");
-        newPass = scanOne.nextLine();
+        System.out.println("===============");
+        System.out.print("Insert Password: "); // password for new account
+        newPass = scanOne.next();
         return newPass;
+
+    }
+
+    public String checkName(String accName) {
+
+        System.out.println("[Login Account]");
+        System.out.println("===============");
+        System.out.print("Insert Name: ");
+        accName = scanOne.next();
+        return accName;
+
+    }
+
+    public String checkPass(String accPass) {
+
+        System.out.println("===============");
+        System.out.print("Insert Password: ");
+        accPass = scanOne.next();
+        return accPass;
 
     }
         
 
-    public void mainMenu() {
+    public void mainMenu(String accName) {
 
         // menu for when the user logs in
+        System.out.println("[RSE ATM Menu]");
+        System.out.println("Current funds: " // account funds here);
+        System.out.println("[1] Deposit Funds");
+        System.out.println("[2] Withdraw Funds");
+        System.out.println("[3] Logout");
+        System.out.print("Input: ");
+        userChoice
 
     }
 

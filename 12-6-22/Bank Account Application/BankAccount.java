@@ -18,14 +18,14 @@ public class BankAccount {
 
         // login menu
         userChoice = 0; // resets userChoice to zero to avoid bugs
-        System.out.println("==================");
+        System.out.println("=======================");
         System.out.println("[RSE ATM Dagupan]");
-        System.out.println("==================");
+        System.out.println("=======================");
         System.out.println("[1] Login");
         System.out.println("[2] Sign Up");
         System.out.println("[3] About Us");
-        System.out.println("==================");
-
+        System.out.println("=======================");
+        
         try {
 
             System.out.print("Input: ");
@@ -118,7 +118,11 @@ public class BankAccount {
 
         }
 
+        System.out.println("=======================");
         System.out.println("[Account Created]"); // will print when account password is created
+        System.out.println("Thank you for choosing RSE!");
+        System.out.println("Take this as our gift :)");
+        System.out.println(newFundAcc + " pesos has been aded to your account!");
         machAcc.put(newName, newPass); // puts name and password in a map
         machFund.put(newName, newFundAcc); // puts account name and funds for said account
         terminalMenu(); // returns to menu
@@ -127,9 +131,9 @@ public class BankAccount {
 
     public String makeName(String newName) { // method that asks and returns a name for a new account
 
-        System.out.println("==================");
+        System.out.println("=======================");
         System.out.println("[Sign Up New Account]");
-        System.out.println("==================");
+        System.out.println("=======================");
 
         try {
 
@@ -158,8 +162,6 @@ public class BankAccount {
 
     public String makePass(String newPass) { // method that asks and returns a password for a new account
 
-        System.out.println("==================");
-
         try {
 
             System.out.print("Insert Password: "); // password for new account
@@ -180,9 +182,9 @@ public class BankAccount {
 
     public String inputName(String accName) { // asks for existing account name
 
-        System.out.println("==================");
+        System.out.println("=======================");
         System.out.println("[Login Account]");
-        System.out.println("==================");
+        System.out.println("=======================");
         System.out.print("Insert Name: ");
         accName = scanOne.next();
         return accName;
@@ -191,7 +193,6 @@ public class BankAccount {
 
     public String inputPass(String accPass) { // asks for existing password
 
-        System.out.println("==================");
         System.out.print("Insert Password: ");
         accPass = scanOne.next();
         return accPass;
@@ -201,32 +202,42 @@ public class BankAccount {
     public void mainMenu(String accName) { // main menu when the user logs in
 
         userChoice = 0;
-        System.out.println("==================");
+        System.out.println("=======================");
         System.out.println("[RSE ATM Menu]");
-        System.out.println("==================");
-        System.out.println("[Welcome " + accName + "]");
-        System.out.println("[Current funds: " + machFund.get(accName) + "]"); // gets the value or funds of account
-        System.out.println("==================");
+        System.out.println("=======================");
+        System.out.println("[Welcome " + accName + " pesos]");
+        System.out.println("[Current funds: P" + machFund.get(accName) + "]"); // gets the value or funds of account
+        System.out.println("=======================");
         System.out.println("[1] Deposit Funds");
         System.out.println("[2] Withdraw Funds");
         System.out.println("[3] Logout");
-        System.out.println("==================");
+        System.out.println("=======================");
+
+        try {
+
         System.out.print("Input: ");
         userChoice = scanOne.nextInt();
+
+        }
+
+        catch (InputMismatchException ex) {
+
+            scanOne.nextLine();
+
+        }
 
         switch (userChoice) {
 
             case 1:
-
+            depoFunds(accName); // deposit funds menu
             break;
 
             case 2:
-
+            withFunds(accName); // withdraw funds menu
             break;
 
             case 3:
-            System.out.println("[Logged Out Account]");
-            terminalMenu();
+            logOutAcc(); // log out of account, return to main menu
             break;
 
             default:
@@ -237,21 +248,181 @@ public class BankAccount {
 
     }
 
-    public void withFunds() {
+    public void depoFunds(String accName) { // deposit funds
 
-        // withdraws funds
+        userChoice = 0;
+        System.out.println("=======================");
+        System.out.println("[Deposit Funds]");
+        System.out.println("------------------");
+        System.out.println("< Deposit an amount");
+        System.out.println("to account. >");
+        System.out.println("------------------");
+        System.out.println("[Account Balance: P" + machFund.get(accName) + "]");
+        System.out.println("=======================");
+        System.out.println("[1] Deposit Funds");
+        System.out.println("[2] Main Menu");
+        System.out.println("=======================");
+
+        try {
+
+        System.out.print("Input: ");
+        userChoice = scanOne.nextInt();
+
+        }
+
+        catch (InputMismatchException ex) {
+
+            scanOne.nextLine();
+
+        }
+
+        switch (userChoice) {
+
+            case 1:
+            addFunds(accName);
+            break;
+
+            case 2:
+            mainMenu(accName);
+            break;
+
+            default:
+            returnMenu(accName); // returns to menu
+            break;
+
+        }
 
     }
 
-    public void depoFunds() {
+    public void addFunds(String accName) {
 
-        // deposit funds
+        Integer addFundAmount = 0; 
+        System.out.println("=======================");
+        System.out.println("[Input Deposit Amount]");
+           
+        try {
+
+        System.out.print("Input: ");
+        addFundAmount = scanOne.nextInt();
+        machFund.put(accName, machFund.get(accName) + addFundAmount); // rewrites existing value of the key
+        System.out.println("Adding Funds...");
+        Thread.sleep(1000); // delays for 1 second
+        System.out.println("[Funds Added]");
+        mainMenu(accName); // return to main menu
+
+        }
+
+        catch (InputMismatchException | InterruptedException ex) {
+
+            scanOne.nextLine();
+            returnMenu(accName); // returns to main menu with error message
+
+        }
 
     }
 
-    public void logOutAcc() {
+    public void withFunds(String accName) { // withdraws funds
+        
+        userChoice = 0;
+        System.out.println("=======================");
+        System.out.println("[Withdraw Funds]");
+        System.out.println("------------------");
+        System.out.println("< Withdraw an amount");
+        System.out.println("from account. >");
+        System.out.println("------------------");
+        System.out.println("[Account Balance: P" + machFund.get(accName) + "]");
+        System.out.println("=======================");
+        System.out.println("[1] Withdraw Funds");
+        System.out.println("[2] Main Menu");
+        System.out.println("=======================");
 
-        // logouts of account
+        try {
+
+        System.out.print("Input: ");
+        userChoice = scanOne.nextInt();
+
+        }
+
+        catch (InputMismatchException ex) {
+
+            scanOne.nextLine();
+
+        }
+
+        switch (userChoice) {
+
+            case 1:
+            minFunds(accName);
+            break;
+
+            case 2:
+            mainMenu(accName);
+            break;
+
+            default:
+            returnMenu(accName); // returns to menu with error message
+            break;
+
+        }
+
+    }
+
+    public void minFunds(String accName) {
+
+        Integer withFundAmout = 0;
+        System.out.println("=======================");
+        System.out.println("[Input Amount to Withdraw]");
+
+        try {
+
+        System.out.print("Input: ");
+        withFundAmout = scanOne.nextInt();
+        
+        if (withFundAmout < machFund.get(accName)) { // checks if withdrawal amount less than existing balance
+
+            machFund.put(accName, machFund.get(accName) - withFundAmout);
+            System.out.println("Withdrawing funds...");
+            Thread.sleep(1000); // 1 second delay
+            System.out.println("[P" + withFundAmout + " Withdrawn]");
+            mainMenu(accName); // returns to main menu
+
+        }
+
+        else if (withFundAmout > machFund.get(accName)) { // if withdraw amount is greater than 
+
+            System.out.println("[Insufficient Balance]");
+            mainMenu(accName); // returns to main menu
+
+        }
+
+        else {
+
+            returnMenu(accName); // returns to main menu if input not part of choices
+
+        }
+
+    }
+
+    catch (InputMismatchException | InterruptedException ex) {
+
+        scanOne.nextLine();
+        returnMenu(accName); // returns if an exception occurs
+
+    }
+
+}
+
+    public void logOutAcc() { // logouts of account
+
+        System.out.println("[Logged Out Account]");
+        terminalMenu();
+
+    }
+
+    public void returnMenu(String accName) {
+
+        System.out.println("[Not Valid Input, Returning to Menu]");
+        mainMenu(accName);
 
     }
 

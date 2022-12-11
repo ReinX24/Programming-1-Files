@@ -1,3 +1,12 @@
+/*
+ * Author: Rein Aldwin E. Solis
+ * Programming Language: Java
+ * Creation Date: 12/11/22
+ * School: Universidad De Dagupan
+ * Description: Bank Application with Account Creation and Storage using HashMaps
+ * 
+ */
+
 class BankMain {
 
     public static void main(String[] args) {
@@ -12,6 +21,15 @@ class BankMain {
          * - Logout
          * 
          * When the user logs out, it saves their account in the machine
+         */
+
+        /*
+         * 12/11/22
+         * To do:
+         * - Add functionality that transfers an account's funds to another account
+         * For us to finish this, we would need to input an account name that exists, get that
+         * account's corresponding balance, and transfer funds to that account.
+         * 
          */
 
         BankAccount machOne = new BankAccount(); // object where all our operations will happen

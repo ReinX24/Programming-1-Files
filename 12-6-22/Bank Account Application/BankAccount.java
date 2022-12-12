@@ -10,13 +10,8 @@ public class BankAccount {
     HashMap<String, String> machAcc = new HashMap<String, String>(); // storing name and password
     HashMap<String, Integer> machFund = new HashMap<String, Integer>(); // storing name and account funds
 
-    public void terminalMenu() {
+    public void terminalMenu() { // login menu
 
-        // Default accounts for testing
-        // machAcc.put("admin", "0926");
-        // machAcc.put("master", "1234");
-
-        // login menu
         userChoice = 0; // resets userChoice to zero to avoid bugs
         System.out.println("=======================");
         System.out.println("[RSE ATM Dagupan]");
@@ -47,6 +42,10 @@ public class BankAccount {
 
             case 2:
                 signUp(); // signup menu
+                break;
+
+            case 3:
+                aboutUs(); // shows about us section
                 break;
 
             default:
@@ -199,6 +198,22 @@ public class BankAccount {
 
     }
 
+    public void aboutUs() {
+
+        System.out.println("=======================");
+        System.out.println("[About RSE]");
+        System.out.println("-----------------------");
+        System.out.println("< Rein Solis Enterprises");
+        System.out.println("or RSE was established");
+        System.out.println("to make digital servies");
+        System.out.println("easily available to all");
+        System.out.println("people in the Philippines");
+        System.out.println("and other countries. >");
+        System.out.println("-----------------------");
+        terminalMenu(); // returns to terminal menu
+
+    }
+
     public void mainMenu(String accName) { // main menu when the user logs in
 
         userChoice = 0;
@@ -312,7 +327,7 @@ public class BankAccount {
         machFund.put(accName, machFund.get(accName) + addFundAmount); // rewrites existing value of the key
         System.out.println("Adding Funds...");
         Thread.sleep(1000); // delays for 1 second
-        System.out.println("[Funds Added]");
+        System.out.println("[P" + addFundAmount + " Deposited]");
         mainMenu(accName); // return to main menu
 
         }
@@ -383,7 +398,7 @@ public class BankAccount {
         System.out.print("Input: ");
         withFundAmount = scanOne.nextInt();
         
-        if (withFundAmount < machFund.get(accName)) { // checks if withdrawal amount less than existing balance
+        if (withFundAmount <= machFund.get(accName)) { // checks if withdrawal amount less than existing balance
 
             machFund.put(accName, machFund.get(accName) - withFundAmount);
             System.out.println("Withdrawing funds...");
@@ -481,7 +496,7 @@ public class BankAccount {
 
         if (machFund.containsKey(accRecip)) { // checks if account exists
         
-        if (sendFundAmount < machFund.get(accName)) { // checks if transfer amount less than existing balance
+        if (sendFundAmount <= machFund.get(accName)) { // checks if transfer amount less than existing balance
 
             machFund.put(accName, machFund.get(accName) - sendFundAmount); // subtracted funds to be transferred
             System.out.println("Transferring funds...");
@@ -510,6 +525,7 @@ public class BankAccount {
     else { // if account does not exist
 
         System.out.println("[Recipient Not Found]");
+        mainMenu(accName); // returns to main menu if the recipient does is not found
 
     }
 

@@ -40,6 +40,14 @@ class BankMain {
          * To do: Apply security features that makes the user type their password twice when signing
          * up and logging into their account. The option for the user to change their password will 
          * also be implemented or at least be in development.
+         * List of features to be implememted
+         * - Reset Password
+         * - Reset User Name (Done)
+         * - Confirmation before depositing
+         * - Confirmation before withdrawing
+         * - Deposit history
+         * - Confimation history
+         * - Closing account (deleting account details and withdrawing all account money)
          * 
          */
 

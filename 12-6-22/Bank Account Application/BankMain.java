@@ -34,6 +34,15 @@ class BankMain {
          * 
          */
 
+        /*
+         * 12/12/22
+         * Update: debugging finished, no glaring bugs have been found as of now
+         * To do: Apply security features that makes the user type their password twice when signing
+         * up and logging into their account. The option for the user to change their password will 
+         * also be implemented or at least be in development.
+         * 
+         */
+
         BankAccount machOne = new BankAccount(); // object where all our operations will happen
 
         machOne.terminalMenu(); // as a challenge, we will not use an infinite while loop

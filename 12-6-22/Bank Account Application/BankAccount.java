@@ -20,7 +20,7 @@ public class BankAccount {
         System.out.println("[2] Sign Up");
         System.out.println("[3] About Us");
         System.out.println("=======================");
-        
+
         try {
 
             System.out.print("Input: ");
@@ -49,7 +49,7 @@ public class BankAccount {
                 break;
 
             default:
-                machError(); // throws an error message and returns to main manu
+                machError(); // throws an error message and returns to terminal menu
                 break;
 
         }
@@ -67,21 +67,22 @@ public class BankAccount {
 
         if (machAcc.containsKey(accName)) { // checks if the returned name already exists, if it does, ask for password
 
-            accPass = inputPass(accPass); // asks for password and assigns password to accPass
+            accPass = inputPass(accName); // asks for password and assigns password to accPass
 
-            if (machAcc.get(accName).equals(accPass)) { // gets the value or password of existing account name and 
+            if (machAcc.get(accName).equals(accPass)) { // gets the value or password of existing account name and
                 // compares it to inserted password
 
                 System.out.println("[Account Logged In]"); // logs into account if inputted password is the same
                 mainMenu(accName); // passes account name in main menu to be used for operations
-    
+
             }
-    
-            else { // if the inputted password is not equal to the account name's password, return to terminal menu
-    
+
+            else { // if the inputted password is not equal to the account name's password, return
+                   // to terminal menu
+
                 System.out.println("Invalid Credentials, Try Again"); // error message
                 terminalMenu(); // returns to menu
-    
+
             }
 
         }
@@ -161,10 +162,14 @@ public class BankAccount {
 
     public String makePass(String newPass) { // method that asks and returns a password for a new account
 
+        String newPassCheck = null; // storage for second password for better security and validation
+
         try {
 
             System.out.print("Insert Password: "); // password for new account
             newPass = scanOne.next();
+            System.out.print("Insert Password Again: "); // asks for password again
+            newPassCheck = scanOne.next();
 
         }
 
@@ -175,7 +180,21 @@ public class BankAccount {
 
         }
 
-        return newPass;
+        if (newPass.equals(newPassCheck)) { // checking if first password is the same as the second inputted password
+
+            System.out.println("[Password Validated]"); // prints message if true
+
+        }
+
+        else { // if the first password is not the same with the second password, return to
+               // terminal menu
+
+            System.out.println("[Password Not Identical, Try Again]");
+            terminalMenu();
+
+        }
+
+        return newPass; // if the passwords are the same, returns the new password
 
     }
 
@@ -190,10 +209,53 @@ public class BankAccount {
 
     }
 
-    public String inputPass(String accPass) { // asks for existing password
+    public String inputPass(String accName) { // asks for existing password
 
-        System.out.print("Insert Password: ");
-        accPass = scanOne.next();
+        String accPassCheck = null;
+        String accPass = null;
+        String accPassUser = machAcc.get(accName); // gets account password
+
+        try {
+
+            System.out.print("Insert Password: ");
+            accPass = scanOne.next();
+
+            if (accPass.equals(accPassUser)) { // checks if the password input is equal to account password
+
+            System.out.print("Insert Password Again: ");
+            accPassCheck = scanOne.next();
+
+            }
+
+            else {
+
+                System.out.println("[Wrong Password, Try Again]");
+                terminalMenu();
+
+            }
+
+        }
+
+        catch (InputMismatchException ex) {
+
+            scanOne.nextLine();
+            machError();
+
+        }
+
+        if (accPass.equals(accPassCheck)) {
+
+            System.out.println("[Password Validated]");
+
+        }
+
+        else {
+
+            System.out.println("[Password Not Identical, Try Again]");
+            terminalMenu();
+
+        }
+
         return accPass;
 
     }
@@ -231,8 +293,8 @@ public class BankAccount {
 
         try {
 
-        System.out.print("Input: ");
-        userChoice = scanOne.nextInt();
+            System.out.print("Input: ");
+            userChoice = scanOne.nextInt();
 
         }
 
@@ -245,24 +307,24 @@ public class BankAccount {
         switch (userChoice) {
 
             case 1:
-            depoFunds(accName); // deposit funds menu
-            break;
+                depoFunds(accName); // deposit funds menu
+                break;
 
             case 2:
-            withFunds(accName); // withdraw funds menu
-            break;
+                withFunds(accName); // withdraw funds menu
+                break;
 
             case 3:
-            transferMenu(accName); // transfers funds to another account
-            break;
+                transferMenu(accName); // transfers funds to another account
+                break;
 
             case 4:
-            logOutAcc(); // log out of account, return to main menu
-            break;
+                logOutAcc(); // log out of account, return to main menu
+                break;
 
             default:
-            mainMenu(accName); // returns to main menu
-            break;
+                mainMenu(accName); // returns to main menu
+                break;
 
         }
 
@@ -285,8 +347,8 @@ public class BankAccount {
 
         try {
 
-        System.out.print("Input: ");
-        userChoice = scanOne.nextInt();
+            System.out.print("Input: ");
+            userChoice = scanOne.nextInt();
 
         }
 
@@ -299,16 +361,16 @@ public class BankAccount {
         switch (userChoice) {
 
             case 1:
-            addFunds(accName);
-            break;
+                addFunds(accName);
+                break;
 
             case 2:
-            mainMenu(accName);
-            break;
+                mainMenu(accName);
+                break;
 
             default:
-            returnMenu(accName); // returns to menu
-            break;
+                returnMenu(accName); // returns to menu
+                break;
 
         }
 
@@ -316,19 +378,19 @@ public class BankAccount {
 
     public void addFunds(String accName) {
 
-        Integer addFundAmount = 0; 
+        Integer addFundAmount = 0;
         System.out.println("=======================");
         System.out.println("[Input Deposit Amount]");
-           
+
         try {
 
-        System.out.print("Input: ");
-        addFundAmount = scanOne.nextInt();
-        machFund.put(accName, machFund.get(accName) + addFundAmount); // rewrites existing value of the key
-        System.out.println("Adding Funds...");
-        Thread.sleep(1000); // delays for 1 second
-        System.out.println("[P" + addFundAmount + " Deposited]");
-        mainMenu(accName); // return to main menu
+            System.out.print("Input: ");
+            addFundAmount = scanOne.nextInt();
+            machFund.put(accName, machFund.get(accName) + addFundAmount); // rewrites existing value of the key
+            System.out.println("Adding Funds...");
+            Thread.sleep(1000); // delays for 1 second
+            System.out.println("[P" + addFundAmount + " Deposited]");
+            mainMenu(accName); // return to main menu
 
         }
 
@@ -342,7 +404,7 @@ public class BankAccount {
     }
 
     public void withFunds(String accName) { // withdraws funds
-        
+
         userChoice = 0;
         System.out.println("=======================");
         System.out.println("[Withdraw Funds]");
@@ -358,8 +420,8 @@ public class BankAccount {
 
         try {
 
-        System.out.print("Input: ");
-        userChoice = scanOne.nextInt();
+            System.out.print("Input: ");
+            userChoice = scanOne.nextInt();
 
         }
 
@@ -372,16 +434,16 @@ public class BankAccount {
         switch (userChoice) {
 
             case 1:
-            minFunds(accName);
-            break;
+                minFunds(accName);
+                break;
 
             case 2:
-            mainMenu(accName);
-            break;
+                mainMenu(accName);
+                break;
 
             default:
-            returnMenu(accName); // returns to menu with error message
-            break;
+                returnMenu(accName); // returns to menu with error message
+                break;
 
         }
 
@@ -395,42 +457,42 @@ public class BankAccount {
 
         try {
 
-        System.out.print("Input: ");
-        withFundAmount = scanOne.nextInt();
-        
-        if (withFundAmount <= machFund.get(accName)) { // checks if withdrawal amount less than existing balance
+            System.out.print("Input: ");
+            withFundAmount = scanOne.nextInt();
 
-            machFund.put(accName, machFund.get(accName) - withFundAmount);
-            System.out.println("Withdrawing funds...");
-            Thread.sleep(1000); // 1 second delay
-            System.out.println("[P" + withFundAmount + " Withdrawn]");
-            mainMenu(accName); // returns to main menu
+            if (withFundAmount <= machFund.get(accName)) { // checks if withdrawal amount less than existing balance
+
+                machFund.put(accName, machFund.get(accName) - withFundAmount);
+                System.out.println("Withdrawing funds...");
+                Thread.sleep(1000); // 1 second delay
+                System.out.println("[P" + withFundAmount + " Withdrawn]");
+                mainMenu(accName); // returns to main menu
+
+            }
+
+            else if (withFundAmount > machFund.get(accName)) { // if withdraw amount is greater than
+
+                System.out.println("[Insufficient Balance]");
+                mainMenu(accName); // returns to main menu
+
+            }
+
+            else {
+
+                returnMenu(accName); // returns to main menu if input not part of choices
+
+            }
 
         }
 
-        else if (withFundAmount > machFund.get(accName)) { // if withdraw amount is greater than 
+        catch (InputMismatchException | InterruptedException ex) {
 
-            System.out.println("[Insufficient Balance]");
-            mainMenu(accName); // returns to main menu
-
-        }
-
-        else {
-
-            returnMenu(accName); // returns to main menu if input not part of choices
+            scanOne.nextLine();
+            returnMenu(accName); // returns if an exception occurs
 
         }
 
     }
-
-    catch (InputMismatchException | InterruptedException ex) {
-
-        scanOne.nextLine();
-        returnMenu(accName); // returns if an exception occurs
-
-    }
-
-}
 
     public void transferMenu(String accName) {
 
@@ -450,8 +512,8 @@ public class BankAccount {
 
         try {
 
-        System.out.print("Input: ");
-        userChoice = scanOne.nextInt();
+            System.out.print("Input: ");
+            userChoice = scanOne.nextInt();
 
         }
 
@@ -461,20 +523,19 @@ public class BankAccount {
 
         }
 
-
         switch (userChoice) {
 
             case 1:
-            sendFunds(accName); // menu that asks for funds to transfer and account to transfer to
-            break;
+                sendFunds(accName); // menu that asks for funds to transfer and account to transfer to
+                break;
 
             case 2:
-            mainMenu(accName);
-            break;
+                mainMenu(accName);
+                break;
 
             default:
-            returnMenu(accName);
-            break;
+                returnMenu(accName);
+                break;
 
         }
 
@@ -486,57 +547,116 @@ public class BankAccount {
         System.out.println("=======================");
 
         try {
-            
-        System.out.println("[Input Account Recipient]");
-        System.out.print("Input: ");
-        String accRecip = scanOne.next();
-        System.out.println("[Input Amount to Transfer]");
-        System.out.print("Input: ");
-        sendFundAmount = scanOne.nextInt();
 
-        if (machFund.containsKey(accRecip)) { // checks if account exists
-        
-        if (sendFundAmount <= machFund.get(accName)) { // checks if transfer amount less than existing balance
+            System.out.println("[Input Account Recipient]"); // asks user to input recipient account name
+            System.out.print("Input: ");
+            String accRecip = scanOne.next();
 
-            machFund.put(accName, machFund.get(accName) - sendFundAmount); // subtracted funds to be transferred
-            System.out.println("Transferring funds...");
-            machFund.put(accRecip, machFund.get(accRecip) + sendFundAmount); // adds subtracted funds
-            Thread.sleep(1000); // 1 second delay
-            System.out.println("[P" + sendFundAmount + " Transferred]");
-            mainMenu(accName); // returns to main menu
+            if (machFund.containsKey(accRecip)) { // checks if account exists
+
+                System.out.println("[Input Amount to Transfer]"); // if the account exists, ask for transfer amount
+                System.out.print("Input: ");
+                sendFundAmount = scanOne.nextInt();
+                checkUserPass(accName); // method that asks for user password two times, for security purposes
+                sendFundsValid(accName, sendFundAmount, accRecip); // method that processes transfer of funds
+
+            }
+
+            else { // if account does not exist
+
+                System.out.println("[Recipient Not Found]");
+                mainMenu(accName); // returns to main menu if the recipient does is not found
+
+            }
 
         }
 
-        else if (sendFundAmount > machFund.get(accName)) { // if withdraw amount is greater than 
+        catch (InputMismatchException ex) {
 
-            System.out.println("[Insufficient Balance]");
-            mainMenu(accName); // returns to main menu
+            scanOne.nextLine();
+            returnMenu(accName); // returns if an exception occurs
+
+        }
+    }
+
+    public void sendFundsValid(String accName, Integer sendFundAmount, String accRecip) {
+
+        try {
+
+            if (sendFundAmount <= machFund.get(accName)) { // checks if transfer amount less than existing balance
+
+                machFund.put(accName, machFund.get(accName) - sendFundAmount); // subtracted funds to be transferred
+                System.out.println("Transferring funds...");
+                machFund.put(accRecip, machFund.get(accRecip) + sendFundAmount); // adds subtracted funds
+                Thread.sleep(1000); // 1 second delay
+                System.out.println("[P" + sendFundAmount + " Transferred]");
+                mainMenu(accName); // returns to main menu
+
+            }
+
+            else if (sendFundAmount > machFund.get(accName)) { // if withdraw amount is greater than
+
+                System.out.println("[Insufficient Balance]");
+                mainMenu(accName); // returns to main menu
+
+            }
+
+            else {
+
+                returnMenu(accName); // returns to main menu if input not part of choices
+
+            }
+
+        }
+
+        catch (InterruptedException ex) {
+
+            scanOne.nextLine();
+            returnMenu(accName); // returns if an exception occurs
+
+        }
+
+    }
+
+    public void checkUserPass(String accName) { // method that asks current user to input password twice
+
+        String accPassCheck = null;
+        String accPass = null;
+        String accPassCurrent = machAcc.get(accName); // stores current user password in accPassCurrent for validation
+
+        try {
+
+            System.out.print("Insert Password: ");
+            accPass = scanOne.next();
+
+            if (accPass.equals(accPassCurrent)) { // checks if inputted password is the current account password
+
+            System.out.print("Insert Password Again: "); // asks the user to type password again
+            accPassCheck = scanOne.next();
+
+            }
+
+        }
+
+        catch (InputMismatchException ex) {
+
+            scanOne.nextLine();
+
+        }
+
+        if (accPass.equals(accPassCheck)) { // checks if the first input password is the same as the second password
+
+            System.out.println("[Password Validated]");
 
         }
 
         else {
 
-            returnMenu(accName); // returns to main menu if input not part of choices
+            System.out.println("[Password Not Identical, Try Again]");
+            mainMenu(accName);
 
         }
 
-    }
-
-    else { // if account does not exist
-
-        System.out.println("[Recipient Not Found]");
-        mainMenu(accName); // returns to main menu if the recipient does is not found
-
-    }
-
-    }
-
-    catch (InputMismatchException | InterruptedException ex) {
-
-        scanOne.nextLine();
-        returnMenu(accName); // returns if an exception occurs
-
-    }
     }
 
     public void logOutAcc() { // logouts of account

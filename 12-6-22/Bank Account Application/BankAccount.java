@@ -325,7 +325,7 @@ public class BankAccount {
                 break;
 
             case 5:
-                // method that goes to password resetting menu
+                resetPassMenu(accName); // method that goes to password resetting menu
                 break;
 
             case 6:
@@ -669,7 +669,7 @@ public class BankAccount {
 
     }
 
-    public void resetNameMenu(String accName) { // menu for restarting name
+    public void resetNameMenu(String accName) { // menu for resetting name
 
         userChoice = 0;
         System.out.println("=======================");
@@ -720,12 +720,15 @@ public class BankAccount {
     public void resetName(String accName) {
 
         String newAccName = null;
+        String newAccNameCheck = null;
         System.out.println("=======================");
 
         try {
 
-        System.out.print("Input new name: ");
-        newAccName = scanOne.next();
+            System.out.print("Input new name: ");
+            newAccName = scanOne.next();
+            System.out.println("Input new name again: ");
+            newAccNameCheck = scanOne.next();
 
         }
 
@@ -733,42 +736,53 @@ public class BankAccount {
 
             scanOne.nextLine();
 
-        } 
+        }
 
-        if (newAccName.equals(accName)) { // checks if new account name is the same with current name
+        if (newAccName.equals(newAccNameCheck)) { // checks if first name input is the same with the second one
 
-            System.out.println("[Already Current Account Name]");
-            mainMenu(accName); // sends the user to the main menu
+            if (newAccName.equals(accName)) { // checks if new account name is the same with current name
+
+                System.out.println("[Already Current Account Name]");
+                mainMenu(accName); // sends the user to the main menu
+
+            }
+
+            else if (machAcc.containsKey(newAccName)) { // checks if account name already exists
+
+                System.out.println("[Account Name Already Used]");
+                mainMenu(accName);
+
+            }
+
+            else if (!(newAccName.equals(accName))) { // if new account name is not equal to current account name
+
+                machAcc.put(newAccName, machAcc.get(accName)); // makes a new account name but same password
+                machFund.put(newAccName, machFund.get(accName)); // makes a new account but with the same balance
+                machAcc.remove(accName); // deletes old account name and password
+                machFund.remove(accName); // delets old account name and balance
+                System.out.println("[Reset Name, Login Again]");
+                terminalMenu(); // logs out account and return to terminal menu
+
+                /*
+                 * Why did we put new keys and values instead of editing them directly?
+                 * 
+                 * The reason why we had to somewhat make new accounts instead of editing the
+                 * old one is because the keys inside a hashmap cannot be edited once they have
+                 * been instantiated. So instead, we put new keys and values in the map instead
+                 * and remove the old ones. While this changes the places of the keys and values
+                 * inside the map, this will not directly affect the user experience in any way
+                 * or form.
+                 * 
+                 */
+
+            }
 
         }
 
-        else if (machAcc.containsKey(newAccName)) { // checks if account name already exists
+        else if (!(newAccName.equals(newAccNameCheck))) {
 
-            System.out.println("[Account Name Already Used]");
+            System.out.println("[New Account Name Not Identical, Try Again]");
             mainMenu(accName);
-
-        }
-
-        else if (!(newAccName.equals(accName))) { // if new account name is not equal to current account name
-
-            machAcc.put(newAccName, machAcc.get(accName)); // makes a new account in the hashmap but the same password
-            machFund.put(newAccName, machFund.get(accName)); // makes a new account but with the same balance
-            machAcc.remove(accName); // deletes old account name and password
-            machFund.remove(accName); // delets old account name and balance
-            System.out.println("[Reset Name, Login Again]");
-            terminalMenu(); // logs out account and return to terminal menu
-
-            /*
-             * Why did we put new keys and values instead of editing them directly?
-             * 
-             * The reason why we had to somewhat make new accounts instead of editing the
-             * old one is because the keys inside a hashmap cannot be edited once they have
-             * been instantiated. So instead, we put new keys and values in the map instead
-             * and remove the old ones. While this changes the places of the keys and values
-             * inside the map, this will not directly affect the user experience in any way 
-             * or form.
-             * 
-             */
 
         }
 
@@ -777,6 +791,125 @@ public class BankAccount {
             returnMenu(accName);
 
         }
+
+    }
+
+    public void resetPassMenu(String accName) { // menu for resetting account password
+
+        userChoice = 0;
+        System.out.println("=======================");
+        System.out.println("[Reset Account Password]");
+        System.out.println("------------------");
+        System.out.println("< Reset the current");
+        System.out.println("password of account");
+        System.out.println("and assign new one. >");
+        System.out.println("------------------");
+        System.out.println("[Current Account Password: " + censorPass(accName) + "]");
+        System.out.println("=======================");
+        System.out.println("[1] Reset Account Password");
+        System.out.println("[2] Main Menu");
+        System.out.println("=======================");
+
+        try {
+
+            System.out.print("Input: ");
+            userChoice = scanOne.nextInt();
+
+        }
+
+        catch (InputMismatchException ex) {
+
+            scanOne.nextLine();
+
+        }
+
+        switch (userChoice) {
+
+            case 1:
+                checkUserPass(accName); // method that asks to type account 2 times
+                resetPass(accName); // method that asks the user for a new password
+                break;
+
+            case 2:
+                mainMenu(accName);
+                break;
+
+            default:
+                returnMenu(accName);
+                break;
+
+        }
+
+    }
+
+    public void resetPass(String accName) { // resets password
+
+        String newAccPass = null; // first new password input
+        String newAccPassCheck = null; // second new password input
+        System.out.println("=======================");
+
+        try {
+
+            System.out.print("Input new password: ");
+            newAccPass = scanOne.next();
+            System.out.print("Input new password again: ");
+            newAccPassCheck = scanOne.next();
+
+        }
+
+        catch (InputMismatchException ex) {
+
+            scanOne.nextLine();
+
+        }
+
+        if (newAccPass.equals(newAccPassCheck)) { // checks if first new password input identical to the second password
+
+            if (newAccPass.equals(machAcc.get(accName))) { // checks if new password is the same with old password
+
+                System.out.println("[Already Current Account Password]");
+                mainMenu(accName); // sends the user to the main menu
+
+            }
+
+            else if (!(newAccPass.equals(machAcc.get(accName)))) { // if new pass is not equal to current pass
+
+                machAcc.replace(accName, newAccPass); // replaces old account password with same name but new password
+                System.out.println("[Reset Password, Login Again]");
+                terminalMenu(); // logs out account and return to terminal menu
+
+            }
+
+        }
+
+        else if (!(newAccPass.equals(newAccPassCheck))) { // if the first pass is not the same with the second pass
+
+            System.out.println("[New Password Not Identical, Try Again]");
+            mainMenu(accName);
+
+        }
+
+        else {
+
+            returnMenu(accName);
+
+        }
+
+    }
+
+    public String censorPass(String accName) { // method that returns the censored password
+
+        String passLength = machAcc.get(accName); // assigns current password to passLength
+        String passCensor = ""; // storing for censored password
+        char eachChar = '*'; // each password character will be represented as an asterisk
+
+        for (int i = 0; i < passLength.length(); i++) { // loop that determines censored password length
+
+            passCensor = passCensor + eachChar; // add an asterisk for each character in password
+
+        }
+
+        return passCensor; // returns censored password
 
     }
 

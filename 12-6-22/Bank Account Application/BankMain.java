@@ -41,7 +41,7 @@ class BankMain {
          * up and logging into their account. The option for the user to change their password will 
          * also be implemented or at least be in development.
          * List of features to be implememted
-         * - Reset Password
+         * - Reset Password (Done)
          * - Reset User Name (Done)
          * - Confirmation before depositing
          * - Confirmation before withdrawing

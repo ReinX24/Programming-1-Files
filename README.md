@@ -5,3 +5,4 @@
 - 11/22/22
 - 11/29/22
 - 12/6/22 (No Lecture, refactored Basic Calculator code as personal exercise)
+- 12/13/22 (No Classes, self-studied Looping or Iterating Statements)

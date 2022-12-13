@@ -1,3 +1,4 @@
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.InputMismatchException;
@@ -11,7 +12,7 @@ public class BankAccount {
     HashMap<String, String> machAcc = new HashMap<String, String>(); // storing name and password
     HashMap<String, Integer> machFund = new HashMap<String, Integer>(); // storing name and account funds
     HashMap<String, ArrayList<String>> depoHistory = new HashMap<String, ArrayList<String>>(); // deposit history
-    HashMap<String, ArrayList<String>> withHistory = new HashMap<String, ArrayList<String>>(); // wtihdraw history
+    HashMap<String, ArrayList<String>> withHistory = new HashMap<String, ArrayList<String>>(); // withdraw history
     HashMap<String, ArrayList<String>> sendHistory = new HashMap<String, ArrayList<String>>(); // transfer history
 
     public void terminalMenu() { // login menu
@@ -106,6 +107,9 @@ public class BankAccount {
         String newName = null; // new account name
         String newPass = null; // new account password
         Integer newFundAcc = 20; // free funds when making a new account
+        ArrayList<String> accHistory = new ArrayList<String>();
+        // Array List for each HashMap that will store deposit, withdraw, and transfer
+        // history
 
         newName = makeName(newName); // goes to a menu that asks for account name and returns account name
 
@@ -129,6 +133,12 @@ public class BankAccount {
         System.out.println(newFundAcc + " pesos has been aded to your account!");
         machAcc.put(newName, newPass); // puts name and password in a map
         machFund.put(newName, newFundAcc); // puts account name and funds for said account
+
+        // put account name and an Array List that will store accounts' processes
+        // history
+        depoHistory.put(newName, accHistory); // for deposits
+        withHistory.put(newName, accHistory); // for withdrawals
+        sendHistory.put(newName, accHistory); // for transfers
         terminalMenu(); // returns to menu
 
     }
@@ -327,7 +337,10 @@ public class BankAccount {
         System.out.println("[3] Transfer Funds");
         System.out.println("[4] Reset Account Name");
         System.out.println("[5] Reset Account Password");
-        System.out.println("[6] Logout");
+        System.out.println("[6] Deposit Log");
+        System.out.println("[7] Withdraw Log");
+        System.out.println("[8] Transfer Log");
+        System.out.println("[9] Logout");
         System.out.println("=======================");
 
         try {
@@ -366,6 +379,18 @@ public class BankAccount {
                 break;
 
             case 6:
+                showDepoHis(accName); // method that shows deposit history
+                break;
+
+            case 7:
+                // method that shows withdrawal history
+                break;
+
+            case 8:
+                // method that shows transaction history
+                break;
+
+            case 9:
                 logOutAcc(); // log out of account, return to terminal
                 break;
 
@@ -438,6 +463,7 @@ public class BankAccount {
             System.out.println("Adding Funds...");
             Thread.sleep(1000); // delays for 1 second
             System.out.println("[P" + addFundAmount + " Deposited]");
+            storeDepoHis(accName, addFundAmount);
             mainMenu(accName); // return to main menu
 
         }
@@ -1034,8 +1060,8 @@ public class BankAccount {
 
             else {
 
-            System.out.print("Input new password again: ");
-            newAccPassCheck = scanOne.next();
+                System.out.print("Input new password again: ");
+                newAccPassCheck = scanOne.next();
 
             }
 
@@ -1087,6 +1113,75 @@ public class BankAccount {
         }
 
         return passCensor; // returns censored password
+
+    }
+
+    public void storeDepoHis(String accName, Integer addFundAmount) { // method that adds the deposit log to HashMap
+
+        // gets the current time and stores it in a String
+        // String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new java.util.Date());
+        String timeStamp = new SimpleDateFormat("MM.dd.yyyy.HH.mm.ss").format(new java.util.Date());
+
+        // store time and deposit amount in one String
+        String depoReceipt = "Time: " + timeStamp + " | Amount: P" + addFundAmount + "";
+
+        // add time and amount String to the array list that holds the deposit history
+        // for this account
+        depoHistory.get(accName).add(depoReceipt);
+
+    }
+
+    public void showDepoHis(String accName) { // method that shows deposit history
+
+        userChoice = 0;
+        System.out.println("=======================");
+        System.out.println("[Deposit History]");
+        System.out.println("------------------");
+        System.out.println("< Check the deposit");
+        System.out.println("history of the account");
+        System.out.println("with time and amount. >");
+        System.out.println("------------------");
+        System.out.println("=======================");
+        System.out.println("[1] Show Deposit Log");
+        System.out.println("[2] Main Menu");
+        System.out.println("=======================");
+
+        try {
+
+        System.out.print("Input: ");
+        userChoice = scanOne.nextInt();
+
+        }
+
+        catch (InputMismatchException ex) {
+
+            scanOne.nextLine();
+
+        }
+
+        switch (userChoice) {
+
+            case 1:
+
+                for (int i = 0; i < depoHistory.get(accName).size(); i++) { // loop that iterates through Array List
+
+                    System.out.print(depoHistory.get(accName).get(i) + "\n"); 
+                    // shows each item in Array List that shows past deposits
+
+                }
+                mainMenu(accName); // return to main menu after showing logs
+
+                break;
+
+            case 2:
+                mainMenu(accName); // returns to main menu
+                break;
+
+            default:
+                returnMenu(accName);
+                break;
+
+        }
 
     }
 

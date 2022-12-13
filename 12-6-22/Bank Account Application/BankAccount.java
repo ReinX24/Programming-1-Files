@@ -371,11 +371,11 @@ public class BankAccount {
         switch (userChoice) {
 
             case 1:
-                addFunds(accName);
+                addFunds(accName); // goes to a method that adds funds to account
                 break;
 
             case 2:
-                mainMenu(accName);
+                mainMenu(accName); // return to main menu
                 break;
 
             default:
@@ -396,6 +396,7 @@ public class BankAccount {
 
             System.out.print("Input: ");
             addFundAmount = scanOne.nextInt();
+            depoConfirm(accName, addFundAmount); // asks for user confirmation or cancellation in depositing funds
             machFund.put(accName, machFund.get(accName) + addFundAmount); // rewrites existing value of the key
             System.out.println("Adding Funds...");
             Thread.sleep(1000); // delays for 1 second
@@ -408,6 +409,46 @@ public class BankAccount {
 
             scanOne.nextLine();
             returnMenu(accName); // returns to main menu with error message
+
+        }
+
+    }
+
+    public void depoConfirm(String accName, Integer addFundAmount) { // confirms or cancels depositing funds
+
+        Integer depoConfirmInput = 0; // user choice for this method
+        System.out.println("[Depositing P" + addFundAmount + "]"); // shows inputted funds to deposit
+        System.out.println("[1] Confirm");
+        System.out.println("[2] Cancel");
+
+        try {
+
+        System.out.print("Input: ");
+        depoConfirmInput = scanOne.nextInt();
+
+        }
+
+        catch (InputMismatchException ex) {
+
+            scanOne.nextLine();
+
+        }
+
+        switch (depoConfirmInput) {
+
+            case 1:
+            System.out.println("[Deposit Confirmed]"); // prints message and go through the following processes
+            break;
+
+            case 2:
+            System.out.println("[Deposit Cancelled]");
+            System.out.println("[Returning to Main Menu]");
+            mainMenu(accName); // returns the user to the main menu if they cancel deposit
+            break;
+
+            default:
+            returnMenu(accName);
+            break;
 
         }
 
@@ -444,11 +485,11 @@ public class BankAccount {
         switch (userChoice) {
 
             case 1:
-                minFunds(accName);
+                minFunds(accName); // goes to a method that subtracts funds from account
                 break;
 
             case 2:
-                mainMenu(accName);
+                mainMenu(accName); // return to main menu
                 break;
 
             default:
@@ -459,7 +500,7 @@ public class BankAccount {
 
     }
 
-    public void minFunds(String accName) {
+    public void minFunds(String accName) { // subtracts funds from the account
 
         Integer withFundAmount = 0;
         System.out.println("=======================");
@@ -472,6 +513,7 @@ public class BankAccount {
 
             if (withFundAmount <= machFund.get(accName)) { // checks if withdrawal amount less than existing balance
 
+                withConfirm(accName, withFundAmount); // asks for user confirmation or cancellation in withdrawing funds
                 machFund.put(accName, machFund.get(accName) - withFundAmount);
                 System.out.println("Withdrawing funds...");
                 Thread.sleep(1000); // 1 second delay
@@ -504,7 +546,47 @@ public class BankAccount {
 
     }
 
-    public void transferMenu(String accName) {
+    public void withConfirm(String accName, Integer withFundAmount) { // confirms or cancels withdrawing funds
+
+        Integer withConfirmInput = 0; // user choice for this method
+        System.out.println("[Withdrawing P" + withFundAmount + "]"); // shows inputted withdrawal amount
+        System.out.println("[1] Confirm");
+        System.out.println("[2] Cancel");
+
+        try {
+
+        System.out.print("Input: ");
+        depoConfirmInput = scanOne.nextInt();
+
+        }
+
+        catch (InputMismatchException ex) {
+
+            scanOne.nextLine();
+
+        }
+
+        switch (depoConfirmInput) {
+
+            case 1:
+            System.out.println("[Withdraw Confirmed]");
+            break;
+
+            case 2:
+            System.out.println("[Withdraw Cancelled]");
+            System.out.println("[Returning to Main Menu]");
+            mainMenu(accName);
+            break;
+
+            default:
+            returnMenu(accName);
+            break;
+
+        }
+
+    }
+
+    public void transferMenu(String accName) { // menu for transferring funds
 
         userChoice = 0;
         System.out.println("=======================");

@@ -43,8 +43,8 @@ class BankMain {
          * List of features to be implememted
          * - Reset Password (Done)
          * - Reset User Name (Done)
-         * - Confirmation before depositing
-         * - Confirmation before withdrawing
+         * - Confirmation before depositing (To be debugged)
+         * - Confirmation before withdrawing (To be debugged)
          * - Deposit history
          * - Confimation history
          * - Closing account (deleting account details and withdrawing all account money)

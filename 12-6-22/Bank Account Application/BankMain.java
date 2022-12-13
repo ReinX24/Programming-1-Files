@@ -43,10 +43,11 @@ class BankMain {
          * List of features to be implememted
          * - Reset Password (Done)
          * - Reset User Name (Done)
-         * - Confirmation before depositing (To be debugged)
-         * - Confirmation before withdrawing (To be debugged)
-         * - Deposit history
-         * - Confimation history
+         * - Confirmation before depositing (Done)
+         * - Confirmation before withdrawing (Done)
+         * - Confirmation before transferring (Done)
+         * - Deposit history (Research on how to use Array Lists within HashMaps)
+         * - Withdraw history
          * - Closing account (deleting account details and withdrawing all account money)
          * 
          */

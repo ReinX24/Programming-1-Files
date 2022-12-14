@@ -46,8 +46,8 @@ class BankMain {
          * - Confirmation before depositing (Done)
          * - Confirmation before withdrawing (Done)
          * - Confirmation before transferring (Done)
-         * - Deposit history (Research on how to use Array Lists within HashMaps)
-         * - Withdraw history
+         * - Deposit history (Debugging)
+         * - Withdraw history (Debugging)
          * - Closing account (deleting account details and withdrawing all account money)
          * 
          */

@@ -383,7 +383,7 @@ public class BankAccount {
                 break;
 
             case 7:
-                // method that shows withdrawal history
+                showWithHis(accName); // method that shows withdrawal history
                 break;
 
             case 8:
@@ -583,6 +583,7 @@ public class BankAccount {
                 System.out.println("Withdrawing funds...");
                 Thread.sleep(1000); // 1 second delay
                 System.out.println("[P" + withFundAmount + " Withdrawn]");
+                storeWithHis(accName, withFundAmount); // method that records the withdraw using a HashMap
                 mainMenu(accName); // returns to main menu
 
             }
@@ -1119,15 +1120,28 @@ public class BankAccount {
     public void storeDepoHis(String accName, Integer addFundAmount) { // method that adds the deposit log to HashMap
 
         // gets the current time and stores it in a String
-        // String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new java.util.Date());
         String timeStamp = new SimpleDateFormat("MM.dd.yyyy.HH.mm.ss").format(new java.util.Date());
 
         // store time and deposit amount in one String
-        String depoReceipt = "Time: " + timeStamp + " | Amount: P" + addFundAmount + "";
+        String depoReceipt = "Time: " + timeStamp + " | Amount: +P" + addFundAmount + "";
 
         // add time and amount String to the array list that holds the deposit history
         // for this account
         depoHistory.get(accName).add(depoReceipt);
+
+    }
+
+    public void storeWithHis(String accName, Integer withFundAmount) { // method that adds the withdraw log to HashMap
+
+        // gets the current time and stores it in a String
+        String timeStamp = new SimpleDateFormat("MM.dd.yyyy.HH.mm.ss").format(new java.util.Date());
+
+        // store time and withdraw amount in one String
+        String withReceipt = "Time: " + timeStamp + " | Amount: -P" + withFundAmount + "";
+
+        // add time and amount String to the array list that holds the deposit history
+        // for this account
+        withHistory.get(accName).add(withReceipt);
 
     }
 
@@ -1166,6 +1180,60 @@ public class BankAccount {
                 for (int i = 0; i < depoHistory.get(accName).size(); i++) { // loop that iterates through Array List
 
                     System.out.print(depoHistory.get(accName).get(i) + "\n"); 
+                    // shows each item in Array List that shows past deposits
+
+                }
+                mainMenu(accName); // return to main menu after showing logs
+
+                break;
+
+            case 2:
+                mainMenu(accName); // returns to main menu
+                break;
+
+            default:
+                returnMenu(accName);
+                break;
+
+        }
+
+    }
+
+    public void showWithHis(String accName) { // method that shows withdraw history
+
+        userChoice = 0;
+        System.out.println("=======================");
+        System.out.println("[Withdraw History]");
+        System.out.println("------------------");
+        System.out.println("< Check the withdraw");
+        System.out.println("history of the account");
+        System.out.println("with time and amount. >");
+        System.out.println("------------------");
+        System.out.println("=======================");
+        System.out.println("[1] Show Withdraw Log");
+        System.out.println("[2] Main Menu");
+        System.out.println("=======================");
+
+        try {
+
+        System.out.print("Input: ");
+        userChoice = scanOne.nextInt();
+
+        }
+
+        catch (InputMismatchException ex) {
+
+            scanOne.nextLine();
+
+        }
+
+        switch (userChoice) {
+
+            case 1:
+
+                for (int i = 0; i < withHistory.get(accName).size(); i++) { // loop that iterates through Array List
+
+                    System.out.print(withHistory.get(accName).get(i) + "\n"); 
                     // shows each item in Array List that shows past deposits
 
                 }

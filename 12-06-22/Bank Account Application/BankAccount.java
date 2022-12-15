@@ -387,7 +387,7 @@ public class BankAccount {
                 break;
 
             case 8:
-                // method that shows transaction history
+                showSendHis(accName); // method that shows transfer history
                 break;
 
             case 9:
@@ -463,7 +463,7 @@ public class BankAccount {
             System.out.println("Adding Funds...");
             Thread.sleep(1000); // delays for 1 second
             System.out.println("[P" + addFundAmount + " Deposited]");
-            storeDepoHis(accName, addFundAmount);
+            storeDepoHis(accName, addFundAmount); // method that stores deposit details
             mainMenu(accName); // return to main menu
 
         }
@@ -751,6 +751,7 @@ public class BankAccount {
                 machFund.put(accRecip, machFund.get(accRecip) + sendFundAmount); // adds subtracted funds
                 Thread.sleep(1000); // 1 second delay
                 System.out.println("[P" + sendFundAmount + " Transferred]");
+                storeSendHis(accName, accRecip, sendFundAmount); // method that records the transferring of funds
                 mainMenu(accName); // returns to main menu
 
             }
@@ -1131,7 +1132,7 @@ public class BankAccount {
 
     }
 
-    public void storeWithHis(String accName, Integer withFundAmount) { // method that adds the withdraw log to HashMap
+    public void storeWithHis(String accName, Integer withFundAmount) { // method that adds to withdraw log HashMap
 
         // gets the current time and stores it in a String
         String timeStamp = new SimpleDateFormat("MM.dd.yyyy.HH.mm.ss").format(new java.util.Date());
@@ -1142,6 +1143,20 @@ public class BankAccount {
         // add time and amount String to the array list that holds the deposit history
         // for this account
         withHistory.get(accName).add(withReceipt);
+
+    }
+
+    public void storeSendHis(String accName, String accRecip, Integer sendFundAmount) { // transfer log added to HashMap
+
+        // gets the current time and stores it in a String
+        String timeStamp = new SimpleDateFormat("MM.dd.yyyy.HH.mm.ss").format(new java.util.Date());
+
+        // store time and withdraw amount in one String
+        String sendReceipt = "Time: " + timeStamp + " | Amount: P" + sendFundAmount + " | Recipient: " + accRecip;
+
+        // add time and amount String to the array list that holds the deposit history
+        // for this account
+        sendHistory.get(accName).add(sendReceipt);
 
     }
 
@@ -1162,8 +1177,8 @@ public class BankAccount {
 
         try {
 
-        System.out.print("Input: ");
-        userChoice = scanOne.nextInt();
+            System.out.print("Input: ");
+            userChoice = scanOne.nextInt();
 
         }
 
@@ -1179,7 +1194,7 @@ public class BankAccount {
 
                 for (int i = 0; i < depoHistory.get(accName).size(); i++) { // loop that iterates through Array List
 
-                    System.out.print(depoHistory.get(accName).get(i) + "\n"); 
+                    System.out.print(depoHistory.get(accName).get(i) + "\n");
                     // shows each item in Array List that shows past deposits
 
                 }
@@ -1216,8 +1231,8 @@ public class BankAccount {
 
         try {
 
-        System.out.print("Input: ");
-        userChoice = scanOne.nextInt();
+            System.out.print("Input: ");
+            userChoice = scanOne.nextInt();
 
         }
 
@@ -1233,7 +1248,61 @@ public class BankAccount {
 
                 for (int i = 0; i < withHistory.get(accName).size(); i++) { // loop that iterates through Array List
 
-                    System.out.print(withHistory.get(accName).get(i) + "\n"); 
+                    System.out.print(withHistory.get(accName).get(i) + "\n");
+                    // shows each item in Array List that shows past deposits
+
+                }
+                mainMenu(accName); // return to main menu after showing logs
+
+                break;
+
+            case 2:
+                mainMenu(accName); // returns to main menu
+                break;
+
+            default:
+                returnMenu(accName);
+                break;
+
+        }
+
+    }
+
+    public void showSendHis(String accName) { // method that shows withdraw history
+
+        userChoice = 0;
+        System.out.println("=======================");
+        System.out.println("[Transfer History]");
+        System.out.println("------------------");
+        System.out.println("< Check the transfer");
+        System.out.println("history of the account");
+        System.out.println("with time and amount. >");
+        System.out.println("------------------");
+        System.out.println("=======================");
+        System.out.println("[1] Show Transfer Log");
+        System.out.println("[2] Main Menu");
+        System.out.println("=======================");
+
+        try {
+
+            System.out.print("Input: ");
+            userChoice = scanOne.nextInt();
+
+        }
+
+        catch (InputMismatchException ex) {
+
+            scanOne.nextLine();
+
+        }
+
+        switch (userChoice) {
+
+            case 1:
+
+                for (int i = 0; i < sendHistory.get(accName).size(); i++) { // loop that iterates through Array List
+
+                    System.out.print(sendHistory.get(accName).get(i) + "\n");
                     // shows each item in Array List that shows past deposits
 
                 }

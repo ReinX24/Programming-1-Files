@@ -29,7 +29,8 @@ class BankMain {
          * 12/11/22
          * To do: (To be debugged and further tested)
          * - Add functionality that transfers an account's funds to another account
-         * For us to finish this, we would need to input an account name that exists, get that
+         * For us to finish this, we would need to input an account name that exists,
+         * get that
          * account's corresponding balance, and transfer funds to that account.
          * 
          */
@@ -37,8 +38,10 @@ class BankMain {
         /*
          * 12/12/22
          * Update: debugging finished, no glaring bugs have been found as of now
-         * To do: Apply security features that makes the user type their password twice when signing
-         * up and logging into their account. The option for the user to change their password will 
+         * To do: Apply security features that makes the user type their password twice
+         * when signing
+         * up and logging into their account. The option for the user to change their
+         * password will
          * also be implemented or at least be in development.
          * List of features to be implememted
          * - Reset Password (Done)
@@ -48,14 +51,25 @@ class BankMain {
          * - Confirmation before transferring (Done)
          * - Deposit history (Debugging)
          * - Withdraw history (Debugging)
-         * - Closing account (deleting account details and withdrawing all account money)
+         * - Transfer history (Debugging)
+         * - Closing account (deleting account details and withdrawing all account
+         * money)
+         * 
+         */
+
+        /*
+         * 12/15/22
+         * Update, finished most of the features that show the history of deposits,
+         * withdrawals, and fund transfers. The last feature that will be added is
+         * the deletion of the current account if the user wishes to close their
+         * account. Debugging of the newly added features will be done first before
+         * adding this closing account function.
          * 
          */
 
         BankAccount machOne = new BankAccount(); // object where all our operations will happen
 
         machOne.terminalMenu(); // as a challenge, we will not use an infinite while loop
-
 
     }
 

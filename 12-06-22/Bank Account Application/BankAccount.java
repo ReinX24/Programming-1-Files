@@ -341,6 +341,7 @@ public class BankAccount {
         System.out.println("[7] Withdraw Log");
         System.out.println("[8] Transfer Log");
         System.out.println("[9] Logout");
+        System.out.println("[0] Close Account");
         System.out.println("=======================");
 
         try {
@@ -392,6 +393,11 @@ public class BankAccount {
 
             case 9:
                 logOutAcc(); // log out of account, return to terminal
+                break;
+
+            case 0:
+                closeAccMenu(accName); // method that goes to a menu that gives the user the choice to close their
+                // account
                 break;
 
             default:
@@ -1317,6 +1323,127 @@ public class BankAccount {
             default:
                 returnMenu(accName);
                 break;
+
+        }
+
+    }
+
+    public void closeAccMenu(String accName) {
+
+        userChoice = 0;
+        System.out.println("=======================");
+        System.out.println("[Closing Account]");
+        System.out.println("------------------");
+        System.out.println("< Closes the account,");
+        System.out.println("withdraws account funds,");
+        System.out.println("and deletes all user");
+        System.out.println("information. >");
+        System.out.println("------------------");
+        System.out.println("=======================");
+        System.out.println("[1] Close Account");
+        System.out.println("[2] Main Menu");
+        System.out.println("=======================");
+
+        try {
+
+            System.out.print("Input: ");
+            userChoice = scanOne.nextInt();
+
+        }
+
+        catch (InputMismatchException ex) {
+
+            scanOne.nextLine();
+
+        }
+
+        switch (userChoice) {
+
+            case 1:
+                closeAccInfo(accName); // shows account info and asks for confirmation
+                break;
+
+            case 2:
+                mainMenu(accName); // returns to main menu
+                break;
+
+            default:
+                returnMenu(accName);
+                break;
+
+        }
+
+    }
+
+    public void closeAccInfo(String accName) { // menu that shows option description and choices
+
+        userChoice = 0;
+        System.out.println("=======================");
+        System.out.println("Account Name: " + accName);
+        System.out.println("Account Balance: P" + machAcc.get(accName));
+        System.out.println("=======================");
+        System.out.println("[Are you sure you want to delete your account?]");
+        System.out.println("[1] Confirm");
+        System.out.println("[2] Cancel");
+        System.out.println("=======================");
+
+        try {
+
+            System.out.print("Input: ");
+            userChoice = scanOne.nextInt();
+
+        }
+
+        catch (InputMismatchException ex) {
+
+            scanOne.nextLine();
+
+        }
+
+        switch (userChoice) {
+
+            case 1:
+                checkUserPass(accName); // asks the user to type their password before deleting the account
+                closeAcc(accName); // method that deletes all account information
+                break;
+
+            case 2:
+                System.out.println("[Deletion Cancelled, Returning to Main Menu]");
+                mainMenu(accName);
+                break;
+
+            default:
+                returnMenu(accName); // returns to main menu with an error message
+                break;
+
+        }
+
+    }
+
+    public void closeAcc(String accName) { // method that deletes all account information
+
+        try {
+
+            System.out.println("Deleting Information...");
+            Thread.sleep(500);
+            System.out.println("Withdrawing Funds...");
+            Thread.sleep(500);
+            System.out.println("Deleting Account History...");
+            Thread.sleep(500);
+            machAcc.remove(accName);
+            machFund.remove(accName);
+            depoHistory.remove(accName);
+            withHistory.remove(accName);
+            sendHistory.remove(accName);
+            System.out.println("[Account Deleted, Returning to Login Menu]");
+            terminalMenu(); // returns the user to terminal menu
+
+        }
+
+        catch (InterruptedException ex) {
+
+            scanOne.nextLine();
+            mainMenu(accName);
 
         }
 

@@ -53,7 +53,7 @@ class BankMain {
          * - Withdraw history (Debugging)
          * - Transfer history (Debugging)
          * - Closing account (deleting account details and withdrawing all account
-         * money)
+         * money) (Debugging)
          * 
          */
 

@@ -83,7 +83,7 @@ class BankMain {
          * As for now these are all the bugs that have been found within the program.
          * 
          * Features to add:
-         * - Add receive history when receiving funds from another account.
+         * - Add receive history when receiving funds from another account. (Debugging)
          * 
          */
 

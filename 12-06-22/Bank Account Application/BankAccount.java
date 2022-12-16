@@ -107,9 +107,11 @@ public class BankAccount {
         String newName = null; // new account name
         String newPass = null; // new account password
         Integer newFundAcc = 20; // free funds when making a new account
-        ArrayList<String> accHistory = new ArrayList<String>();
         // Array List for each HashMap that will store deposit, withdraw, and transfer
         // history
+        ArrayList<String> depoList = new ArrayList<String>();
+        ArrayList<String> withList = new ArrayList<String>();
+        ArrayList<String> sendList = new ArrayList<String>();
 
         newName = makeName(newName); // goes to a menu that asks for account name and returns account name
 
@@ -134,11 +136,11 @@ public class BankAccount {
         machAcc.put(newName, newPass); // puts name and password in a map
         machFund.put(newName, newFundAcc); // puts account name and funds for said account
 
-        // put account name and an Array List that will store accounts' processes
+        // put account name and an ArrayLists that will store accounts' processes
         // history
-        depoHistory.put(newName, accHistory); // for deposits
-        withHistory.put(newName, accHistory); // for withdrawals
-        sendHistory.put(newName, accHistory); // for transfers
+        depoHistory.put(newName, depoList);
+        withHistory.put(newName, withList);
+        sendHistory.put(newName, sendList);
         terminalMenu(); // returns to menu
 
     }
@@ -1197,7 +1199,7 @@ public class BankAccount {
         switch (userChoice) {
 
             case 1:
-
+                System.out.println("[Deposit History]");
                 for (int i = 0; i < depoHistory.get(accName).size(); i++) { // loop that iterates through Array List
 
                     System.out.print(depoHistory.get(accName).get(i) + "\n");
@@ -1251,7 +1253,7 @@ public class BankAccount {
         switch (userChoice) {
 
             case 1:
-
+                System.out.println("[Withdraw History]");
                 for (int i = 0; i < withHistory.get(accName).size(); i++) { // loop that iterates through Array List
 
                     System.out.print(withHistory.get(accName).get(i) + "\n");
@@ -1380,7 +1382,7 @@ public class BankAccount {
         userChoice = 0;
         System.out.println("=======================");
         System.out.println("Account Name: " + accName);
-        System.out.println("Account Balance: P" + machAcc.get(accName));
+        System.out.println("Account Balance: P" + machFund.get(accName));
         System.out.println("=======================");
         System.out.println("[Are you sure you want to delete your account?]");
         System.out.println("[1] Confirm");

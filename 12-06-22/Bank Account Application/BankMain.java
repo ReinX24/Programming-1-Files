@@ -49,11 +49,11 @@ class BankMain {
          * - Confirmation before depositing (Done)
          * - Confirmation before withdrawing (Done)
          * - Confirmation before transferring (Done)
-         * - Deposit history (Debugging)
-         * - Withdraw history (Debugging)
-         * - Transfer history (Debugging)
+         * - Deposit history (Done)
+         * - Withdraw history (Done)
+         * - Transfer history (Done)
          * - Closing account (deleting account details and withdrawing all account
-         * money) (Debugging)
+         * money) (Done)
          * 
          */
 
@@ -64,6 +64,26 @@ class BankMain {
          * the deletion of the current account if the user wishes to close their
          * account. Debugging of the newly added features will be done first before
          * adding this closing account function.
+         * 
+         */
+
+        /*
+         * 12/16/22
+         * Fixed bugs such as when showing deposit history, it also shows the withdrawal
+         * history. The reason for this bug is because they all refer to the same array
+         * list that was used to instantiate the different hashmaps that store the
+         * different transaction histories that happen throughout the program. I
+         * expected that when putting them inside a hashmap will prompt them to all
+         * create their own variable rather than all referring to the same list but I
+         * was mistaken.
+         * 
+         * Another bug that has been squashed is the bug that shows the account password
+         * intead of the account balance when the user chooses to delete their account.
+         * 
+         * As for now these are all the bugs that have been found within the program.
+         * 
+         * Features to add:
+         * - Add receive history when receiving funds from another account.
          * 
          */
 

@@ -83,7 +83,16 @@ class BankMain {
          * As for now these are all the bugs that have been found within the program.
          * 
          * Features to add:
-         * - Add receive history when receiving funds from another account. (Debugging)
+         * - Add receive history when receiving funds from another account. (Done)
+         * 
+         */
+
+        /*
+         * 12/19/22
+         * Debugging transfer feature between accounts has been done. Future features
+         * that are planned to be added in the future are:
+         * - Require username and password to be 4 or more characters
+         * - Password must contain a capital letter and a number
          * 
          */
 

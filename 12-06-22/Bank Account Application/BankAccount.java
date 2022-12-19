@@ -763,7 +763,7 @@ public class BankAccount {
                 Thread.sleep(1000); // 1 second delay
                 System.out.println("[P" + sendFundAmount + " Transferred]");
                 storeSendHis(accName, accRecip, sendFundAmount); // method that records the transferring of funds
-                storeReceHis(accName, accRecip, sendFundAmount); // records the receiving of funds to the recepient                
+                storeReceHis(accName, accRecip, sendFundAmount); // records the receiving of funds to the recepient
                 mainMenu(accName); // returns to main menu
 
             }
@@ -1181,8 +1181,8 @@ public class BankAccount {
         // store time and received amount in one String
         String receReceipt = "Time: " + timeStamp + " | Amount: +P" + receFundAmount + " | Sender: " + accName;
 
-        // add time and amount String to the array list that holds the deposit history
-        // for this account
+        // add time and amount String to the array list that holds the received funds
+        // history for this account
         receHistory.get(accRecip).add(receReceipt); // adds to received amount history of the recipient
 
     }

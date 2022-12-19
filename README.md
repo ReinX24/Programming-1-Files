@@ -14,8 +14,9 @@
 - Basic Calculator
 
 #### 12/6/22 (No Lecture) 
-- Refactored Basic Calculator code as personal exercise
-- Made a Bank Account exercise
+- Refactored Basic Calculator Code
+- Made a Bank Account Exercise
 
 #### 12/13/22 (No Classes) 
 - Self-studied Looping or Iterating Statements
+- Fizz Buzz Exercise Added

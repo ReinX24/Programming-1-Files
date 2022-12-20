@@ -20,3 +20,4 @@
 #### 12/13/22 (No Classes) 
 - Self-studied Looping or Iterating Statements
 - Fizz Buzz Exercise Added
+- Creating Arrays and Iterating through Arrays

@@ -157,10 +157,18 @@ public class BankAccount {
 
         try {
 
+            System.out.println("[Name Should Be 4 Characters or More]");
             System.out.print("Insert Name: "); // name for new account
             newName = scanOne.next();
 
-            if (machAcc.containsKey(newName)) { // if name already exists, throw message and return to terminal menu
+            if (newName.length() < 4) { // checks if name length is less than 4
+
+                System.out.println("[Name Length Requirement Not Met (4 Characters)]");
+                terminalMenu(); // returns to terminal menu
+
+            }
+
+            else if (machAcc.containsKey(newName)) { // if name already exists, throw message & return terminal menu
 
                 System.out.println("[Account Already Exists]");
                 terminalMenu(); // returns to terminal menu without error message
@@ -205,8 +213,18 @@ public class BankAccount {
 
         try {
 
+            System.out.println("=======================");
+            System.out.println("[Password Should Be 4 Characters or More]");
             System.out.print("Insert Password: "); // password for new account
             newPass = scanOne.next();
+
+            if (newPass.length() < 4) { // checks if the new password is 4 characters or more
+
+                System.out.println("[Password Length Requirement Not Met (4 Characters)]");
+                terminalMenu(); // returns to terminal menu
+
+            }
+
             System.out.print("Insert Password Again: "); // asks for password again
             newPassCheck = scanOne.next();
 

@@ -91,7 +91,7 @@ class BankMain {
          * 12/19/22
          * Debugging transfer feature between accounts has been done. Future features
          * that are planned to be added in the future are:
-         * - Require username and password to be 4 or more characters
+         * - Require username and password to be 4 or more characters (Debugging)
          * - Password must contain a capital letter and a number
          * 
          */

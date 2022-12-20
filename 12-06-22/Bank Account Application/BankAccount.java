@@ -214,17 +214,16 @@ public class BankAccount {
         try {
 
             System.out.println("=======================");
-            System.out.println("[Password Should Be 4 Characters or More]");
+            System.out.println("[Password Requirements]");
+            System.out.println(" > Password Contains 4 Characters or More");
+            System.out.println(" > Password Contains At Least 2 Digits");
+            System.out.println(" > Password Contains At Least 1 Capital Letter");
             System.out.print("Insert Password: "); // password for new account
             newPass = scanOne.next();
 
-            if (newPass.length() < 4) { // checks if the new password is 4 characters or more
-
-                System.out.println("[Password Length Requirement Not Met (4 Characters)]");
-                terminalMenu(); // returns to terminal menu
-
-            }
-
+            // method that checks if the password has 4 characters and has 2 digits in those
+            // characters
+            passRequire(newPass); // if all requirements are met, ask for password again
             System.out.print("Insert Password Again: "); // asks for password again
             newPassCheck = scanOne.next();
 
@@ -252,6 +251,64 @@ public class BankAccount {
         }
 
         return newPass; // if the passwords are the same, returns the new password
+
+    }
+
+    public void passRequire(String newPass) { // method that checks if the password meets all of the requirements
+
+        if (newPass.length() < 4) { // checks the password length
+
+            System.out.println("[Password Length Requirement Not Met (4 Characters)]");
+            terminalMenu(); // returns to terminal menu
+
+        }
+
+        char[] charArr = newPass.toCharArray(); // places String characters in an array
+        int digitCount = 0; // counter for the amount of digits in the array
+        int capitalCount = 0; // counter for capital letters in the array
+
+        for (int i = 0; i < charArr.length; i++) { // loops through the char array
+
+            if (Character.isDigit(charArr[i])) { // check if the current iterated char is a digit
+
+                digitCount += 1; // if true, add 1 to counter
+
+            }
+
+        }
+
+        if (digitCount < 2) { // if String has less than 2 digits, print requirement and return to terminal
+                              // menu
+
+            System.out.println("[Password Must Contain 2 Digits]");
+            terminalMenu(); // return to terminal menu
+
+        }
+
+        for (int i = 0; i < charArr.length; i++) {
+            // loops through the array, to check if any characters are in uppercase letters
+
+            if (Character.isUpperCase(charArr[i])) {
+
+                capitalCount += 1; // add one to capitalCount
+
+            }
+
+        }
+
+        if (capitalCount == 0) { // if String has no capital letters, print requirement and return to terminal
+                                 // menu
+
+            System.out.println("[Password Must Contain 1 Capital Letter]");
+            terminalMenu(); // return to terminal menu
+
+        }
+
+        else {
+
+            System.out.println("[Verified Password Requirements]");
+
+        }
 
     }
 

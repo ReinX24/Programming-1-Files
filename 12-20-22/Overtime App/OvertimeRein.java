@@ -1,20 +1,12 @@
 import java.util.Scanner;
 
-public class OvertimeApp {
+public class OvertimeRein {
 
     public static void main(String[] args) {
 
         /*
-         * 12/21/22
-         * Recreating Overtime pseudocode given as a preliminary exam on the 1st
-         * Semester of the 1st Year of A.Y. 2022 - 2023.
-         * 
-         * NOTE: The encoding of the pseudocode below may contain errors and such.
-         * One such issue is that myOverTimePay will always result in zero because
-         * we do not input any number for myOverTime other than its default assigned
-         * value of 0. This may be an oversight on my part or on the test's part.
-         * 
-         * Further updates to be expected.
+         * Refactored version of OvertimeApp, this somewhat stray away from the original
+         * functions of the code but the idea will still stay the same
          * 
          */
 
@@ -27,9 +19,9 @@ public class OvertimeApp {
 
         // Set myRate, myOverTimeHrs, myHours, myOverTime, mySalary, myTotal to 0
         Double myRate = 0.0;
-        Double myOverTimeHrs = 0.0; // variable not used in calculations
+        Double myOverTimeHrs = 0.0;
         Double myHours = 0.0;
-        Double myOverTime = 0.0;
+        // Double myOverTime = 0.0; // not used in the progam
         Double mySalary = 0.0;
         Double myTotal = 0.0;
 
@@ -58,7 +50,7 @@ public class OvertimeApp {
         myOverTimeHrs = scanOne.nextDouble();
 
         // Input myHours
-        System.out.print("Input hours: ");
+        System.out.print("Input normal hours: ");
         myHours = scanOne.nextDouble();
 
         // mySalary is equal to myRate multiplied by myHours
@@ -71,10 +63,41 @@ public class OvertimeApp {
             Overtime = mySalary * 0.3;
 
             // myOverTimePay is equal to Overtime multiplied by myOverTime
-            myOverTimePay = Overtime * myOverTime;
+            // myOverTimePay = Overtime * myOverTime;
+
+            /*
+             * In the original pseudocode, we multiply Overtime by myOverTime,
+             * but from my observation, we do not instantiate a value of myOverTime
+             * other than its default value of 0. So in OvertimeApp, myOverTimePay
+             * will always result to 0 regardless of our inputs.
+             * 
+             * To fix this, in this version of the program we will be multiplying Overtime
+             * by myOverTimeHrs instead since that is my best guess to the correct variable
+             * that should be in place of myOverTime.
+             * 
+             * My rationale for this is that myOverTimePay is equal to 30% of our original
+             * salary multiplied by our overtime hours or myOverTimeHrs.
+             * 
+             */
+
+            // myOverTimePay is equal to Overtime multiplied by myOverTimeHrs
+            myOverTimePay = Overtime * myOverTimeHrs;
 
             // myTotal is equal to mySalary plus myOverTime
-            myTotal = mySalary + myOverTime;
+            // myTotal = mySalary + myOverTime;
+
+            /*
+             * We will replace myOverTime with myOverTimePay since my guess is that variable
+             * should replace myOverTime. This is because adding mySalary to myOverTime
+             * would not make any difference in myTotal.
+             * 
+             * My reasoning for this is that myTotal is equal to our salary or mySalary plus
+             * the computed overtime pay in the last computation (see code above).
+             * 
+             */
+
+            // myTotal is equal to mySalary plus myOverTime
+            myTotal = mySalary + myOverTimePay;
 
         }
 
@@ -98,8 +121,11 @@ public class OvertimeApp {
         // DISPLAY mySalary
         System.out.println("Salary: " + mySalary);
 
+        // DISPLAY myOverTimeHrs (NOT PART OF ORIGINAL PROGRAM)
+        System.out.println("Overtime hours: " + myOverTimeHrs);
+
         // DISPLAY myOverTimePay
-        System.out.println("Overtime: " + myOverTimePay); // results in 0?
+        System.out.println("Overtime pay: " + myOverTimePay);
 
         // DISPLAY myTotal
         System.out.println("Total: " + myTotal);

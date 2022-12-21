@@ -1,5 +1,14 @@
 import java.util.Scanner;
 
+/*
+ * Author: Rein Aldwin E. Solis
+ * Programming Language: Java
+ * Creation Date: 12/13/22
+ * School: Universidad De Dagupan
+ * Description: Overtime Program (Remake)
+ * 
+ */
+
 public class OvertimeRein {
 
     public static void main(String[] args) {

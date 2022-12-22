@@ -157,18 +157,18 @@ public class BankAccount {
 
         try {
 
-            System.out.println("[Name Should Be 4 Characters or More]");
+            System.out.println("[Name Requirements]");
+            System.out.println(" > Name Contains 4 Characters or More");
+            System.out.println(" > Name Does Not Contain Any Digits");
+            System.out.println(" > Name Contains At Least 1 Capital Letter");
             System.out.print("Insert Name: "); // name for new account
             newName = scanOne.next();
 
-            if (newName.length() < 4) { // checks if name length is less than 4
+            nameRequire(newName);
+            // method that checks if all name requirements are met, will distrupt account
+            // creation if any of the requirements are not met
 
-                System.out.println("[Name Length Requirement Not Met (4 Characters)]");
-                terminalMenu(); // returns to terminal menu
-
-            }
-
-            else if (machAcc.containsKey(newName)) { // if name already exists, throw message & return terminal menu
+            if (machAcc.containsKey(newName)) { // if name already exists, throw message & return terminal menu
 
                 System.out.println("[Account Already Exists]");
                 terminalMenu(); // returns to terminal menu without error message
@@ -197,6 +197,15 @@ public class BankAccount {
 
         }
 
+        else if (!newName.equals(newNameCheck)) {
+            // if the first account name is not equal to the second, print an error message
+            // and return to terminal menu
+
+            System.out.println("[Account Names Not Identical]");
+            terminalMenu(); // returns to terminal menu
+
+        }
+
         else {
 
             machError(); // returns to terminal menu if the first name and second name are different
@@ -204,6 +213,70 @@ public class BankAccount {
         }
 
         return newName; // returns inputted account name
+
+    }
+
+    public void nameRequire(String newName) { // method that checks if all user name requirements are met
+
+        // Checking name length
+        if (newName.length() < 4) { // checks the name length
+
+            System.out.println("[Name Length Requirement Not Met (4 Characters)]");
+            terminalMenu(); // returns to terminal menu
+
+        }
+
+        // Checking if the name has any digits (it should not have any)
+        char[] charArr = newName.toCharArray(); // places String characters in an array
+        int digitCount = 0; // counter for the amount of digits in the array
+        int capitalCount = 0; // counter for capital letters in the array
+
+        for (int i = 0; i < charArr.length; i++) { // loops through the char array
+
+            if (Character.isDigit(charArr[i])) { // check if the current iterated char is a digit
+
+                digitCount += 1; // if true, add 1 to counter
+                // shorthand version of digitCount = digitCount + 1;
+
+            }
+
+        }
+
+        if (digitCount > 0) {
+
+            System.out.println("[Name Must Not Contain Digits]");
+            terminalMenu(); // return to terminal menu
+
+        }
+
+        // Checks if any of the characters are in uppercase
+        for (int i = 0; i < charArr.length; i++) {
+            // loops through the array, to check if any characters are in uppercase letters
+
+            if (Character.isUpperCase(charArr[i])) {
+
+                capitalCount += 1; // add one to capitalCount
+
+            }
+
+        }
+
+        if (capitalCount == 0) {
+            // if String has no capital letters, print requirement and return to terminal
+            // menu
+
+            System.out.println("[Name Must Contain 1 Capital Letter]");
+            terminalMenu(); // return to terminal menu
+
+        }
+
+        else {
+
+            System.out.println("[Verified Name Requirements]");
+            // prints if all of the requirements are met and goes through the account
+            // creation process
+
+        }
 
     }
 
@@ -272,6 +345,7 @@ public class BankAccount {
             if (Character.isDigit(charArr[i])) { // check if the current iterated char is a digit
 
                 digitCount += 1; // if true, add 1 to counter
+                // shorthand version of digitCount = digitCount + 1;
 
             }
 

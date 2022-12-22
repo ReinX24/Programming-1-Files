@@ -91,8 +91,8 @@ class BankMain {
          * 12/19/22
          * Debugging transfer feature between accounts has been done. Future features
          * that are planned to be added in the future are:
-         * - Require username and password to be 4 or more characters (Debugging)
-         * - Password must contain a capital letter and a number (Debugging)
+         * - Require username and password to be 4 or more characters (Done)
+         * - Password must contain a capital letter and two numbers (Done)
          * 
          */
 
@@ -102,6 +102,16 @@ class BankMain {
          * Further manual testing and debugging for these features has not been done
          * yet. But for now they seem to be functional and are working accordingly
          * to their desired functions.
+         * 
+         */
+
+        /*
+         * 12/22/22
+         * Debugged last two features (username and password needing at least 4 
+         * characters and password requiring a capital letter and 2 numbers).
+         * To do:
+         * - Name requires at least one capital letter (Debugging)
+         * - Make code structure more "readable" (I will do my best)
          * 
          */
 

@@ -25,3 +25,4 @@
 #### 12/20/22 (Holiday Break!) 🎅
 - Overtime Exercise Pseudocode (From Preliminary Examination)
 - Refactored Version of Overtime Exercise
+- Can Spell Exercise

@@ -107,11 +107,19 @@ class BankMain {
 
         /*
          * 12/22/22
-         * Debugged last two features (username and password needing at least 4 
+         * Debugged last two features (username and password needing at least 4
          * characters and password requiring a capital letter and 2 numbers).
          * To do:
-         * - Name requires at least one capital letter (Debugging)
+         * - Name requires at least one capital letter (Done)
          * - Make code structure more "readable" (I will do my best)
+         * 
+         */
+
+        /*
+         * 12/23/22
+         * To do:
+         * - If the user changes their name, check if they meet requirements
+         * - If the user changes their password, check if they meet requirements
          * 
          */
 

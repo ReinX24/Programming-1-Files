@@ -1611,6 +1611,8 @@ public class BankAccount {
             Thread.sleep(500);
             System.out.println("Deleting Account History...");
             Thread.sleep(500);
+            System.out.println("[Withdrawn P" + machFund.get(accName) + "]");
+            // gets the remaining account funds in machFund
             machAcc.remove(accName);
             machFund.remove(accName);
             depoHistory.remove(accName);

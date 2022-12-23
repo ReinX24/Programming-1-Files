@@ -1081,8 +1081,14 @@ public class BankAccount {
 
         try {
 
+            System.out.println("[Name Requirements]");
+            System.out.println(" > Name Contains 4 Characters or More");
+            System.out.println(" > Name Does Not Contain Any Digits");
+            System.out.println(" > Name Contains At Least 1 Capital Letter");
             System.out.print("Input new name: ");
             newAccName = scanOne.next();
+
+            resetNameRequire(newAccName); // checks if the name meets all requirements
 
             if (newAccName.equals(accName)) { // checks if new account name is the same with current name
 
@@ -1150,6 +1156,72 @@ public class BankAccount {
         else { // when an error occurs
 
             returnMenu(accName); // return to main menu with an error message
+
+        }
+
+    }
+
+    public void resetNameRequire(String newName) { // method that checks if all user name requirements are met
+
+        // Checking name length
+        if (newName.length() < 4) { // checks the name length
+
+            System.out.println("[Name Length Requirement Not Met (4 Characters)]");
+            mainMenu(newName); // returns to terminal menu
+
+        }
+
+        // Checking if the name has any digits (it should not have any)
+        char[] charArr = newName.toCharArray(); // places String characters in an array
+        int digitCount = 0; // counter for the amount of digits in the array
+        int capitalCount = 0; // counter for capital letters in the array
+
+        for (int i = 0; i < charArr.length; i++) { // loops through the char array
+
+            if (Character.isDigit(charArr[i])) { // check if the current iterated char is a digit
+
+                digitCount += 1; // if true, add 1 to counter
+                // shorthand version of digitCount = digitCount + 1;
+
+            }
+
+        }
+
+        if (digitCount > 0) {
+
+            System.out.println("[Name Must Not Contain Digits]");
+            mainMenu(newName);
+            ; // return to terminal menu
+
+        }
+
+        // Checks if any of the characters are in uppercase
+        for (int i = 0; i < charArr.length; i++) {
+            // loops through the array, to check if any characters are in uppercase letters
+
+            if (Character.isUpperCase(charArr[i])) {
+
+                capitalCount += 1; // add one to capitalCount
+
+            }
+
+        }
+
+        if (capitalCount == 0) {
+            // if String has no capital letters, print requirement and return to terminal
+            // menu
+
+            System.out.println("[Name Must Contain 1 Capital Letter]");
+            mainMenu(newName);
+            ; // return to terminal menu
+
+        }
+
+        else {
+
+            System.out.println("[Verified Name Requirements]");
+            // prints if all of the requirements are met and goes through the account
+            // creation process
 
         }
 

@@ -118,8 +118,9 @@ class BankMain {
         /*
          * 12/23/22
          * To do:
-         * - If the user changes their name, check if they meet requirements
-         * - If the user changes their password, check if they meet requirements
+         * - If the user changes their name, check if they meet requirements (Debugging)
+         * - If the user changes their password, check if they meet requirements (To be
+         * added)
          * 
          */
 

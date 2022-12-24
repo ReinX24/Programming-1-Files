@@ -1128,12 +1128,26 @@ public class BankAccount {
 
                 /*
                  * TODO:
-                 * Transfer deposit, withdrawal, and transfer history to the account with the new account name.
+                 * Transfer deposit, withdrawal, and transfer history to the account with the
+                 * new account name.
+                 * Debug history transfer of depositing, withdrawing, sending and receiving
+                 * funds.
                  * 
+                 * We put these in their hashmaps again since we cannot change the keys of
+                 * hashmaps (account
+                 * names). So instead, we put them and remove the old entries in the hashmap.
                  */
+                depoHistory.put(newAccName, depoHistory.get(accName));
+                withHistory.put(newAccName, withHistory.get(accName));
+                sendHistory.put(newAccName, sendHistory.get(accName));
+                receHistory.put(newAccName, receHistory.get(accName));
 
                 machAcc.remove(accName); // deletes old account name and password
-                machFund.remove(accName); // delets old account name and balance
+                machFund.remove(accName); // deletes old account name and balance
+                depoHistory.remove(accName); // deletes deposit history of old account
+                withHistory.remove(accName); // deletes withdraw history of old account
+                sendHistory.remove(accName); // deletes sent funds history of old account
+                receHistory.remove(accName); // deletes received funds history of old account
                 System.out.println("[Reset Name, Login Again]");
                 terminalMenu(); // logs out account and return to terminal menu
 
@@ -1168,7 +1182,8 @@ public class BankAccount {
 
     }
 
-    public void resetNameRequire(String newName, String accName) { // method that checks if all user name requirements are met
+    public void resetNameRequire(String newName, String accName) { // method that checks if all user name requirements
+                                                                   // are met
 
         // Checking name length
         if (newName.length() < 4) { // checks the name length
@@ -1346,7 +1361,8 @@ public class BankAccount {
 
     }
 
-    public void resetPassRequire(String newPass, String accName) { // method that checks if the password meets all of the requirements
+    public void resetPassRequire(String newPass, String accName) { // method that checks if the password meets all of
+                                                                   // the requirements
 
         if (newPass.length() < 4) { // checks the password length
 

@@ -118,10 +118,26 @@ class BankMain {
         /*
          * 12/23/22
          * To do:
-         * - If the user changes their name, check if they meet requirements (Debugging)
-         * - If the user changes password, check if requirements are met (Debugging)
-         * - When changing account name, transfer history (causes an error when changing
-         * account name and showing deposit history)
+         * - If the user changes their name, check if they meet requirements (Done)
+         * - If the user changes password, check if requirements are met (Done)
+         * - When changing account name, transfer history. Causes an error when changing
+         * account name and showing account transactions history (deposit, withdraw,
+         * etc.). (Debugging)
+         * 
+         */
+
+        /*
+         * 12/24/22
+         * Deposit and Withdraw history being transferred when the user changes their
+         * account name has debugged. We need to do this because the names of these
+         * accounts serve as their keys in the hashmap and we cannot modify these keys.
+         * So instead, we put them into a new entry and delete the old entry containing
+         * our original account name, password, and transaction histories.
+         * 
+         * To do:
+         * - Send History Transfer (Debugging)
+         * - Receive History Transfer (Debugging)
+         * 
          * 
          */
 

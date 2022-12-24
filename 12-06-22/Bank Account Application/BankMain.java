@@ -119,8 +119,9 @@ class BankMain {
          * 12/23/22
          * To do:
          * - If the user changes their name, check if they meet requirements (Debugging)
-         * - If the user changes their password, check if they meet requirements (To be
-         * added)
+         * - If the user changes password, check if requirements are met (Debugging)
+         * - When changing account name, transfer history (causes an error when changing
+         * account name and showing deposit history)
          * 
          */
 

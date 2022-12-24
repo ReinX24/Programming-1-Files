@@ -1088,7 +1088,7 @@ public class BankAccount {
             System.out.print("Input new name: ");
             newAccName = scanOne.next();
 
-            resetNameRequire(newAccName); // checks if the name meets all requirements
+            resetNameRequire(newAccName, accName); // checks if the name meets all requirements
 
             if (newAccName.equals(accName)) { // checks if new account name is the same with current name
 
@@ -1125,6 +1125,13 @@ public class BankAccount {
 
                 machAcc.put(newAccName, machAcc.get(accName)); // makes a new account name but same password
                 machFund.put(newAccName, machFund.get(accName)); // makes a new account but with the same balance
+
+                /*
+                 * TODO:
+                 * Transfer deposit, withdrawal, and transfer history to the account with the new account name.
+                 * 
+                 */
+
                 machAcc.remove(accName); // deletes old account name and password
                 machFund.remove(accName); // delets old account name and balance
                 System.out.println("[Reset Name, Login Again]");
@@ -1161,13 +1168,13 @@ public class BankAccount {
 
     }
 
-    public void resetNameRequire(String newName) { // method that checks if all user name requirements are met
+    public void resetNameRequire(String newName, String accName) { // method that checks if all user name requirements are met
 
         // Checking name length
         if (newName.length() < 4) { // checks the name length
 
             System.out.println("[Name Length Requirement Not Met (4 Characters)]");
-            mainMenu(newName); // returns to terminal menu
+            mainMenu(accName); // returns to main menu of current account
 
         }
 
@@ -1190,8 +1197,7 @@ public class BankAccount {
         if (digitCount > 0) {
 
             System.out.println("[Name Must Not Contain Digits]");
-            mainMenu(newName);
-            ; // return to terminal menu
+            mainMenu(accName); // return to main menu
 
         }
 
@@ -1212,8 +1218,7 @@ public class BankAccount {
             // menu
 
             System.out.println("[Name Must Contain 1 Capital Letter]");
-            mainMenu(newName);
-            ; // return to terminal menu
+            mainMenu(accName); // return to main menu
 
         }
 
@@ -1280,11 +1285,17 @@ public class BankAccount {
         String newAccPass = null; // first new password input
         String newAccPassCheck = null; // second new password input
         System.out.println("=======================");
+        System.out.println("[Password Requirements]");
+        System.out.println(" > Password Contains 4 Characters or More");
+        System.out.println(" > Password Contains At Least 2 Digits");
+        System.out.println(" > Password Contains At Least 1 Capital Letter");
 
         try {
 
             System.out.print("Input new password: ");
             newAccPass = scanOne.next();
+
+            resetPassRequire(newAccPass, accName); // method that checks if all password requirements are met
 
             if (newAccPass.equals(machAcc.get(accName))) { // checks if new password is the same with old password
 
@@ -1330,6 +1341,65 @@ public class BankAccount {
         else {
 
             returnMenu(accName);
+
+        }
+
+    }
+
+    public void resetPassRequire(String newPass, String accName) { // method that checks if the password meets all of the requirements
+
+        if (newPass.length() < 4) { // checks the password length
+
+            System.out.println("[Password Length Requirement Not Met (4 Characters)]");
+            mainMenu(accName); // returns to main menu
+
+        }
+
+        char[] charArr = newPass.toCharArray(); // places String characters in an array
+        int digitCount = 0; // counter for the amount of digits in the array
+        int capitalCount = 0; // counter for capital letters in the array
+
+        for (int i = 0; i < charArr.length; i++) { // loops through the char array
+
+            if (Character.isDigit(charArr[i])) { // check if the current iterated char is a digit
+
+                digitCount += 1; // if true, add 1 to counter
+                // shorthand version of digitCount = digitCount + 1;
+
+            }
+
+        }
+
+        if (digitCount < 2) { // if String has less than 2 digits, print requirement and return to terminal
+                              // menu
+
+            System.out.println("[Password Must Contain 2 Digits]");
+            mainMenu(accName);
+
+        }
+
+        for (int i = 0; i < charArr.length; i++) {
+            // loops through the array, to check if any characters are in uppercase letters
+
+            if (Character.isUpperCase(charArr[i])) {
+
+                capitalCount += 1; // add one to capitalCount
+
+            }
+
+        }
+
+        if (capitalCount == 0) { // if String has no capital letters, print requirement and return to terminal
+                                 // menu
+
+            System.out.println("[Password Must Contain 1 Capital Letter]");
+            mainMenu(accName);
+
+        }
+
+        else {
+
+            System.out.println("[Verified Password Requirements]");
 
         }
 

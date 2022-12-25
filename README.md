@@ -27,3 +27,4 @@
 - Refactored Version of Overtime Exercise
 - Can Spell Exercise
 - Median Sort Array Exercise
+- Christmas Tree Exercise

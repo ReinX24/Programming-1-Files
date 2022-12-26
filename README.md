@@ -28,3 +28,4 @@
 - Can Spell Exercise
 - Median Sort Array Exercise
 - Christmas Tree Exercise
+- Histogram Exercise

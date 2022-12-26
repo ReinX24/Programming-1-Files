@@ -28,7 +28,7 @@ public class ChristmasTree {
 
             for (int k = 0; k < (2 * i - 1); k++) { // prints the starts or elements after the spaces
 
-                System.out.print("*");
+                System.out.print("*"); // prints asterisk for the tree
 
             }
 

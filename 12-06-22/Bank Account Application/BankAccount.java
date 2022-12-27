@@ -1087,10 +1087,20 @@ public class BankAccount {
             System.out.println(" > Name Contains At Least 1 Capital Letter");
             System.out.print("Input new name: ");
             newAccName = scanOne.next();
-
             resetNameRequire(newAccName, accName); // checks if the name meets all requirements
 
-            if (newAccName.equals(accName)) { // checks if new account name is the same with current name
+            /*
+             * TODO:
+             * Debug name reset causing a runtime exception where whitespace causes issues.
+             * Ex. Rein -> Rein Solis causes an issue and does not replace the name.
+             * To circumvent this, a new requirement where whitespace is not accepted as
+             * input will be added in the name requirements.
+             * 
+             */
+
+            if (newAccName.equals(accName)) {
+                // checks if new account name is the same with current name
+                // also added another checker that checks if they are the same length
 
                 System.out.println("[Already Current Account Name]");
                 mainMenu(accName); // sends the user to the main menu
@@ -1127,7 +1137,7 @@ public class BankAccount {
                 machFund.put(newAccName, machFund.get(accName)); // makes a new account but with the same balance
 
                 /*
-                 * TODO:
+                 * DONE:
                  * Transfer deposit, withdrawal, and transfer history to the account with the
                  * new account name.
                  * Debug history transfer of depositing, withdrawing, sending and receiving
@@ -1182,8 +1192,8 @@ public class BankAccount {
 
     }
 
-    public void resetNameRequire(String newName, String accName) { // method that checks if all user name requirements
-                                                                   // are met
+    public void resetNameRequire(String newName, String accName) {
+        // method that checks if all user name requirements are met
 
         // Checking name length
         if (newName.length() < 4) { // checks the name length

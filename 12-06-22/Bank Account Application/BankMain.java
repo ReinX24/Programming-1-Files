@@ -135,8 +135,8 @@ class BankMain {
          * our original account name, password, and transaction histories.
          * 
          * To do:
-         * - Send History Transfer (Debugging)
-         * - Receive History Transfer (Debugging)
+         * - Send History Transfer (Done)
+         * - Receive History Transfer (Done)
          * 
          * 
          */

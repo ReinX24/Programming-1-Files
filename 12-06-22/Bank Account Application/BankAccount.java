@@ -159,7 +159,6 @@ public class BankAccount {
         try {
 
             System.out.println("[Name Requirements]");
-            System.out.println(" > Name Does Not Contain Spaces");
             System.out.println(" > Name Contains 4 Characters or More");
             System.out.println(" > Name Does Not Contain Any Digits");
             System.out.println(" > Name Contains At Least 1 Capital Letter");
@@ -220,16 +219,8 @@ public class BankAccount {
 
     public void nameRequire(String newName) { // method that checks if all user name requirements are met
 
-        // Checking if name has whitespace
-        if (newName.contains(" ")) {
-
-            System.out.println("[Name Must Not Contain Spaces]");
-            terminalMenu(); // return to terminal menu
-
-        }
-
         // Checking name length
-        else if (newName.length() < 4) { // checks the name length
+        if (newName.length() < 4) { // checks the name length
 
             System.out.println("[Name Length Requirement Not Met (4 Characters)]");
             terminalMenu(); // returns to terminal menu
@@ -880,7 +871,7 @@ public class BankAccount {
 
             System.out.println("[Input Account Recipient]"); // asks user to input recipient account name
             System.out.print("Input: ");
-            String accRecip = scanOne.next();
+            String accRecip = scanOne.nextLine();
 
             if (machFund.containsKey(accRecip)) { // checks if account exists
 
@@ -1093,7 +1084,6 @@ public class BankAccount {
         try {
 
             System.out.println("[Name Requirements]");
-            System.out.println(" > Name Does Not Contain Spaces");
             System.out.println(" > Name Contains 4 Characters or More");
             System.out.println(" > Name Does Not Contain Any Digits");
             System.out.println(" > Name Contains At Least 1 Capital Letter");
@@ -1102,11 +1092,13 @@ public class BankAccount {
             resetNameRequire(newAccName, accName); // checks if the name meets all requirements
 
             /*
-             * TODO:
+             * DONE:
              * Debug name reset causing a runtime exception where whitespace causes issues.
              * Ex. Rein -> Rein Solis causes an issue and does not replace the name.
              * To circumvent this, a new requirement where whitespace is not accepted as
-             * input will be added in the name requirements.
+             * input will be added in the name requirements. (REMOVED)
+             * 
+             * Changing next to nextLine or nextInt to fix whitespaces causing issues
              * 
              */
 
@@ -1207,16 +1199,8 @@ public class BankAccount {
     public void resetNameRequire(String newName, String accName) {
         // method that checks if all user name requirements are met
 
-        // Checking if name has whitespace
-        if (newName.contains(" ")) {
-
-            System.out.println("[Name Must Not Contain Spaces]");
-            mainMenu(accName); // return to main menu
-
-        }
-
         // Checking name length
-        else if (newName.length() < 4) { // checks the name length
+        if (newName.length() < 4) { // checks the name length
 
             System.out.println("[Name Length Requirement Not Met (4 Characters)]");
             mainMenu(accName); // returns to main menu of current account

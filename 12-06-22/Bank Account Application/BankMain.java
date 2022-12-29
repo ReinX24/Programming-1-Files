@@ -141,9 +141,34 @@ class BankMain {
          * 
          */
 
-         /*
-          * 
-          */
+        /*
+         * 12/29/22
+         * Refactoring .next to .nextLine or .nextInt due to errors in the code. Also
+         * decided that the whitespace requirement be removed from creating or 
+         * resetting account name.
+         * 
+         * TODO:
+         * - Debug making a name and resetting name
+         * - Debug making a password and resetting password
+         * 
+         * 
+         */
+
+        /*
+         * Project Debug Checklist
+         * Finished
+         * - Login 
+         * - Sign Up
+         * - About
+         * 
+         * TODO:
+         * - Deposit
+         * - Withdraw
+         * - Transfer
+         * - Reset Account Name
+         * - Reset Account Password
+         * 
+         */
 
         BankAccount machOne = new BankAccount(); // object where all our operations will happen
 

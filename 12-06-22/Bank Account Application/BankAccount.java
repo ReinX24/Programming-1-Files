@@ -31,6 +31,7 @@ public class BankAccount {
 
             System.out.print("Input: ");
             userChoice = scanOne.nextInt();
+            scanOne.nextLine(); // nextLine after nextInt to avoid errors
 
         }
 
@@ -158,11 +159,12 @@ public class BankAccount {
         try {
 
             System.out.println("[Name Requirements]");
+            System.out.println(" > Name Does Not Contain Spaces");
             System.out.println(" > Name Contains 4 Characters or More");
             System.out.println(" > Name Does Not Contain Any Digits");
             System.out.println(" > Name Contains At Least 1 Capital Letter");
             System.out.print("Insert Name: "); // name for new account
-            newName = scanOne.next();
+            newName = scanOne.nextLine();
 
             nameRequire(newName);
             // method that checks if all name requirements are met, will distrupt account
@@ -178,7 +180,7 @@ public class BankAccount {
             else {
 
                 System.out.print("Insert Name Again: ");
-                newNameCheck = scanOne.next();
+                newNameCheck = scanOne.nextLine();
 
             }
 
@@ -218,8 +220,16 @@ public class BankAccount {
 
     public void nameRequire(String newName) { // method that checks if all user name requirements are met
 
+        // Checking if name has whitespace
+        if (newName.contains(" ")) {
+
+            System.out.println("[Name Must Not Contain Spaces]");
+            terminalMenu(); // return to terminal menu
+
+        }
+
         // Checking name length
-        if (newName.length() < 4) { // checks the name length
+        else if (newName.length() < 4) { // checks the name length
 
             System.out.println("[Name Length Requirement Not Met (4 Characters)]");
             terminalMenu(); // returns to terminal menu
@@ -292,13 +302,13 @@ public class BankAccount {
             System.out.println(" > Password Contains At Least 2 Digits");
             System.out.println(" > Password Contains At Least 1 Capital Letter");
             System.out.print("Insert Password: "); // password for new account
-            newPass = scanOne.next();
+            newPass = scanOne.nextLine();
 
             // method that checks if the password has 4 characters and has 2 digits in those
             // characters
             passRequire(newPass); // if all requirements are met, ask for password again
             System.out.print("Insert Password Again: "); // asks for password again
-            newPassCheck = scanOne.next();
+            newPassCheck = scanOne.nextLine();
 
         }
 
@@ -395,7 +405,7 @@ public class BankAccount {
         try {
 
             System.out.print("Insert Name: ");
-            accName = scanOne.next();
+            accName = scanOne.nextLine();
 
         }
 
@@ -419,12 +429,12 @@ public class BankAccount {
         try {
 
             System.out.print("Insert Password: ");
-            accPass = scanOne.next();
+            accPass = scanOne.nextLine();
 
             if (accPass.equals(accPassUser)) { // checks if the password input is equal to account password
 
                 System.out.print("Insert Password Again: "); // asks for the password again
-                accPassCheck = scanOne.next();
+                accPassCheck = scanOne.nextLine();
 
             }
 
@@ -993,12 +1003,12 @@ public class BankAccount {
         try {
 
             System.out.print("Insert Password: ");
-            accPass = scanOne.next();
+            accPass = scanOne.nextLine();
 
             if (accPass.equals(accPassCurrent)) { // checks if inputted password is the current account password
 
                 System.out.print("Insert Password Again: "); // asks the user to type password again
-                accPassCheck = scanOne.next();
+                accPassCheck = scanOne.nextLine();
 
             }
 
@@ -1045,6 +1055,7 @@ public class BankAccount {
 
             System.out.print("Input: ");
             userChoice = scanOne.nextInt();
+            scanOne.nextLine(); // avoiding exceptions
 
         }
 
@@ -1082,11 +1093,12 @@ public class BankAccount {
         try {
 
             System.out.println("[Name Requirements]");
+            System.out.println(" > Name Does Not Contain Spaces");
             System.out.println(" > Name Contains 4 Characters or More");
             System.out.println(" > Name Does Not Contain Any Digits");
             System.out.println(" > Name Contains At Least 1 Capital Letter");
             System.out.print("Input new name: ");
-            newAccName = scanOne.next();
+            newAccName = scanOne.nextLine();
             resetNameRequire(newAccName, accName); // checks if the name meets all requirements
 
             /*
@@ -1117,7 +1129,7 @@ public class BankAccount {
             else {
 
                 System.out.print("Input new name again: "); // asks for new name again
-                newAccNameCheck = scanOne.next();
+                newAccNameCheck = scanOne.nextLine();
 
             }
 
@@ -1195,8 +1207,16 @@ public class BankAccount {
     public void resetNameRequire(String newName, String accName) {
         // method that checks if all user name requirements are met
 
+        // Checking if name has whitespace
+        if (newName.contains(" ")) {
+
+            System.out.println("[Name Must Not Contain Spaces]");
+            mainMenu(accName); // return to main menu
+
+        }
+
         // Checking name length
-        if (newName.length() < 4) { // checks the name length
+        else if (newName.length() < 4) { // checks the name length
 
             System.out.println("[Name Length Requirement Not Met (4 Characters)]");
             mainMenu(accName); // returns to main menu of current account
@@ -1277,6 +1297,7 @@ public class BankAccount {
 
             System.out.print("Input: ");
             userChoice = scanOne.nextInt();
+            scanOne.nextLine(); // avoiding exceptions
 
         }
 
@@ -1318,7 +1339,7 @@ public class BankAccount {
         try {
 
             System.out.print("Input new password: ");
-            newAccPass = scanOne.next();
+            newAccPass = scanOne.nextLine();
 
             resetPassRequire(newAccPass, accName); // method that checks if all password requirements are met
 
@@ -1332,7 +1353,7 @@ public class BankAccount {
             else {
 
                 System.out.print("Input new password again: ");
-                newAccPassCheck = scanOne.next();
+                newAccPassCheck = scanOne.nextLine();
 
             }
 

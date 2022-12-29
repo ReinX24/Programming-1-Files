@@ -141,6 +141,10 @@ class BankMain {
          * 
          */
 
+         /*
+          * 
+          */
+
         BankAccount machOne = new BankAccount(); // object where all our operations will happen
 
         machOne.terminalMenu(); // as a challenge, we will not use an infinite while loop

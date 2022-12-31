@@ -59,6 +59,8 @@ public class DayTwoMain {
          * What would your total score be if everything goes exactly according to your
          * strategy guide?
          * 
+         * Link to website:
+         * https://adventofcode.com/2022/day/2
          * 
          */
 

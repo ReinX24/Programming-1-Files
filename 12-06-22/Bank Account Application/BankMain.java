@@ -147,9 +147,9 @@ class BankMain {
          * decided that the whitespace requirement be removed from creating or 
          * resetting account name.
          * 
-         * TODO:
-         * - Debug making a name and resetting name
-         * - Debug making a password and resetting password
+         * DONE:
+         * - Debug making a name and resetting name (Done)
+         * - Debug making a password and resetting password (Dene)
          * 
          * 
          */

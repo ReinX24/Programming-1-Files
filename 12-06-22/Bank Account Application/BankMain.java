@@ -144,7 +144,7 @@ class BankMain {
         /*
          * 12/29/22
          * Refactoring .next to .nextLine or .nextInt due to errors in the code. Also
-         * decided that the whitespace requirement be removed from creating or 
+         * decided that the whitespace requirement be removed from creating or
          * resetting account name.
          * 
          * DONE:
@@ -157,13 +157,14 @@ class BankMain {
         /*
          * Project Debug Checklist
          * Finished
-         * - Login 
+         * - Login
          * - Sign Up
          * - About
          * - Deposit
          * - Withdraw
          * - Transfer
          * - Reset Account Name
+         * - Close Account
          * 
          * TODO:
          * - Reset Account Password
@@ -171,7 +172,7 @@ class BankMain {
          * - Withdraw Log
          * - Transfer Log
          * - Logout
-         * - Close Account
+         * 
          * 
          */
 

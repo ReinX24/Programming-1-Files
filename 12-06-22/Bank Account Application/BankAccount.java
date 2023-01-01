@@ -799,7 +799,11 @@ public class BankAccount {
                 System.out.print("Insert Password Again: "); // asks the user to type password again
                 accPassCheck = scanOne.nextLine();
             }
-            // TODO: Add wrong password message
+            // DONE: Add wrong password message
+            else { // if the password is not the account password
+                System.out.println("[Incorrect Password]");
+                mainMenu(accName); // returns to main menu
+            }
         }
 
         catch (InputMismatchException ex) {
@@ -965,16 +969,12 @@ public class BankAccount {
         }
 
     }
-    // TODO: Code Shortening Checkpoint 1/1/23
-    public void resetNameRequire(String newName, String accName) {
-        // method that checks if all user name requirements are met
-
+    // STARTED: Code Shortening Checkpoint 1/1/23
+    public void resetNameRequire(String newName, String accName) { // method that checks if all user name requirements are met
         // Checking name length
         if (newName.length() < 4) { // checks the name length
-
             System.out.println("[Name Length Requirement Not Met (4 Characters)]");
             mainMenu(accName); // returns to main menu of current account
-
         }
 
         // Checking if the name has any digits (it should not have any)
@@ -983,50 +983,36 @@ public class BankAccount {
         int capitalCount = 0; // counter for capital letters in the array
 
         for (int i = 0; i < charArr.length; i++) { // loops through the char array
-
             if (Character.isDigit(charArr[i])) { // check if the current iterated char is a digit
-
                 digitCount += 1; // if true, add 1 to counter
                 // shorthand version of digitCount = digitCount + 1;
-
             }
-
         }
 
         if (digitCount > 0) {
-
             System.out.println("[Name Must Not Contain Digits]");
             mainMenu(accName); // return to main menu
-
         }
 
         // Checks if any of the characters are in uppercase
         for (int i = 0; i < charArr.length; i++) {
             // loops through the array, to check if any characters are in uppercase letters
-
             if (Character.isUpperCase(charArr[i])) {
-
                 capitalCount += 1; // add one to capitalCount
-
             }
-
         }
 
         if (capitalCount == 0) {
             // if String has no capital letters, print requirement and return to terminal
             // menu
-
             System.out.println("[Name Must Contain 1 Capital Letter]");
             mainMenu(accName); // return to main menu
-
         }
 
         else {
-
             System.out.println("[Verified Name Requirements]");
             // prints if all of the requirements are met and goes through the account
             // creation process
-
         }
 
     }
@@ -1048,34 +1034,26 @@ public class BankAccount {
         System.out.println("=======================");
 
         try {
-
             System.out.print("Input: ");
             userChoice = scanOne.nextInt();
             scanOne.nextLine(); // avoiding exceptions
-
         }
 
         catch (InputMismatchException ex) {
-
             scanOne.nextLine();
-
         }
 
         switch (userChoice) {
-
             case 1:
                 checkUserPass(accName); // method that asks to type account 2 times
                 resetPass(accName); // method that asks the user for a new password
                 break;
-
             case 2:
                 mainMenu(accName);
                 break;
-
             default:
                 returnMenu(accName);
                 break;
-
         }
 
     }
@@ -1091,69 +1069,51 @@ public class BankAccount {
         System.out.println(" > Password Contains At Least 1 Capital Letter");
 
         try {
-
             System.out.print("Input new password: ");
             newAccPass = scanOne.nextLine();
 
             resetPassRequire(newAccPass, accName); // method that checks if all password requirements are met
 
             if (newAccPass.equals(machAcc.get(accName))) { // checks if new password is the same with old password
-
                 System.out.println("[Already Current Account Password]");
                 mainMenu(accName); // sends the user to the main menu
-
             }
 
             else {
-
                 System.out.print("Input new password again: ");
                 newAccPassCheck = scanOne.nextLine();
-
             }
 
         }
 
         catch (InputMismatchException ex) {
-
             scanOne.nextLine();
-
         }
 
         if (newAccPass.equals(newAccPassCheck)) { // checks if first new password input identical to new second password
-
             if (!(newAccPass.equals(machAcc.get(accName)))) { // if new pass is not equal to current pass
-
                 machAcc.replace(accName, newAccPass); // replaces old account password with same name but new password
                 System.out.println("[Reset Password, Login Again]");
                 terminalMenu(); // logs out account and return to terminal menu
-
             }
-
         }
 
         else if (!(newAccPass.equals(newAccPassCheck))) { // if the first pass is not the same with the second pass
-
             System.out.println("[New Password Not Identical, Try Again]");
             mainMenu(accName);
-
         }
 
         else {
-
             returnMenu(accName);
-
         }
 
     }
 
-    public void resetPassRequire(String newPass, String accName) { // method that checks if the password meets all of
-                                                                   // the requirements
+    public void resetPassRequire(String newPass, String accName) { // checks if the password meets requirements
 
         if (newPass.length() < 4) { // checks the password length
-
             System.out.println("[Password Length Requirement Not Met (4 Characters)]");
             mainMenu(accName); // returns to main menu
-
         }
 
         char[] charArr = newPass.toCharArray(); // places String characters in an array
@@ -1161,47 +1121,31 @@ public class BankAccount {
         int capitalCount = 0; // counter for capital letters in the array
 
         for (int i = 0; i < charArr.length; i++) { // loops through the char array
-
             if (Character.isDigit(charArr[i])) { // check if the current iterated char is a digit
-
                 digitCount += 1; // if true, add 1 to counter
                 // shorthand version of digitCount = digitCount + 1;
-
             }
-
         }
 
-        if (digitCount < 2) { // if String has less than 2 digits, print requirement and return to terminal
-                              // menu
-
+        if (digitCount < 2) { // if String has less than 2 digits, print requirement & return terminal menu
             System.out.println("[Password Must Contain 2 Digits]");
             mainMenu(accName);
-
         }
 
         for (int i = 0; i < charArr.length; i++) {
             // loops through the array, to check if any characters are in uppercase letters
-
             if (Character.isUpperCase(charArr[i])) {
-
                 capitalCount += 1; // add one to capitalCount
-
             }
-
         }
 
-        if (capitalCount == 0) { // if String has no capital letters, print requirement and return to terminal
-                                 // menu
-
+        if (capitalCount == 0) { // if String has no capital letters, print requirement & return to terminal menu
             System.out.println("[Password Must Contain 1 Capital Letter]");
             mainMenu(accName);
-
         }
 
         else {
-
             System.out.println("[Verified Password Requirements]");
-
         }
 
     }
@@ -1213,11 +1157,8 @@ public class BankAccount {
         char eachChar = '*'; // each password character will be represented as an asterisk
 
         for (int i = 0; i < passLength.length(); i++) { // loop that determines censored password length
-
             passCensor = passCensor + eachChar; // add an asterisk for each character in password
-
         }
-
         return passCensor; // returns censored password
 
     }
@@ -1226,10 +1167,8 @@ public class BankAccount {
 
         // gets the current time and stores it in a String
         String timeStamp = new SimpleDateFormat("MM.dd.yyyy.HH.mm.ss").format(new java.util.Date());
-
         // store time and deposit amount in one String
         String depoReceipt = "Time: " + timeStamp + " | Amount: +P" + addFundAmount + "";
-
         // add time and amount String to the array list that holds the deposit history
         // for this account
         depoHistory.get(accName).add(depoReceipt);
@@ -1240,10 +1179,8 @@ public class BankAccount {
 
         // gets the current time and stores it in a String
         String timeStamp = new SimpleDateFormat("MM.dd.yyyy.HH.mm.ss").format(new java.util.Date());
-
         // store time and withdraw amount in one String
         String withReceipt = "Time: " + timeStamp + " | Amount: -P" + withFundAmount + "";
-
         // add time and amount String to the array list that holds the withdraw history
         // for this account
         withHistory.get(accName).add(withReceipt);
@@ -1254,13 +1191,10 @@ public class BankAccount {
 
         // gets the current time and stores it in a String
         String timeStamp = new SimpleDateFormat("MM.dd.yyyy.HH.mm.ss").format(new java.util.Date());
-
         // store time and sent amount in one String
         String sendReceipt = "Time: " + timeStamp + " | Amount: -P" + sendFundAmount + " | Recipient: " + accRecip;
-
         // add time and amount String to the array list that holds the sent funds
-        // history
-        // for this account
+        // history for this account
         sendHistory.get(accName).add(sendReceipt);
 
     }
@@ -1269,10 +1203,8 @@ public class BankAccount {
 
         // gets the current time and stores it in a String
         String timeStamp = new SimpleDateFormat("MM.dd.yyyy.HH.mm.ss").format(new java.util.Date());
-
         // store time and received amount in one String
         String receReceipt = "Time: " + timeStamp + " | Amount: +P" + receFundAmount + " | Sender: " + accName;
-
         // add time and amount String to the array list that holds the received funds
         // history for this account
         receHistory.get(accRecip).add(receReceipt); // adds to received amount history of the recipient
@@ -1295,40 +1227,29 @@ public class BankAccount {
         System.out.println("=======================");
 
         try {
-
             System.out.print("Input: ");
             userChoice = scanOne.nextInt();
-
         }
 
         catch (InputMismatchException ex) {
-
             scanOne.nextLine();
-
         }
 
         switch (userChoice) {
-
             case 1:
                 System.out.println("[Deposit History]");
                 for (int i = 0; i < depoHistory.get(accName).size(); i++) { // loop that iterates through Array List
-
                     System.out.print(depoHistory.get(accName).get(i) + "\n");
                     // shows each item in Array List that shows past deposits
-
                 }
                 mainMenu(accName); // return to main menu after showing logs
-
                 break;
-
             case 2:
                 mainMenu(accName); // returns to main menu
                 break;
-
             default:
                 returnMenu(accName);
                 break;
-
         }
 
     }
@@ -1349,40 +1270,29 @@ public class BankAccount {
         System.out.println("=======================");
 
         try {
-
             System.out.print("Input: ");
             userChoice = scanOne.nextInt();
-
         }
 
         catch (InputMismatchException ex) {
-
             scanOne.nextLine();
-
         }
 
         switch (userChoice) {
-
             case 1:
                 System.out.println("[Withdraw History]");
                 for (int i = 0; i < withHistory.get(accName).size(); i++) { // loop that iterates through Array List
-
                     System.out.print(withHistory.get(accName).get(i) + "\n");
                     // shows each item in Array List that shows past deposits
-
                 }
                 mainMenu(accName); // return to main menu after showing logs
-
                 break;
-
             case 2:
                 mainMenu(accName); // returns to main menu
                 break;
-
             default:
                 returnMenu(accName);
                 break;
-
         }
 
     }
@@ -1404,22 +1314,16 @@ public class BankAccount {
         System.out.println("=======================");
 
         try {
-
             System.out.print("Input: ");
             userChoice = scanOne.nextInt();
-
         }
 
         catch (InputMismatchException ex) {
-
             scanOne.nextLine();
-
         }
 
         switch (userChoice) {
-
             case 1:
-
                 for (int i = 0; i < sendHistory.get(accName).size(); i++) { // loop that iterates through Array List
 
                     System.out.print(sendHistory.get(accName).get(i) + "\n");
@@ -1427,27 +1331,20 @@ public class BankAccount {
 
                 }
                 mainMenu(accName); // return to main menu after showing logs
-
                 break;
-
             case 2:
                 for (int i = 0; i < receHistory.get(accName).size(); i++) { // for loop that iterates through receList
-
                     System.out.print(receHistory.get(accName).get(i) + "\n");
                     // shows each item in Array List that shows past deposits
-
                 }
                 mainMenu(accName); // return to main menu after showing logs
                 break;
-
             case 3:
                 mainMenu(accName); // returns to main menu
                 break;
-
             default:
                 returnMenu(accName);
                 break;
-
         }
 
     }
@@ -1469,32 +1366,24 @@ public class BankAccount {
         System.out.println("=======================");
 
         try {
-
             System.out.print("Input: ");
             userChoice = scanOne.nextInt();
-
         }
 
         catch (InputMismatchException ex) {
-
             scanOne.nextLine();
-
         }
 
         switch (userChoice) {
-
             case 1:
                 closeAccInfo(accName); // shows account info and asks for confirmation
                 break;
-
             case 2:
                 mainMenu(accName); // returns to main menu
                 break;
-
             default:
                 returnMenu(accName);
                 break;
-
         }
 
     }
@@ -1512,34 +1401,27 @@ public class BankAccount {
         System.out.println("=======================");
 
         try {
-
             System.out.print("Input: ");
             userChoice = scanOne.nextInt();
-
+            scanOne.nextLine();
         }
 
         catch (InputMismatchException ex) {
-
             scanOne.nextLine();
-
         }
 
         switch (userChoice) {
-
             case 1:
                 checkUserPass(accName); // asks the user to type their password before deleting the account
                 closeAcc(accName); // method that deletes all account information
                 break;
-
             case 2:
                 System.out.println("[Deletion Cancelled, Returning to Main Menu]");
                 mainMenu(accName);
                 break;
-
             default:
                 returnMenu(accName); // returns to main menu with an error message
                 break;
-
         }
 
     }
@@ -1547,7 +1429,6 @@ public class BankAccount {
     public void closeAcc(String accName) { // method that deletes all account information
 
         try {
-
             System.out.println("Deleting Information...");
             Thread.sleep(500);
             System.out.println("Withdrawing Funds...");
@@ -1563,37 +1444,28 @@ public class BankAccount {
             sendHistory.remove(accName);
             System.out.println("[Account Deleted, Returning to Login Menu]");
             terminalMenu(); // returns the user to terminal menu
-
         }
 
         catch (InterruptedException ex) {
-
             scanOne.nextLine();
             mainMenu(accName);
-
         }
 
     }
 
     public void logOutAcc() { // logouts of account
-
         System.out.println("[Logged Out Account]");
         terminalMenu(); // return to terminal menu
-
     }
 
     public void returnMenu(String accName) { // returns user to main menu with a error message
-
         System.out.println("[Not Valid Input, Returning to Menu]");
         mainMenu(accName);
-
     }
 
     public void machError() { // returns to terminal menu with an error message
-
         System.out.println("[Error Occurred, Try Again]");
         terminalMenu(); // returns to termainal menu
-
     }
 
 }

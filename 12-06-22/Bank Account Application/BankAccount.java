@@ -28,37 +28,28 @@ public class BankAccount {
         System.out.println("=======================");
 
         try {
-
             System.out.print("Input: ");
             userChoice = scanOne.nextInt();
             scanOne.nextLine(); // nextLine after nextInt to avoid errors
-
         }
 
         catch (InputMismatchException ex) {
-
             scanOne.nextLine();
-
         }
 
         switch (userChoice) {
-
             case 1:
                 loginAcc(); // login menu
                 break;
-
             case 2:
                 signUp(); // signup menu
                 break;
-
             case 3:
                 aboutUs(); // shows about us section
                 break;
-
             default:
                 machError(); // throws an error message and returns to terminal menu
                 break;
-
         }
 
     }
@@ -73,32 +64,25 @@ public class BankAccount {
         // assigns the returned name to accName
 
         if (machAcc.containsKey(accName)) { // checks if the returned name already exists, if it does, ask for password
-
             accPass = inputPass(accName); // asks for password and assigns password to accPass
 
             if (machAcc.get(accName).equals(accPass)) { // gets the value or password of existing account name and
                 // compares it to inserted password
-
                 System.out.println("[Account Logged In]"); // logs into account if inputted password is the same
                 mainMenu(accName); // passes account name in main menu to be used for operations
-
             }
 
             else { // if the inputted password is not equal to the account name's password, return
                    // to terminal menu
-
                 System.out.println("Invalid Credentials, Try Again"); // error message
                 terminalMenu(); // returns to menu
-
             }
 
         }
 
         else { // if the inputted account name does not match any of the existing account names
-
             System.out.println("[Account Does Not Exist]");
             terminalMenu();
-
         }
 
     }
@@ -119,16 +103,12 @@ public class BankAccount {
         newName = makeName(newName); // goes to a menu that asks for account name and returns account name
 
         if (newName != null) { // if an account name has been inserted, ask for password for that account
-
             newPass = makePass(newPass); // asks for a password and returns password
-
         }
 
         else { // if no name inserted, return an error message and return to terminal menu
-
             System.out.println("[Error, must insert name]");
             terminalMenu();
-
         }
 
         System.out.println("=======================");
@@ -157,74 +137,55 @@ public class BankAccount {
         String newNameCheck = null;
 
         try {
-
             System.out.println("[Name Requirements]");
             System.out.println(" > Name Contains 4 Characters or More");
             System.out.println(" > Name Does Not Contain Any Digits");
             System.out.println(" > Name Contains At Least 1 Capital Letter");
             System.out.print("Insert Name: "); // name for new account
             newName = scanOne.nextLine();
-
             nameRequire(newName);
             // method that checks if all name requirements are met, will distrupt account
             // creation if any of the requirements are not met
 
             if (machAcc.containsKey(newName)) { // if name already exists, throw message & return terminal menu
-
                 System.out.println("[Account Already Exists]");
                 terminalMenu(); // returns to terminal menu without error message
-
             }
 
             else {
-
                 System.out.print("Insert Name Again: ");
                 newNameCheck = scanOne.nextLine();
-
             }
-
         }
 
         catch (InputMismatchException ex) {
-
             scanOne.nextLine();
             machError(); // returns to terminal menu with an error message
-
         }
 
         if (newName.equals(newNameCheck)) {
-
             System.out.println("[Account Name Validated]");
-
         }
 
         else if (!newName.equals(newNameCheck)) {
             // if the first account name is not equal to the second, print an error message
             // and return to terminal menu
-
             System.out.println("[Account Names Not Identical]");
             terminalMenu(); // returns to terminal menu
-
         }
 
         else {
-
             machError(); // returns to terminal menu if the first name and second name are different
-
         }
-
         return newName; // returns inputted account name
-
     }
 
     public void nameRequire(String newName) { // method that checks if all user name requirements are met
 
         // Checking name length
         if (newName.length() < 4) { // checks the name length
-
             System.out.println("[Name Length Requirement Not Met (4 Characters)]");
             terminalMenu(); // returns to terminal menu
-
         }
 
         // Checking if the name has any digits (it should not have any)
@@ -233,50 +194,36 @@ public class BankAccount {
         int capitalCount = 0; // counter for capital letters in the array
 
         for (int i = 0; i < charArr.length; i++) { // loops through the char array
-
             if (Character.isDigit(charArr[i])) { // check if the current iterated char is a digit
-
                 digitCount += 1; // if true, add 1 to counter
                 // shorthand version of digitCount = digitCount + 1;
-
             }
-
         }
 
         if (digitCount > 0) {
-
             System.out.println("[Name Must Not Contain Digits]");
             terminalMenu(); // return to terminal menu
-
         }
 
         // Checks if any of the characters are in uppercase
         for (int i = 0; i < charArr.length; i++) {
             // loops through the array, to check if any characters are in uppercase letters
-
             if (Character.isUpperCase(charArr[i])) {
-
                 capitalCount += 1; // add one to capitalCount
-
             }
-
         }
 
         if (capitalCount == 0) {
             // if String has no capital letters, print requirement and return to terminal
             // menu
-
             System.out.println("[Name Must Contain 1 Capital Letter]");
             terminalMenu(); // return to terminal menu
-
         }
 
         else {
-
             System.out.println("[Verified Name Requirements]");
             // prints if all of the requirements are met and goes through the account
             // creation process
-
         }
 
     }
@@ -286,7 +233,6 @@ public class BankAccount {
         String newPassCheck = null; // storage for second password for better security and validation
 
         try {
-
             System.out.println("=======================");
             System.out.println("[Password Requirements]");
             System.out.println(" > Password Contains 4 Characters or More");
@@ -300,41 +246,29 @@ public class BankAccount {
             passRequire(newPass); // if all requirements are met, ask for password again
             System.out.print("Insert Password Again: "); // asks for password again
             newPassCheck = scanOne.nextLine();
-
         }
 
         catch (InputMismatchException ex) {
-
             scanOne.nextLine();
             machError();
-
         }
 
         if (newPass.equals(newPassCheck)) { // checking if first password is the same as the second inputted password
-
             System.out.println("[Password Validated]"); // prints message if true
-
         }
 
-        else { // if first password is not identical to second password, return to terminal
-               // menu
-
+        else { // first password not identical to second password, go to terminal menu
             System.out.println("[Password Not Identical, Try Again]");
             terminalMenu();
-
         }
-
         return newPass; // if the passwords are the same, returns the new password
-
     }
 
     public void passRequire(String newPass) { // method that checks if the password meets all of the requirements
 
         if (newPass.length() < 4) { // checks the password length
-
             System.out.println("[Password Length Requirement Not Met (4 Characters)]");
             terminalMenu(); // returns to terminal menu
-
         }
 
         char[] charArr = newPass.toCharArray(); // places String characters in an array
@@ -342,47 +276,31 @@ public class BankAccount {
         int capitalCount = 0; // counter for capital letters in the array
 
         for (int i = 0; i < charArr.length; i++) { // loops through the char array
-
             if (Character.isDigit(charArr[i])) { // check if the current iterated char is a digit
-
                 digitCount += 1; // if true, add 1 to counter
                 // shorthand version of digitCount = digitCount + 1;
-
             }
-
         }
 
-        if (digitCount < 2) { // if String has less than 2 digits, print requirement and return to terminal
-                              // menu
-
+        if (digitCount < 2) { // if String has less than 2 digits, print requirement & go to terminal menu
             System.out.println("[Password Must Contain 2 Digits]");
             terminalMenu(); // return to terminal menu
-
         }
 
         for (int i = 0; i < charArr.length; i++) {
             // loops through the array, to check if any characters are in uppercase letters
-
             if (Character.isUpperCase(charArr[i])) {
-
                 capitalCount += 1; // add one to capitalCount
-
             }
-
         }
 
-        if (capitalCount == 0) { // if String has no capital letters, print requirement and return to terminal
-                                 // menu
-
+        if (capitalCount == 0) { // if no capital letters, print requirement and return to terminal menu
             System.out.println("[Password Must Contain 1 Capital Letter]");
             terminalMenu(); // return to terminal menu
-
         }
 
         else {
-
             System.out.println("[Verified Password Requirements]");
-
         }
 
     }
@@ -392,23 +310,17 @@ public class BankAccount {
         System.out.println("=======================");
         System.out.println("[Login Account]");
         System.out.println("=======================");
-
+        
         try {
-
             System.out.print("Insert Name: ");
             accName = scanOne.nextLine();
-
         }
 
         catch (InputMismatchException ex) {
-
             scanOne.nextLine();
             machError();
-
         }
-
         return accName;
-
     }
 
     public String inputPass(String accName) { // asks for existing password
@@ -418,48 +330,35 @@ public class BankAccount {
         String accPassUser = machAcc.get(accName); // gets account password
 
         try {
-
             System.out.print("Insert Password: ");
             accPass = scanOne.nextLine();
 
             if (accPass.equals(accPassUser)) { // checks if the password input is equal to account password
-
                 System.out.print("Insert Password Again: "); // asks for the password again
                 accPassCheck = scanOne.nextLine();
-
             }
 
             else {
-
                 System.out.println("[Wrong Password, Try Again]");
                 terminalMenu();
-
             }
 
         }
 
         catch (InputMismatchException ex) {
-
             scanOne.nextLine();
             machError();
-
         }
 
         if (accPass.equals(accPassCheck)) { // checks if the first password is similar to second password
-
             System.out.println("[Password Validated]");
-
         }
 
         else { // returns to terminal menu if passwords are not identical
-
             System.out.println("[Password Not Identical, Try Again]");
             terminalMenu();
-
         }
-
         return accPass;
-
     }
 
     public void aboutUs() { // about us page of the program
@@ -500,67 +399,50 @@ public class BankAccount {
         System.out.println("=======================");
 
         try {
-
             System.out.print("Input: ");
             userChoice = scanOne.nextInt();
-
         }
 
         catch (InputMismatchException ex) {
-
             scanOne.nextLine();
-
         }
 
         switch (userChoice) {
-
             case 1:
                 depoFunds(accName); // deposit funds menu
                 break;
-
             case 2:
                 withFunds(accName); // withdraw funds menu
                 break;
-
             case 3:
                 transferMenu(accName); // transfers funds menu
                 break;
-
             case 4:
                 resetNameMenu(accName); // method that goes to name resetting menu
                 break;
-
             case 5:
                 resetPassMenu(accName); // method that goes to password resetting menu
                 break;
-
             case 6:
                 showDepoHis(accName); // method that shows deposit history
                 break;
-
             case 7:
                 showWithHis(accName); // method that shows withdrawal history
                 break;
-
             case 8:
                 showSendHis(accName); // method that shows transfer history
                 break;
-
             case 9:
                 logOutAcc(); // log out of account, return to terminal
                 break;
-
             case 0:
                 closeAccMenu(accName); // method that goes to a menu that gives the user the choice to close their
                 // account
                 break;
-
             default:
                 returnMenu(accName); // returns to main menu with an error message
                 break;
-
         }
-
     }
 
     public void depoFunds(String accName) { // deposit funds menu
@@ -579,34 +461,25 @@ public class BankAccount {
         System.out.println("=======================");
 
         try {
-
             System.out.print("Input: ");
             userChoice = scanOne.nextInt();
-
         }
 
         catch (InputMismatchException ex) {
-
             scanOne.nextLine();
-
         }
 
         switch (userChoice) {
-
             case 1:
                 addFunds(accName); // goes to a method that adds funds to account
                 break;
-
             case 2:
                 mainMenu(accName); // return to main menu
                 break;
-
             default:
                 returnMenu(accName); // returns to menu
                 break;
-
         }
-
     }
 
     public void addFunds(String accName) { // method that adds the funds to account
@@ -616,7 +489,6 @@ public class BankAccount {
         System.out.println("[Input Deposit Amount]");
 
         try {
-
             System.out.print("Input: "); // asks for deposit amount
             addFundAmount = scanOne.nextInt();
             depoConfirm(accName, addFundAmount); // asks for user confirmation or cancellation in depositing funds
@@ -626,14 +498,11 @@ public class BankAccount {
             System.out.println("[P" + addFundAmount + " Deposited]");
             storeDepoHis(accName, addFundAmount); // method that stores deposit details
             mainMenu(accName); // return to main menu
-
         }
 
         catch (InputMismatchException | InterruptedException ex) {
-
             scanOne.nextLine();
             returnMenu(accName); // returns to main menu with error message
-
         }
 
     }
@@ -647,37 +516,28 @@ public class BankAccount {
         System.out.println("[2] Cancel");
 
         try {
-
             System.out.print("Input: ");
             depoConfirmInput = scanOne.nextInt();
-
         }
 
         catch (InputMismatchException ex) {
-
             scanOne.nextLine();
-
         }
 
         switch (depoConfirmInput) {
-
             case 1:
                 System.out.println("[Deposit Confirmed]"); // prints message and go through the following processes
                 System.out.println("=======================");
                 break;
-
             case 2:
                 System.out.println("[Deposit Cancelled]");
                 System.out.println("[Returning to Main Menu]");
                 mainMenu(accName); // returns the user to the main menu if they cancel deposit
                 break;
-
             default:
                 returnMenu(accName);
                 break;
-
         }
-
     }
 
     public void withFunds(String accName) { // withdraws funds
@@ -696,34 +556,25 @@ public class BankAccount {
         System.out.println("=======================");
 
         try {
-
             System.out.print("Input: ");
             userChoice = scanOne.nextInt();
-
         }
 
         catch (InputMismatchException ex) {
-
             scanOne.nextLine();
-
         }
 
         switch (userChoice) {
-
             case 1:
                 minFunds(accName); // goes to a method that subtracts funds from account
                 break;
-
             case 2:
                 mainMenu(accName); // return to main menu
                 break;
-
             default:
                 returnMenu(accName); // returns to menu with error message
                 break;
-
         }
-
     }
 
     public void minFunds(String accName) { // subtracts funds from the account
@@ -738,7 +589,6 @@ public class BankAccount {
             withFundAmount = scanOne.nextInt();
 
             if (withFundAmount <= machFund.get(accName)) { // checks if withdrawal amount less than existing balance
-
                 withConfirm(accName, withFundAmount); // asks for user confirmation or cancellation in withdrawing funds
                 machFund.put(accName, machFund.get(accName) - withFundAmount);
                 System.out.println("Withdrawing funds...");
@@ -746,29 +596,22 @@ public class BankAccount {
                 System.out.println("[P" + withFundAmount + " Withdrawn]");
                 storeWithHis(accName, withFundAmount); // method that records the withdraw using a HashMap
                 mainMenu(accName); // returns to main menu
-
             }
 
             else if (withFundAmount > machFund.get(accName)) { // if withdraw amount is greater than
-
                 System.out.println("[Insufficient Balance]");
                 mainMenu(accName); // returns to main menu
-
             }
 
             else {
-
                 returnMenu(accName); // returns to main menu with an error message
-
             }
 
         }
 
         catch (InputMismatchException | InterruptedException ex) {
-
             scanOne.nextLine();
             returnMenu(accName); // returns if an exception occurs
-
         }
 
     }
@@ -782,37 +625,28 @@ public class BankAccount {
         System.out.println("[2] Cancel");
 
         try {
-
             System.out.print("Input: ");
             withConfirmInput = scanOne.nextInt();
-
         }
 
         catch (InputMismatchException ex) {
-
             scanOne.nextLine();
-
         }
 
         switch (withConfirmInput) {
-
             case 1:
                 System.out.println("[Withdraw Confirmed]");
                 System.out.println("=======================");
                 break;
-
             case 2:
                 System.out.println("[Withdraw Cancelled]");
                 System.out.println("[Returning to Main Menu]");
                 mainMenu(accName);
                 break;
-
             default:
                 returnMenu(accName);
                 break;
-
         }
-
     }
 
     public void transferMenu(String accName) { // menu for transferring funds
@@ -832,34 +666,26 @@ public class BankAccount {
         System.out.println("=======================");
 
         try {
-
             System.out.print("Input: ");
             userChoice = scanOne.nextInt();
-
+            scanOne.nextLine(); // to avoid runtime errors
         }
 
         catch (InputMismatchException ex) {
-
             scanOne.nextLine();
-
         }
 
         switch (userChoice) {
-
             case 1:
                 sendFunds(accName); // menu that asks for funds to transfer and account to transfer to
                 break;
-
             case 2:
                 mainMenu(accName);
                 break;
-
             default:
                 returnMenu(accName);
                 break;
-
         }
-
     }
 
     public void sendFunds(String accName) { // sends funds to another account
@@ -868,45 +694,36 @@ public class BankAccount {
         System.out.println("=======================");
 
         try {
-
             System.out.println("[Input Account Recipient]"); // asks user to input recipient account name
             System.out.print("Input: ");
             String accRecip = scanOne.nextLine();
 
             if (machFund.containsKey(accRecip)) { // checks if account exists
-
                 System.out.println("[Input Amount to Transfer]"); // if the account exists, ask for transfer amount
                 System.out.print("Input: ");
                 sendFundAmount = scanOne.nextInt();
                 sendConfirm(accName, sendFundAmount, accRecip); // method that asks confirmation from the user
                 checkUserPass(accName); // method that asks for user password two times, for security purposes
                 sendFundsValid(accName, sendFundAmount, accRecip); // method that processes transfer of funds
-
             }
 
             else { // if account does not exist
-
                 System.out.println("[Recipient Not Found]");
                 mainMenu(accName); // returns to main menu if the recipient does is not found
-
             }
 
         }
 
         catch (InputMismatchException ex) {
-
             scanOne.nextLine();
             returnMenu(accName); // returns if an exception occurs
-
         }
     }
 
     public void sendFundsValid(String accName, Integer sendFundAmount, String accRecip) {
 
         try {
-
             if (sendFundAmount <= machFund.get(accName)) { // checks if transfer amount less than existing balance
-
                 machFund.put(accName, machFund.get(accName) - sendFundAmount); // subtracted funds to be transferred
                 System.out.println("Transferring funds...");
                 machFund.put(accRecip, machFund.get(accRecip) + sendFundAmount); // adds subtracted funds
@@ -915,31 +732,22 @@ public class BankAccount {
                 storeSendHis(accName, accRecip, sendFundAmount); // method that records the transferring of funds
                 storeReceHis(accName, accRecip, sendFundAmount); // records the receiving of funds to the recepient
                 mainMenu(accName); // returns to main menu
-
             }
 
             else if (sendFundAmount > machFund.get(accName)) { // if withdraw amount is greater than
-
                 System.out.println("[Insufficient Balance]");
                 mainMenu(accName); // returns to main menu
-
             }
 
             else {
-
                 returnMenu(accName); // returns to main menu if input not part of choices
-
             }
-
         }
 
         catch (InterruptedException ex) {
-
             scanOne.nextLine();
             returnMenu(accName); // returns if an exception occurs
-
         }
-
     }
 
     public void sendConfirm(String accName, Integer sendFundAmount, String accRecip) {
@@ -952,37 +760,29 @@ public class BankAccount {
         System.out.println("[2] Cancel");
 
         try {
-
             System.out.print("Input: ");
             sendConfirmInput = scanOne.nextInt();
-
+            scanOne.nextLine();
         }
 
         catch (InputMismatchException ex) {
-
             scanOne.nextLine();
-
         }
 
         switch (sendConfirmInput) {
-
             case 1:
                 System.out.println("[Transfer Confirmed]");
                 System.out.println("=======================");
                 break;
-
             case 2:
                 System.out.println("[Transfer Cancelled]");
                 System.out.println("[Returning to Main Menu]");
                 mainMenu(accName);
                 break;
-
             default:
                 returnMenu(accName);
                 break;
-
         }
-
     }
 
     public void checkUserPass(String accName) { // method that asks current user to input password twice
@@ -992,36 +792,27 @@ public class BankAccount {
         String accPassCurrent = machAcc.get(accName); // stores current user password in accPassCurrent for validation
 
         try {
-
             System.out.print("Insert Password: ");
             accPass = scanOne.nextLine();
 
             if (accPass.equals(accPassCurrent)) { // checks if inputted password is the current account password
-
                 System.out.print("Insert Password Again: "); // asks the user to type password again
                 accPassCheck = scanOne.nextLine();
-
             }
-
+            // TODO: Add wrong password message
         }
 
         catch (InputMismatchException ex) {
-
             scanOne.nextLine();
-
         }
 
         if (accPass.equals(accPassCheck)) { // checks if the first input password is the same as the second password
-
             System.out.println("[Password Validated]");
-
         }
 
         else {
-
             System.out.println("[Password Not Identical, Try Again]");
             mainMenu(accName);
-
         }
 
     }
@@ -1043,36 +834,27 @@ public class BankAccount {
         System.out.println("=======================");
 
         try {
-
             System.out.print("Input: ");
             userChoice = scanOne.nextInt();
             scanOne.nextLine(); // avoiding exceptions
-
         }
 
         catch (InputMismatchException ex) {
-
             scanOne.nextLine();
-
         }
 
         switch (userChoice) {
-
             case 1:
                 checkUserPass(accName); // method that asks to type account 2 times
                 resetName(accName); // method that asks the user for a new name
                 break;
-
             case 2:
                 mainMenu(accName);
                 break;
-
             default:
                 returnMenu(accName);
                 break;
-
         }
-
     }
 
     public void resetName(String accName) {
@@ -1082,7 +864,6 @@ public class BankAccount {
         System.out.println("=======================");
 
         try {
-
             System.out.println("[Name Requirements]");
             System.out.println(" > Name Contains 4 Characters or More");
             System.out.println(" > Name Does Not Contain Any Digits");
@@ -1108,29 +889,22 @@ public class BankAccount {
 
                 System.out.println("[Already Current Account Name]");
                 mainMenu(accName); // sends the user to the main menu
-
             }
 
             else if (machAcc.containsKey(newAccName)) { // checks if account name already exists
-
                 System.out.println("[Account Name Already Used]");
                 mainMenu(accName);
-
             }
 
             else {
-
                 System.out.print("Input new name again: "); // asks for new name again
                 newAccNameCheck = scanOne.nextLine();
-
             }
 
         }
 
         catch (InputMismatchException ex) {
-
             scanOne.nextLine();
-
         }
 
         if (newAccName.equals(newAccNameCheck)) { // checks if first name input is the same with the second one
@@ -1182,20 +956,16 @@ public class BankAccount {
         }
 
         else if (!(newAccName.equals(newAccNameCheck))) { // if first name input not identical to second name input
-
             System.out.println("[New Account Name Not Identical, Try Again]");
             mainMenu(accName);
-
         }
 
         else { // when an error occurs
-
             returnMenu(accName); // return to main menu with an error message
-
         }
 
     }
-
+    // TODO: Code Shortening Checkpoint 1/1/23
     public void resetNameRequire(String newName, String accName) {
         // method that checks if all user name requirements are met
 

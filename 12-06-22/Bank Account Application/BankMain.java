@@ -160,13 +160,18 @@ class BankMain {
          * - Login 
          * - Sign Up
          * - About
-         * 
-         * TODO:
          * - Deposit
          * - Withdraw
          * - Transfer
          * - Reset Account Name
+         * 
+         * TODO:
          * - Reset Account Password
+         * - Deposit Log
+         * - Withdraw Log
+         * - Transfer Log
+         * - Logout
+         * - Close Account
          * 
          */
 

@@ -165,13 +165,14 @@ class BankMain {
          * - Transfer
          * - Reset Account Name
          * - Close Account
-         * 
-         * TODO:
          * - Reset Account Password
          * - Deposit Log
          * - Withdraw Log
-         * - Transfer Log
          * - Logout
+         * - Transfer Log
+         * 
+         * TODO:
+         * - Shorten or Refactor Code
          * 
          * 
          */

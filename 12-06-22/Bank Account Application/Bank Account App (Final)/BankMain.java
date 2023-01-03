@@ -172,7 +172,7 @@ class BankMain {
          * - Transfer Log
          * 
          * TODO:
-         * - Shorten or Refactor Code
+         * - Move Code To Another File and Remove All Comments
          * 
          * 
          */

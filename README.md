@@ -29,3 +29,6 @@
 - Median Sort Array Exercise
 - Christmas Tree Exercise
 - Histogram Exercise
+
+#### 01/03/23 (No Lecture) 📁
+- Archive of Personal Class Code

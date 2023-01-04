@@ -32,3 +32,8 @@
 
 #### 01/03/23 (No Lecture) 📁
 - Archive of Personal Class Code
+
+#### 01/04/23 ➰
+- For Loops
+- Switch Case Calculator
+- Multiplication Table

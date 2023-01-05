@@ -12,6 +12,13 @@ class BankMain {
     public static void main(String[] args) {
         BankAccount machOne = new BankAccount();
         machOne.terminalMenu();
+
+        /*
+         * TODO:
+         * - Shorten Code 
+         * - Add Java Docs (Comments before every method)
+         * 
+         */
     }
 
 }

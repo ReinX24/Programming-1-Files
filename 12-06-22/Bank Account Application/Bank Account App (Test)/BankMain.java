@@ -156,7 +156,7 @@ class BankMain {
 
         /*
          * Project Debug Checklist
-         * Finished
+         * FINISHED:
          * - Login
          * - Sign Up
          * - About
@@ -171,7 +171,7 @@ class BankMain {
          * - Logout
          * - Transfer Log
          * 
-         * TODO:
+         * AFTER FINALIZATION (DONE):
          * - Move Code To Another File and Remove All Comments
          * 
          * 

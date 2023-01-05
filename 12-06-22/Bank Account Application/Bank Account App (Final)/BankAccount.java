@@ -30,9 +30,7 @@ public class BankAccount {
             System.out.print("Input: ");
             userChoice = scanOne.nextInt();
             scanOne.nextLine();
-        }
-
-        catch (InputMismatchException ex) {
+        } catch (InputMismatchException ex) {
             scanOne.nextLine();
         }
 
@@ -134,9 +132,7 @@ public class BankAccount {
                 System.out.print("Insert Name Again: ");
                 newNameCheck = scanOne.nextLine();
             }
-        }
-
-        catch (InputMismatchException ex) {
+        } catch (InputMismatchException ex) {
             scanOne.nextLine();
             machError();
         }
@@ -204,9 +200,7 @@ public class BankAccount {
             passRequire(newPass);
             System.out.print("Insert Password Again: ");
             newPassCheck = scanOne.nextLine();
-        }
-
-        catch (InputMismatchException ex) {
+        } catch (InputMismatchException ex) {
             scanOne.nextLine();
             machError();
         }
@@ -266,9 +260,7 @@ public class BankAccount {
         try {
             System.out.print("Insert Name: ");
             accName = scanOne.nextLine();
-        }
-
-        catch (InputMismatchException ex) {
+        } catch (InputMismatchException ex) {
             scanOne.nextLine();
             machError();
         }
@@ -293,9 +285,7 @@ public class BankAccount {
                 terminalMenu();
             }
 
-        }
-
-        catch (InputMismatchException ex) {
+        } catch (InputMismatchException ex) {
             scanOne.nextLine();
             machError();
         }
@@ -349,9 +339,7 @@ public class BankAccount {
         try {
             System.out.print("Input: ");
             userChoice = scanOne.nextInt();
-        }
-
-        catch (InputMismatchException ex) {
+        } catch (InputMismatchException ex) {
             scanOne.nextLine();
         }
 
@@ -410,9 +398,7 @@ public class BankAccount {
         try {
             System.out.print("Input: ");
             userChoice = scanOne.nextInt();
-        }
-
-        catch (InputMismatchException ex) {
+        } catch (InputMismatchException ex) {
             scanOne.nextLine();
         }
 
@@ -445,9 +431,7 @@ public class BankAccount {
             System.out.println("[P" + addFundAmount + " Deposited]");
             storeDepoHis(accName, addFundAmount);
             mainMenu(accName);
-        }
-
-        catch (InputMismatchException | InterruptedException ex) {
+        } catch (InputMismatchException | InterruptedException ex) {
             scanOne.nextLine();
             returnMenu(accName);
         }
@@ -465,9 +449,7 @@ public class BankAccount {
         try {
             System.out.print("Input: ");
             depoConfirmInput = scanOne.nextInt();
-        }
-
-        catch (InputMismatchException ex) {
+        } catch (InputMismatchException ex) {
             scanOne.nextLine();
         }
 
@@ -505,9 +487,7 @@ public class BankAccount {
         try {
             System.out.print("Input: ");
             userChoice = scanOne.nextInt();
-        }
-
-        catch (InputMismatchException ex) {
+        } catch (InputMismatchException ex) {
             scanOne.nextLine();
         }
 
@@ -570,9 +550,7 @@ public class BankAccount {
         try {
             System.out.print("Input: ");
             withConfirmInput = scanOne.nextInt();
-        }
-
-        catch (InputMismatchException ex) {
+        } catch (InputMismatchException ex) {
             scanOne.nextLine();
         }
 
@@ -612,9 +590,7 @@ public class BankAccount {
             System.out.print("Input: ");
             userChoice = scanOne.nextInt();
             scanOne.nextLine();
-        }
-
-        catch (InputMismatchException ex) {
+        } catch (InputMismatchException ex) {
             scanOne.nextLine();
         }
 
@@ -653,9 +629,7 @@ public class BankAccount {
                 mainMenu(accName);
             }
 
-        }
-
-        catch (InputMismatchException ex) {
+        } catch (InputMismatchException ex) {
             scanOne.nextLine();
             returnMenu(accName);
         }
@@ -679,9 +653,7 @@ public class BankAccount {
             } else {
                 returnMenu(accName);
             }
-        }
-
-        catch (InterruptedException ex) {
+        } catch (InterruptedException ex) {
             scanOne.nextLine();
             returnMenu(accName);
         }
@@ -700,9 +672,7 @@ public class BankAccount {
             System.out.print("Input: ");
             sendConfirmInput = scanOne.nextInt();
             scanOne.nextLine();
-        }
-
-        catch (InputMismatchException ex) {
+        } catch (InputMismatchException ex) {
             scanOne.nextLine();
         }
 
@@ -739,9 +709,7 @@ public class BankAccount {
                 System.out.println("[Incorrect Password]");
                 mainMenu(accName);
             }
-        }
-
-        catch (InputMismatchException ex) {
+        } catch (InputMismatchException ex) {
             scanOne.nextLine();
         }
 
@@ -774,9 +742,7 @@ public class BankAccount {
             System.out.print("Input: ");
             userChoice = scanOne.nextInt();
             scanOne.nextLine();
-        }
-
-        catch (InputMismatchException ex) {
+        } catch (InputMismatchException ex) {
             scanOne.nextLine();
         }
 
@@ -820,9 +786,7 @@ public class BankAccount {
                 newAccNameCheck = scanOne.nextLine();
             }
 
-        }
-
-        catch (InputMismatchException ex) {
+        } catch (InputMismatchException ex) {
             scanOne.nextLine();
         }
 
@@ -911,9 +875,7 @@ public class BankAccount {
             System.out.print("Input: ");
             userChoice = scanOne.nextInt();
             scanOne.nextLine();
-        }
-
-        catch (InputMismatchException ex) {
+        } catch (InputMismatchException ex) {
             scanOne.nextLine();
         }
 
@@ -955,9 +917,7 @@ public class BankAccount {
                 newAccPassCheck = scanOne.nextLine();
             }
 
-        }
-
-        catch (InputMismatchException ex) {
+        } catch (InputMismatchException ex) {
             scanOne.nextLine();
         }
 
@@ -1077,9 +1037,7 @@ public class BankAccount {
         try {
             System.out.print("Input: ");
             userChoice = scanOne.nextInt();
-        }
-
-        catch (InputMismatchException ex) {
+        } catch (InputMismatchException ex) {
             scanOne.nextLine();
         }
 
@@ -1119,9 +1077,7 @@ public class BankAccount {
         try {
             System.out.print("Input: ");
             userChoice = scanOne.nextInt();
-        }
-
-        catch (InputMismatchException ex) {
+        } catch (InputMismatchException ex) {
             scanOne.nextLine();
         }
 
@@ -1163,9 +1119,7 @@ public class BankAccount {
         try {
             System.out.print("Input: ");
             userChoice = scanOne.nextInt();
-        }
-
-        catch (InputMismatchException ex) {
+        } catch (InputMismatchException ex) {
             scanOne.nextLine();
         }
 
@@ -1211,9 +1165,7 @@ public class BankAccount {
         try {
             System.out.print("Input: ");
             userChoice = scanOne.nextInt();
-        }
-
-        catch (InputMismatchException ex) {
+        } catch (InputMismatchException ex) {
             scanOne.nextLine();
         }
 
@@ -1247,9 +1199,7 @@ public class BankAccount {
             System.out.print("Input: ");
             userChoice = scanOne.nextInt();
             scanOne.nextLine();
-        }
-
-        catch (InputMismatchException ex) {
+        } catch (InputMismatchException ex) {
             scanOne.nextLine();
         }
 
@@ -1286,9 +1236,7 @@ public class BankAccount {
             sendHistory.remove(accName);
             System.out.println("[Account Deleted, Returning to Login Menu]");
             terminalMenu();
-        }
-
-        catch (InterruptedException ex) {
+        } catch (InterruptedException ex) {
             scanOne.nextLine();
             mainMenu(accName);
         }

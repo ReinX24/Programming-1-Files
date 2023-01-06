@@ -35,5 +35,6 @@
 
 #### 01/04/23 ➰
 - For Loops
+- For Loops Exercises (For Loops Folder)
 - Switch Case Calculator
 - Multiplication Table

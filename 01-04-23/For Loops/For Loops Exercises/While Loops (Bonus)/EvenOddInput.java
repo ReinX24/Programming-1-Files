@@ -39,6 +39,8 @@ public class EvenOddInput {
         System.out.println("Sum of odd numbers: " + oddSum);
         System.out.println("Sum of even numbers: " + evenSum);
 
+        scanOne.close(); // closing our Scanner object
+
     }
 
 }

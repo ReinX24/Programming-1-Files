@@ -11,6 +11,7 @@ public class ReverseNumInput {
          * 
          */
 
+        // NOTE: Program uses while loop Instead of for loop, disregard if unfamiliar
         Scanner scanOne = new Scanner(System.in);
 
         System.out.println("[Reverse Number Order Program]");

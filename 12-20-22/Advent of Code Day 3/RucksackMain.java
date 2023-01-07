@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.HashSet;
+
 public class RucksackMain {
 
     public static void main(String[] args) {
@@ -66,53 +69,44 @@ public class RucksackMain {
         String[] strArr = { "vJrwpWtwJgWrhcsFMMfFFhFp", "jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL", "PmmdzqPrVvPwwTWBwg",
                 "wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn", "ttgJtRGJQctTZtZT", "CrZsJsPPZsGzwwsLwLmpwMDw" };
 
-        int[] ruckSackVal = new int[6]; // stores values of similar elements of each rucksack
+        HashSet<Character> charSet = new HashSet<>(); // storing similar characters, removes duplicates
 
         // For loop that iterates through the array
         for (int i = 0; i < strArr.length; i++) {
-            String strOne = strArr[i].substring(0, strArr[i].length() / 2); // first half of String
-            String strTwo = strArr[i].substring(strArr[i].length() / 2, strArr[i].length()); // second half of String
-            int[] indexArrOne = new int[52]; // first String array index
-            int[] indexArrTwo = new int[52]; // second String array index
+            String currentString = strArr[i];
+            String strOne = currentString.substring(0, currentString.length() / 2); // first half of String
+            char[] charArrOne = strOne.toCharArray(); // turns String into a char array
 
-            // Adding first String half index int equivalent
-            for (int j = 0; j < strOne.length(); j++) {
-                System.out.print(strOne.charAt(j)); // shows current character
-                if (Character.isLowerCase(strOne.charAt(j))) { // if the current iterates
-                    int charIndex = strOne.charAt(j) - 'a'; // a 65 - a 65 = 0
-                    indexArrOne[charIndex]++; // increments index value in indexValOne array
-                } else {
-                    int charIndex = strOne.charAt(j) - 39; // A 65 - 39 = 26
-                    indexArrOne[charIndex]++;
-                }
-            }
+            String strTwo = currentString.substring(currentString.length() / 2, currentString.length()); // second half
+            char[] charArrTwo = strTwo.toCharArray();
 
-            // Adding second String half index int equivalent
-            for (int k = 0; k < strTwo.length(); k++) {
-                System.out.print(strTwo.charAt(k)); // shows current character
-                if (Character.isLowerCase(strTwo.charAt(k))) { // if the current iterates
-                    int charIndex = strTwo.charAt(k) - 'a'; // a 65 - a 65 = 0
-                    indexArrTwo[charIndex]++; // increments index value in indexValTwo array
-                } else {
-                    int charIndex = strTwo.charAt(k) - 39; // A 65 - 39 = 26
-                    indexArrTwo[charIndex]++; // increments index value in indexValTwo array
-                }
-            }
-
-            // Searching for identical indexes in both arrays
-            for (int l = 0; l < indexArrOne.length; l++) {
-                if (indexArrOne[l] == indexArrTwo[l]) { // checks if there are identical elements
-                    int ruckSackIndex = 0; // for index positions in ruckSackVal array
-                    ruckSackVal[ruckSackIndex] = l + 1; // inserting index value in that array
-                    ruckSackIndex++; // increments ruckSackIndex int
+            for (int j = 0; j < charArrOne.length; j++) {
+                for (int k = 0; k < charArrTwo.length; k++) {
+                    if (charArrOne[j] == charArrTwo[k]) {
+                        charSet.add(charArrOne[j]); // adds element
+                    }
                 }
             }
 
         }
 
-        for (int i = 0; i < ruckSackVal.length; i++) {
-            System.out.println(ruckSackVal[i]);
+        ArrayList<Character> charList = new ArrayList<>(charSet); // converting set to list to access elements
+        int charSumValue = 0; // sum of values of all characters
+
+        for (int i = 0; i < charList.size(); i++) {
+            char currentChar = charList.get(i);
+            int charValue = 0;
+
+            if (Character.isLowerCase(currentChar)) {
+                charValue = currentChar - 96; // to get proper decimal value in ascii table
+            } else {
+                charValue = currentChar - 38;
+            }
+            charSumValue += charValue;
         }
+
+        System.out.println(charSumValue);
+        // Java ASCII Table: https://www.javatpoint.com/java-ascii-table
 
     }
 

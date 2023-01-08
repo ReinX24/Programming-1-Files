@@ -28,6 +28,7 @@
 - Can Spell Exercise
 - Median Sort Array Exercise
 - Christmas Tree Exercise
+- Advent of Code Day 1 - 3 Solutions
 - Histogram Exercise
 
 #### 01/03/23 (No Lecture) 📁

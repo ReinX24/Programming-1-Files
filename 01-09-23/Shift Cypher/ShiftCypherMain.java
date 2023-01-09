@@ -8,7 +8,7 @@ public class ShiftCypherMain {
          * 
          */
 
-        String plainStr = "SECRET"; // our original message
+        String plainStr = "SECRETZEN"; // our original message
         String encryptStr = ""; // our encrypted version of the message
         int encryptKey = 3; // how much we will shift the text to the right
 
@@ -21,8 +21,8 @@ public class ShiftCypherMain {
             currentChar -= 'a'; // makes it into a number (0 - 25)
             currentChar += encryptKey; // shifts 3 places to the right, A -> D
 
-            if (currentChar > 25) { // if it goes beyond 25
-                currentChar -= 'a'; // will go back to the start of the alphabet and add the remainder
+            if (currentChar >= 26) { // if it goes beyond 26 (letters of the alphabet)
+                currentChar -= 26; // subtract by 26 and remainder will be the convertedChar value
             }
 
             char convertedChar = (char) (currentChar + 'a'); // converts back number to a character

@@ -18,12 +18,12 @@ public class ShiftCypherInput {
         for (int i = 0; i < lowerPlainString.length(); i++) {
             int charIndex = lowerPlainString.charAt(i);
             charIndex -= 'a';
-            // if (charIndex > 25) {
-            //     charIndex -= 122;
-            //     System.out.println(charIndex);
-            // }
+            charIndex += keyNum;
 
-            charIndex += 3;
+            if (charIndex >= 26) {
+                charIndex -= 26;
+            }
+
             char charConverted = (char) (charIndex + 'a');
             encryptedString += charConverted;
         }

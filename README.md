@@ -39,3 +39,6 @@
 - For Loops Exercises (For Loops Folder)
 - Switch Case Calculator
 - Multiplication Table
+
+#### 01/09/22 (Mathematics In The Modern World Personal Practice) 🔒
+- Shift Cypher Encoder and Decoder

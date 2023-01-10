@@ -1,4 +1,4 @@
-## Multiplication Exercise
+## Multiplication Table Exercise
 
 Contains program where it asks for a multiplicand and creates a multiplication table with that number (up to * 10).
 

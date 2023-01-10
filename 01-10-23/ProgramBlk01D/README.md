@@ -1,6 +1,6 @@
-## Getting Started
+## Input & Print Name Exercise
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Contains exercise with different variations where the program asks for a full name and prints the full name 10 times.
 
 ## Folder Structure
 

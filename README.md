@@ -42,3 +42,7 @@
 
 #### 01/09/22 (Mathematics In The Modern World Personal Practice) 🔒
 - Shift Cypher Encoder and Decoder
+
+#### 01/10/22 (For Loops Exercises) ❌
+- Input & Print Name Exercise
+- Generating Multiplication Table Exercise

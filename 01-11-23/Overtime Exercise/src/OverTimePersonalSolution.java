@@ -1,15 +1,15 @@
 import java.util.Scanner;
 
-/*
- * Author: Rein Aldwin E. Solis
- * Programming Language: Java
- * Creation Date: 12/13/22
- * School: Universidad De Dagupan
- * Description: Overtime Program (Remake)
- * 
- */
+/*---------------------------
+ * Author: Rein E. Solis
+ * Subject: Java Programming 01
+ * PL : Java program
+ * Date: January 11, 2023
+ * Place: UDD Lecture Room 204
+ * Program: Over Time Problem (Personal Solution)
+ ------------------------------*/
 
-public class OvertimeRein {
+public class OverTimePersonalSolution {
 
     public static void main(String[] args) {
 
@@ -30,7 +30,7 @@ public class OvertimeRein {
         Double myRate = 0.0;
         Double myOverTimeHrs = 0.0;
         Double myHours = 0.0;
-        // Double myOverTime = 0.0; // not used in the progam
+        // Double myOverTime = 0.0; // not used in the progam in my version
         Double mySalary = 0.0;
         Double myTotal = 0.0;
 

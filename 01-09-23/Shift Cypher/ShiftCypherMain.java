@@ -4,7 +4,7 @@ public class ShiftCypherMain {
 
         /*
          * Shift Cypher Program: Refer to Page 159 to 160 of Essential Mathematics in
-         * the Modern World by Rizaldi C. Nocon & Ederline G. Nocon
+         * the Modern World by Rizaldi C. Nocon & Ederlina G. Nocon
          * 
          */
 

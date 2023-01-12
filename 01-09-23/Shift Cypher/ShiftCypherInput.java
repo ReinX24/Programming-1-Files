@@ -4,6 +4,12 @@ public class ShiftCypherInput {
 
     public static void main(String[] args) {
 
+        /*
+         * Shift Cypher Encoder: Refer to Page 159 to 160 of Essential Mathematics in
+         * the Modern World by Rizaldi C. Nocon & Ederlina G. Nocon
+         * 
+         */
+
         Scanner scanOne = new Scanner(System.in);
 
         System.out.println("[Shift Cypher Program]");

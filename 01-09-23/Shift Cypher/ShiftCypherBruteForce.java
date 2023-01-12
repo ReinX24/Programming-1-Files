@@ -5,6 +5,12 @@ public class ShiftCypherBruteForce {
     public static void main(String[] args) {
 
         /*
+         * Shift Cypher Decoder (No Key): Refer to Page 159 to 160 of Essential
+         * Mathematics in the Modern World by Rizaldi C. Nocon & Ederlina G. Nocon
+         * 
+         */
+
+        /*
          * Decoder for Shift Cypher but without the key, prints all possible messages
          * through all possible keys
          * 

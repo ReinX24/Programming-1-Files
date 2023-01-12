@@ -4,6 +4,12 @@ public class ShiftCypherDecoderWithKey {
 
     public static void main(String[] args) {
 
+        /*
+         * Shift Cypher Decoder: Refer to Page 159 to 160 of Essential Mathematics in
+         * the Modern World by Rizaldi C. Nocon & Ederlina G. Nocon
+         * 
+         */
+
         Scanner scanOne = new Scanner(System.in);
         System.out.println("[Shift Cypher Decoder With Key]");
         System.out.print("Input encrypted message: ");

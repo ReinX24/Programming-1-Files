@@ -9,7 +9,7 @@ public class AffineEncoder {
          * the Modern World by Rizaldi C. Nocon & Ederlina G. Nocon
          * 
          */
-        
+
         Scanner scanOne = new Scanner(System.in);
         // Asking for String to Encode
         System.out.println("[Affine Cypher Encoder]");
@@ -27,14 +27,14 @@ public class AffineEncoder {
         for (int i = 0; i < userStrLowerCase.length(); i++) { // loops through the String
             char charIndex = userStrLowerCase.charAt(i); // current char
             int charNum = charIndex - 'a'; // subtract 'a'(int equivalent) from charNum
-            charNum = (keyOne * charNum + keyTwo) % 26; // perform Affine Cypher formula
+            charNum = (keyOne * charNum + keyTwo) % 26; // perform Affine Cypher encoder formula
             char encryptedChar = (char) (charNum + 'a'); // converts number back to characters
             encryptedString += encryptedChar; // adds character to encryptedString
         }
         encryptedString = encryptedString.toUpperCase(); // makes encryptedString all uppercase letters
         System.out.println("Original String: " + userStr); // displays original String
         System.out.println("Encrypted String: " + encryptedString); // displays encrypted String
-        scanOne.close();; // closes our Scanner object
+        scanOne.close(); // closes our Scanner object
 
     }
 

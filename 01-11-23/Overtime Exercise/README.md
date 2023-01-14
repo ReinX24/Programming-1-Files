@@ -1,6 +1,6 @@
 ## Getting Started
 
-Overtime Problem and Pseudocode translated into Java source code.
+Overtime Problem and Pseudocode translated into Java source code. OverTimeOfficialSolution.java is considered as the solution for the pseudocode problem sent on 1/13/23.
 
 ## Folder Structure
 

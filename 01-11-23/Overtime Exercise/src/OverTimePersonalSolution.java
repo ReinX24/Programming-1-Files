@@ -14,8 +14,17 @@ public class OverTimePersonalSolution {
     public static void main(String[] args) {
 
         /*
-         * Refactored version of OvertimeApp, this somewhat strays away from the original
-         * functions of the code but the idea will still stay the same.
+         * Refactored version of OvertimeApp, this somewhat strays away from the
+         * original functions of the code but the idea will still stay the same.
+         * 
+         */
+
+        /*
+         * 1/14/23
+         * Code remade to match new pseudocode sent by Professor, this will be the
+         * official personal solution for this problem for now. Minor changes are still
+         * in effect, if you want to find the exact code translation for the pseudocode
+         * the professor sent, check OverTimeOfficialSolution.
          * 
          */
 
@@ -25,18 +34,6 @@ public class OverTimePersonalSolution {
         String myName = null;
         String myAge = null;
         String myWork = null;
-
-        // Set myRate, myOverTimeHrs, myHours, myOverTime, mySalary, myTotal to 0
-        Double myRate = 0.0;
-        Double myOverTimeHrs = 0.0;
-        Double myHours = 0.0;
-        // Double myOverTime = 0.0; // not used in the progam in my version
-        Double mySalary = 0.0;
-        Double myTotal = 0.0;
-
-        // Set Overtime and OverTimePay to 0
-        Double Overtime = 0.0;
-        Double myOverTimePay = 0.0;
 
         // Input myName, myAge, and myWork
         Scanner scanOne = new Scanner(System.in); // Scanner object to accept user input
@@ -49,6 +46,17 @@ public class OverTimePersonalSolution {
 
         System.out.print("Input work: "); // asks for work
         myWork = scanOne.nextLine();
+
+        // Set myRate, myOverTimeHrs, myHours, myOverTime, mySalary, myTotal, OverTime,
+        // myOverTimePay to 0
+        Double myRate = 0.0;
+        Double myOverTimeHrs = 0.0;
+        Double myHours = 0.0;
+        // Double myOverTime = 0.0; // not used in the progam in my version
+        Double mySalary = 0.0;
+        Double myTotal = 0.0;
+        Double Overtime = 0.0;
+        Double myOverTimePay = 0.0;
 
         // Input myRate
         System.out.print("Input rate: ");

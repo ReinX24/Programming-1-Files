@@ -9,9 +9,15 @@ import java.util.Scanner;
  * Program: Over Time Problem (Pseudocode Solution)
  ------------------------------*/
 
-public class OverTimePseudoCode {
+public class OverTimeOfficialSolution {
 
     public static void main(String[] args) {
+
+        /*
+         * 1/14/23
+         * Refactored to match pseudocode that was sent by the professor.
+         * 
+         */
 
         // START
 
@@ -19,16 +25,6 @@ public class OverTimePseudoCode {
         String myName = null;
         String myAge = null;
         String myWork = null;
-
-        // Set myRate, myOverTimeHrs, myHours, myOverTime, mySalary, myTotal, OverTime, myOverTimePay to 0
-        Double myRate = 0.0;
-        Double myOverTimeHrs = 0.0;
-        Double myHours = 0.0;
-        Double myOverTime = 0.0; // not used in the progam
-        Double mySalary = 0.0;
-        Double myTotal = 0.0;
-        Double OverTime = 0.0;
-        Double myOverTimePay = 0.0;
 
         // Input myName, myAge, and myWork
         Scanner scanOne = new Scanner(System.in); // Scanner object to accept user input
@@ -41,6 +37,17 @@ public class OverTimePseudoCode {
 
         System.out.print("Input work: "); // asks for work
         myWork = scanOne.nextLine();
+
+        // Set myRate, myOverTimeHrs, myHours, myOverTime, mySalary, myTotal, OverTime,
+        // myOverTimePay to 0
+        Double myRate = 0.0;
+        Double myOverTimeHrs = 0.0;
+        Double myHours = 0.0;
+        Double myOverTime = 0.0; // not used in the progam
+        Double mySalary = 0.0;
+        Double myTotal = 0.0;
+        Double OverTime = 0.0;
+        Double myOverTimePay = 0.0;
 
         // Input myRate
         System.out.print("Input rate: ");
@@ -56,7 +63,7 @@ public class OverTimePseudoCode {
 
         // mySalary is equal to myRate multiplied by myHours
         mySalary = myRate * myHours;
-    
+
         // If myHours is greater than or equal to 9 hours
         if (myHours >= 9) {
 

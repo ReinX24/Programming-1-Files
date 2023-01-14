@@ -39,15 +39,17 @@ public class OverTimeOfficialSolution {
         myWork = scanOne.nextLine();
 
         // Set myRate, myOverTimeHrs, myHours, myOverTime, mySalary, myTotal, OverTime,
-        // myOverTimePay to 0
+        // OverTimePay to 0
         Double myRate = 0.0;
         Double myOverTimeHrs = 0.0;
         Double myHours = 0.0;
-        Double myOverTime = 0.0; // not used in the progam
+        Double myOverTime = 0.0; // added to a variable but still 0
         Double mySalary = 0.0;
         Double myTotal = 0.0;
         Double OverTime = 0.0;
-        Double myOverTimePay = 0.0;
+        Double OverTimePay = 0.0; // not used, myOverTimePay is the one used instead in the program
+        // NOT PART OF ORIGINAL PSEUDOCODE 
+        Double myOverTimePay = 0.0; // not in pseudocode, added since the program needs a myOverTimePay variable
 
         // Input myRate
         System.out.print("Input rate: ");
@@ -81,8 +83,8 @@ public class OverTimeOfficialSolution {
         // Else
         else {
 
-            // Display "No Overtime Hour"
-            System.out.println("No Overtime Hour");
+            // Display "No overtime hour"
+            System.out.println("No overtime hour");
 
         }
 
@@ -99,7 +101,7 @@ public class OverTimeOfficialSolution {
         System.out.println("Salary: " + mySalary);
 
         // DISPLAY myOverTimePay
-        System.out.println("Overtime: " + myOverTimePay); // results in 0?
+        System.out.println("Overtime Pay: " + myOverTimePay); // results in 0?
 
         // DISPLAY myTotal
         System.out.println("Total: " + myTotal);

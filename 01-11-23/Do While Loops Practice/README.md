@@ -1,6 +1,6 @@
 ## About Project
 
-Contains code regarding do loop, while loop, and do - while loop.
+Contains code that solves while and do - while loops problems.
 
 ## Folder Structure
 

@@ -27,7 +27,7 @@ public class OverTimeMain {
             System.out.println("***********************************");
             System.out.println("\t[Overtime Program]");
             System.out.println("***********************************");
-            
+
             // Input myName, myAge, and myWork
             System.out.print("Input name: ");
             myName = scanOne.nextLine();
@@ -84,7 +84,7 @@ public class OverTimeMain {
                 // myTotal is equal to mySalary plus myOverTime
                 // myTotal = mySalary + myOverTime; // causes issues
                 /*
-                 * Instead of using myOverTime, we use myOverTimePay since that contains 30% of
+                 * Instead of using myOverTime, we add myOverTimePay since that contains 30% of
                  * our salary multiplied by myOverTimeHrs instead of myOverTime which is equal
                  * to 0.
                  * 
@@ -92,15 +92,17 @@ public class OverTimeMain {
 
                 // myTotal = mySalary + myOverTimePay; // moved to outside of if else statement
                 /*
-                 * My guess to be the correct operation for this part of the program: Instead of
-                 * myTotal being calculated here, we will calculate it instead after the if else
-                 * statement. This is because it myTotal prints 0 even if we did make money off
-                 * our salary instead of it just showing our salary.
+                 * Explanation:
+                 * Instead of myTotal being calculated here, we will calculate it instead after
+                 * the if else statement. This is because myTotal prints 0 even if we did make
+                 * money off our salary. To fix this, we moved this operation outside since
+                 * mySalary should still be greater than 0 (assuming we inputted a positive
+                 * number for myRate & myHours) even if myHours is not greater than or equal 9.
                  * 
                  */
 
             } else {
-                // DISPLAY "No overtime hour"
+                // DISPLAY "No Overtime Hour"
                 System.out.println("***********************************"); // divisor for easier readability
                 System.out.println("\t[No Overtime Hour]");
             }
@@ -112,6 +114,7 @@ public class OverTimeMain {
              * executed and mySalary > 0
              * 
              */
+
             // DISPLAY myName
             System.out.println("\tName\t:\t" + myName);
             // DISPLAY myAge
@@ -124,6 +127,7 @@ public class OverTimeMain {
             System.out.println("  Overtime Pay\t:\t" + myOverTimePay);
             // DISPLAY myTotal
             System.out.println("\tTotal\t:\t" + myTotal);
+
             // Asking the user if the want to repeat the process
             System.out.println("***********************************");
             System.out.print("Enter another data set? (y/n): "); // if the user chooses Y or y, loop program again

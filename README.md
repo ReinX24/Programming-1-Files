@@ -52,3 +52,6 @@
 - Do, While, Do While Loops Lecture Code
 - Do, While, Do While Loops Problems and Solutions
 - OverTime Problem Solutions
+
+#### 01/17/22 (OverTime Problem) 🕒
+- OverTime Problem Code Translation

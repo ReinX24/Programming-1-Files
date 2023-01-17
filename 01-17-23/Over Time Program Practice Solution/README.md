@@ -1,6 +1,6 @@
-## Getting Started
+## About Project
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Contains code translation of midterm examination OverTime Problem.
 
 ## Folder Structure
 

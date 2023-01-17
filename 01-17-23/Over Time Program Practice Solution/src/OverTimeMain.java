@@ -15,7 +15,7 @@ public class OverTimeMain {
 
         // START
         char myAns = 'Y'; // variable that loops the program as long as myAns is 'Y' or 'y'
-        Scanner scanOne = new Scanner(System.in);
+        Scanner scanOne = new Scanner(System.in); // creating a Scanner object to accept input
 
         do {
 
@@ -25,7 +25,9 @@ public class OverTimeMain {
             String myWork = null;
 
             System.out.println("***********************************");
-            System.out.println("[Overtime Program]");
+            System.out.println("\t[Overtime Program]");
+            System.out.println("***********************************");
+            
             // Input myName, myAge, and myWork
             System.out.print("Input name: ");
             myName = scanOne.nextLine();
@@ -100,7 +102,7 @@ public class OverTimeMain {
             } else {
                 // DISPLAY "No overtime hour"
                 System.out.println("***********************************"); // divisor for easier readability
-                System.out.println("\t[No Overtime Hour]\t");
+                System.out.println("\t[No Overtime Hour]");
             }
 
             System.out.println("***********************************");

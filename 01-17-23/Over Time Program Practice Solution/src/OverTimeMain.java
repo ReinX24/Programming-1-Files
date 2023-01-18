@@ -14,19 +14,19 @@ public class OverTimeMain {
     public static void main(String[] args) {
 
         // START
-        char myAns = 'Y'; // variable that loops the program as long as myAns is 'Y' or 'y'
+        char myAns; // variable that loops the program as long as myAns is 'y'
         Scanner scanOne = new Scanner(System.in); // creating a Scanner object to accept input
+
+        // Set myName, myAge, and myWork as null
+        String myName = null;
+        String myAge = null;
+        String myWork = null;
 
         do {
 
-            // Set myName, myAge, and myWork as null
-            String myName = null;
-            String myAge = null;
-            String myWork = null;
-
-            System.out.println("***********************************");
+            System.out.println("**********************************");
             System.out.println("\t[Overtime Program]");
-            System.out.println("***********************************");
+            System.out.println("**********************************");
 
             // Input myName, myAge, and myWork
             System.out.print("Input name: ");
@@ -63,12 +63,18 @@ public class OverTimeMain {
             // Input myHours
             System.out.print("Input hours: "); // should not be 0
             myHours = scanOne.nextDouble();
-            if (myHours == 0) { // if the user input for myHours is 0
-                System.out.println("***********************************");
+
+            while (myHours == 0) { // if the user input for myHours is 0
+                System.out.println("**********************************");
                 System.out.println("[Hours should be greater than 0]");
-                System.out.println("***********************************");
-                scanOne.close(); // closing our Scanner object before terminating the program
-                return; // returns to main method, terminates the program
+                System.out.print("Input hours: ");
+                myHours = scanOne.nextDouble();
+                /*
+                 * This prompt or part where it asks the user to input a number greater than 0
+                 * will keep looping until the user decides to input a number greater than 0 for
+                 * myHours.
+                 * 
+                 */
             }
 
             // mySalary is equal to myRate multiplied by myHours
@@ -103,11 +109,11 @@ public class OverTimeMain {
 
             } else {
                 // DISPLAY "No Overtime Hour"
-                System.out.println("***********************************"); // divisor for easier readability
+                System.out.println("**********************************"); // divisor for easier readability
                 System.out.println("\t[No Overtime Hour]");
             }
 
-            System.out.println("***********************************");
+            System.out.println("**********************************");
             myTotal = mySalary + myOverTimePay; // moved outside of if else statement
             /*
              * myTotal outside the if else to avoid myTotal showing 0 when else statement is
@@ -116,30 +122,38 @@ public class OverTimeMain {
              */
 
             // DISPLAY myName
-            System.out.println("\tName\t:\t" + myName);
+            System.out.printf("%-14S :  %s\n", "Name", myName);
             // DISPLAY myAge
-            System.out.println("\tAge\t:\t" + myAge);
+            System.out.printf("%-14S :  %s\n", "Age", myAge);
             // DISPLAY myWork
-            System.out.println("\tWork\t:\t" + myWork);
+            System.out.printf("%-14S :  %s\n", "Work", myWork);
             // DISPLAY mySalary
-            System.out.println("\tSalary\t:\t" + mySalary);
+            System.out.printf("%-14S :  %.2f\n", "Salary", mySalary);
             // DISPLAY myOverTimePay
-            System.out.println("  Overtime Pay\t:\t" + myOverTimePay);
+            System.out.printf("%-14S :  %.2f\n", "Overtime Pay", myOverTimePay);
             // DISPLAY myTotal
-            System.out.println("\tTotal\t:\t" + myTotal);
+            System.out.printf("%-14S :  %.2f\n", "Total", myTotal);
 
             // Asking the user if the want to repeat the process
-            System.out.println("***********************************");
+            System.out.println("**********************************");
             System.out.print("Enter another data set? (y/n): "); // if the user chooses Y or y, loop program again
             myAns = scanOne.next().charAt(0); // stores user input in myAns
             scanOne.nextLine(); // for terminal formatting errors
 
-        } while (myAns == 'Y' || myAns == 'y');
+        } while (Character.toLowerCase(myAns) == 'y');
+        /*
+         * Character.toLowerCase(myAns) makes myAns lowecase. This is so that the
+         * program keeps running even if the user accidentally inputted the capital
+         * letter 'Y'. The program will make that input into lowercase and accept it as
+         * 'y' and checks if that is equal to 'y' which will keep the while loop
+         * running.
+         * 
+         */
 
         // STOP
-        System.out.println("***********************************");
+        System.out.println("**********************************");
         System.out.println("[Thank you for using our program!]");
-        System.out.println("***********************************");
+        System.out.println("**********************************");
         scanOne.close(); // closing out Scanner object after while loop
     }
 

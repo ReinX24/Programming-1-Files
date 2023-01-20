@@ -4,12 +4,26 @@ public class VigenereEncoder {
 
     public static void main(String[] args) {
 
+        /*
+         * To test, try inputting the certain inputs in the program
+         * Plain Text: SAVETHEQUEEN
+         * Keyword: blade
+         * 
+         * Output should be:
+         * TLVHXIPQXIFY
+         * 
+         */
+
         Scanner scanOne = new Scanner(System.in);
+
         System.out.println("[Vigenere Cypher]");
+
         System.out.print("Enter plain text: ");
         String plainText = scanOne.nextLine();
+
         System.out.print("Enter keyword: ");
         String keywordString = scanOne.nextLine();
+
         keywordString = keywordString.toLowerCase(); // makes keywordString lowercase
         String encryptKey = ""; // where we will be storing our key for our plainText
         String encryptedText = ""; // storing encrypted message

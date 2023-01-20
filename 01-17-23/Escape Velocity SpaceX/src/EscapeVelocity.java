@@ -24,7 +24,7 @@ public class EscapeVelocity {
         float planetRadius = scanOne.nextFloat();
 
         float escapeVelocity = (float) Math.sqrt(2 * GRAVITY_CONSTANT * planetMass / planetRadius); // velocity
-        System.out.printf("The speed needed to escape the planet %s is: %.3f\n", planetName, escapeVelocity);
+        System.out.format("The speed needed to escape the planet " + planetName + " is: %.3f\n", escapeVelocity);
 
         scanOne.close(); // closing our Scanner object
 

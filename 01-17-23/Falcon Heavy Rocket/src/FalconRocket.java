@@ -27,7 +27,8 @@ public class FalconRocket {
         // mathemagics
         float rocket = ve * (dm / dt) + Ae * (Pe - Pamb);
         // final
-        System.out.println("The rocket propulsion needed to lift the rocket is:" + rocket + "kN");
+        System.out.println("The rocket propulsion needed to lift the rocket is: " + rocket + "kN");
+        System.out.printf("The rocket propulsion needed to lift the rocket is: %.0f kN\n", rocket);
         myInput.close(); // closing our Scanner object
     }
 

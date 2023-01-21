@@ -4,6 +4,12 @@ public class EmpiricalDefinitionOfProbability {
 
     public static void main(String[] args) {
 
+        /*
+         * Empirical Definition of Probability: Refer to Page 190 of Essential
+         * Mathematics in the Modern World by Rizaldi C. Nocon & Ederlina G. Nocon
+         * 
+         */
+
         /* Empirical Definition of Probability formula calculator */
 
         Scanner scanOne = new Scanner(System.in);

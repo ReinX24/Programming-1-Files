@@ -1,6 +1,6 @@
 ## About Folder
 
-Contains code that uses the classical and empirical definition formulas of probability.
+Folder contains code calculating the number of all possible outcomes using the Multiplication Principle, Permutation Rule, and Combination Rule.
 
 ## Folder Structure
 

@@ -4,6 +4,12 @@ public class ClassicalDefinitionProbability {
 
     public static void main(String[] args) {
 
+        /*
+         * Classical Definition of Probability: Refer to Page 190 of Essential
+         * Mathematics in the Modern World by Rizaldi C. Nocon & Ederlina G. Nocon
+         * 
+         */
+
         /* Classical Definition of Probability formula calculator */
 
         Scanner scanOne = new Scanner(System.in);

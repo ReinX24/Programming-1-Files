@@ -1,3 +1,5 @@
+import java.math.BigInteger;
+
 public class MultiplicationPrinciple {
 
     public static void main(String[] args) {
@@ -16,15 +18,16 @@ public class MultiplicationPrinciple {
          */
 
         // In this program, we are calculating for the number of [possibilities].
-        int passLength = 5;
+        String passwordString = "ABCDE";
+        int passLength = passwordString.length();
         int ALPHABET_LETTERS = 26;
-        int possibilitiesNum = 1;
+        BigInteger possibilitiesNum = BigInteger.valueOf(1);
 
         for (int i = 0; i < passLength; i++) {
-            possibilitiesNum *= ALPHABET_LETTERS;
+            possibilitiesNum = possibilitiesNum.multiply(BigInteger.valueOf(ALPHABET_LETTERS));
         }
         System.out.println("Number of possibilities: " + possibilitiesNum);
-        System.out.println("Chance of getting \"ABCDE\": 1 / " + possibilitiesNum);
+        System.out.println("Chance of getting \"" + passwordString + "\": 1 / " + possibilitiesNum);
     }
 
 }

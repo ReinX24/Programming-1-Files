@@ -29,7 +29,8 @@ public class MultiplicationPrincipleInput {
         }
 
         // Printing probability
-        System.out.println("The probability of " + userPassword + " being the password is: 1 / " + bigIntPossibilities);
+        System.out.println(
+                "The probability of \"" + userPassword + "\" being the password is: 1 / " + bigIntPossibilities);
         scanOne.close();
 
     }

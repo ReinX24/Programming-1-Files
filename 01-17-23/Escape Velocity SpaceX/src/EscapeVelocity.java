@@ -5,9 +5,18 @@ public class EscapeVelocity {
     public static void main(String[] args) {
 
         /*
+         * Solution for a Programming Activity for a friend in Univerisity of
+         * Pangasinan (UPANG).
+         * 
+         */
+
+        /*
+         * Sample Output:
+         * 
          * Please enter your planet's name: Prometheus
          * Please enter your planet's mass in kg(M): 5.9723
          * Please enter your planet's radius in km (R): 63710
+         * The speed needed to escape the planet Prometheus is: 0.035
          * 
          */
 

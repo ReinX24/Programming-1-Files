@@ -2,14 +2,20 @@ import java.util.Scanner;
 
 public class FalconRocket {
 
+    /*
+     * Solution for a Programming Activity for a friend in Univerisity of
+     * Pangasinan (UPANG).
+     * 
+     */
+
     public static void main(String[] args) {
-        // jibajaba
+        // Title
         System.out.println("Falcon 9|Heavy Rocket Data");
-        Scanner myInput = new Scanner(System.in);
+        Scanner myInput = new Scanner(System.in); // Scanner object to accept input
         // ve
         System.out.print("Please enter rocket exhaust velocity in km/s(ve): ");
         float ve = myInput.nextFloat();
-        // Ae;
+        // Ae
         System.out.print("Please enter rocket nozzle flow in m2 (Ae): ");
         float Ae = myInput.nextFloat();
         // dm

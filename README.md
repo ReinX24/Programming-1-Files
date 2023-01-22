@@ -59,3 +59,7 @@
 - Loop Iteration Practice
 - [UPANG] Falcon Heavy Rocket Code
 - [UPANG] Escape Velocity SpaceX Code
+
+#### 01/21/23 🎲
+- Classical & Empirical Definition of Probability Calculator
+- Counting Techniques Calculators

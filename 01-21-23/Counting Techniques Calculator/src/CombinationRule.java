@@ -5,10 +5,15 @@ public class CombinationRule {
     public static void main(String[] args) {
 
         /*
+         * Combination Rule: Refer to Page 194 of Essential Mathematics in the Modern
+         * World by Rizaldi C. Nocon & Ederlina G. Nocon
+         * 
+         */
+
+        /*
          * A store has 18 different fruit juices and 16 different carbonated drinks in
          * the cooler. If two customers bought a drink each, what is the probability of
          * that one of each kind was bought?
-         * 
          */
 
         /* Formula: nPr = n! / (n - r)! r! */
@@ -36,6 +41,10 @@ public class CombinationRule {
         System.out.printf("There are %d ways of selecting %d carbonated drink from the %d available.\n", waysNumThree,
                 rThree,
                 nThree);
+
+        /* Calculating for the probability of each kind being bought */
+        System.out.printf("The possibility that one of each kind was bought is: %d / %d\n", nTwo.multiply(nThree),
+                waysNumOne);
 
     }
 

@@ -29,7 +29,25 @@ public class CombinationRuleInput {
         BigInteger selectionNumOne = factorialBigInteger(TOTAL_SELECTION)
                 .divide(factorialBigInteger(TOTAL_SELECTION.subtract(SELECTION_USER_NUM)).multiply(SELECTION_USER_NUM));
 
-        System.out.println(selectionNumOne); // printing ways of selecting SELECTION_USER_NUM from the n available
+        BigInteger selectionNumTwo = factorialBigInteger(CATERGORY_ONE).divide(
+                factorialBigInteger(CATERGORY_ONE.subtract(BigInteger.valueOf(1)).multiply(BigInteger.valueOf(1))));
+
+        BigInteger selectionNumThree = factorialBigInteger(CATEGORY_TWO).divide(
+                factorialBigInteger(CATEGORY_TWO.subtract(BigInteger.valueOf(1)).multiply(BigInteger.valueOf(1))));
+
+        /* Printing ways of selecting SELECTION_USER_NUM from the n available */
+        System.out.printf("There are %d ways of choosing %d selections from the %d available.\n", selectionNumOne,
+                SELECTION_USER_NUM, TOTAL_SELECTION);
+
+        System.out.printf("There are %d ways of choosing %d selection from the %d available.\n", selectionNumTwo,
+                1, CATERGORY_ONE);
+
+        System.out.printf("There are %d ways of choosing %d selection from the %d available.\n", selectionNumThree,
+                1, CATEGORY_TWO);
+
+        /* Probability of one from each category was selected */
+        BigInteger PROBABILITY_EACH_SELECTED = CATERGORY_ONE.multiply(CATEGORY_TWO);
+        System.out.printf("The probability that one of each category was selected is: %d / %d\n", PROBABILITY_EACH_SELECTED, selectionNumOne);
 
         scanOne.close();
 

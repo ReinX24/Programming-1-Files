@@ -63,3 +63,6 @@
 #### 01/21/23 🎲
 - Classical & Empirical Definition of Probability Calculator
 - Counting Techniques Calculators
+
+#### 01/23/23 🏁
+- First Semester Programming Outputs (Self-assessment)

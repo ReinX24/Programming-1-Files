@@ -66,3 +66,4 @@
 
 #### 01/23/23 🏁
 - First Semester Programming Outputs (Self-assessment)
+- Summation Problem Code Translation

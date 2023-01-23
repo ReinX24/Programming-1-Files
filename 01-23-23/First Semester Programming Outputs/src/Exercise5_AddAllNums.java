@@ -18,11 +18,11 @@ public class Exercise5_AddAllNums {
         int n = scanOne.nextInt();
         /* Loop from 0 to n and add all of the numbers */
         int sumOfN = 0; // where we will store our sum of numbers
-        for (int i = 0; i <= n; i++) { // loops from 0 to n
+        for (int i = 1; i <= n; i++) { // loops from 0 to n
             sumOfN += i; // adds each iteration of i to sumOfN
         }
         /* Printing results */
-        System.out.println("Sum of 0 to " + n + " : " + sumOfN);
+        System.out.println("Sum of 1 to " + n + " : " + sumOfN);
         /* Closing our Scanner object */
         scanOne.close();
 

@@ -5,8 +5,8 @@ public class FalconRocket {
     public static void main(String[] args) {
 
         /*
-         * Solution for a Programming Activity for a friend in Univerisity of
-         * Pangasinan (UPANG).
+         * Solution for a Programming Activity from a friend in University of Pangasinan
+         * (UPANG).
          * 
          */
 

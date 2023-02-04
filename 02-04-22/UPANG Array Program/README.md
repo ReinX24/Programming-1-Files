@@ -1,6 +1,7 @@
-## Getting Started
+## About Project Folder
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Contains code regarding an activity from University of Pangasinan (UPANG) about arrays, methods, and user inputs.
+![Photo of Instructions](https://cdn.discordapp.com/attachments/708567123563249696/1071338657383993376/IMG_20230204_155714.jpg)
 
 ## Folder Structure
 

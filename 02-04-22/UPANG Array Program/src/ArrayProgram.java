@@ -6,6 +6,11 @@ public class ArrayProgram {
     public static void main(String[] args) {
 
         /*
+         * Solution for a Programming Activity from a friend in University of Pangasinan
+         * (UPANG).
+         */
+
+        /*
          * Write a java program that uses method calling, and looping to ask the user to
          * enter 10 digits into an array. You will then duplicate the array and display
          * the result according to these parameters:
@@ -34,6 +39,8 @@ public class ArrayProgram {
             int userNum = scanOne.nextInt();
             numArr[i] = userNum;
         }
+
+        System.out.println("**********************");
 
         /* Duplicating the array using a for loop */
         int[] numArrDuplicate = numArr.clone(); // using the clone method to copy all elements of numArr

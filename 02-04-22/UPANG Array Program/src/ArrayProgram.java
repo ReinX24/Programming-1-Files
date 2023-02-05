@@ -32,14 +32,18 @@ public class ArrayProgram {
         System.out.println("# Array Program");
         Scanner scanOne = new Scanner(System.in);
         int[] numArr = new int[10]; // array where the user's entered numbers will be stored
+        int numSlots = numArr.length; // variable that keeps in track how many indexes in the array are not filled
 
         /* For loop that asks the user for 10 numbers */
         for (int i = 0; i < numArr.length; i++) {
+            System.out.println("Number slots remaining: " + numSlots);
             System.out.print("Enter a number: ");
             int userNum = scanOne.nextInt();
             numArr[i] = userNum;
+            numSlots--; // decrements numSlots
         }
 
+        System.out.println("[No more number slots!]"); // prints when the for loop that asks for a number ends
         System.out.println("**********************");
 
         /* Duplicating the array using a for loop */

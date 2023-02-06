@@ -67,19 +67,79 @@ public class ArrayProgram {
         /* Sort the array 2nd lowest value first, 2nd highest value last */
 
         /* 2nd lowest value */
-        int lowestTempNum = numArr[0]; // holds lowest value of numArr
-        numArr[0] = numArr[1]; // replaces lowest value with the second lowest value
-        numArr[1] = lowestTempNum; // places lowest value in the second index
+        // ! Do not use, does not take into account multiple lowest values
+        // int lowestTempNum = numArr[0]; // holds lowest value of numArr
+        // numArr[0] = numArr[1]; // replaces lowest value with the second lowest value
+        // numArr[1] = lowestTempNum; // places lowest value in the second index
+
+        // ? What if there are multiple 2nd lowest values?
+        int secondLowestValue = 0; // variable that stores the 2nd lowest value
+        /* Loop that finds the 2nd smallest value in the array */
+        for (int i = 0; i < numArr.length; i++) {
+            // if the current iterated element is less than the number before it
+            if (numArr[i] > numArr[0]) {
+                secondLowestValue = numArr[i];
+                break; // terminates the loop
+            }
+        }
+
+        /* Swaps the 2nd lowest value/s to the start of the array */
+        for (int i = 0; i < numArr.length - 1; i++) {
+            /* If the current iterated element is lower than the secondLowestValue */
+            if (numArr[i] < secondLowestValue) {
+                /* Loop that finds the index of the 2nd lowest value */
+                for (int j = i + 1; j < numArr.length; j++) {
+                    /* Swap the places of the lowest value and the secondLowestValye */
+                    if (numArr[j] == secondLowestValue) {
+                        int lowestTempNum = numArr[i]; // holds smallest value
+                        numArr[i] = numArr[j]; // replaces smallest value with 2nd lowest value
+                        numArr[j] = lowestTempNum; // places smallest value to 2nd lowest value placements
+                    }
+                }
+            }
+        }
 
         /* 2nd highest value */
-        int highestTempNum = numArr[numArr.length - 1]; // holds the highest value in numArr
-        numArr[numArr.length - 1] = numArr[numArr.length - 2]; // replaces highest value with the 2nd highest value
-        numArr[numArr.length - 2] = highestTempNum;
+        // ! Do not use, does not take into account multiple highest values
+        // int highestTempNum = numArr[numArr.length - 1]; // holds the highest value in
+        // numArr
+        // numArr[numArr.length - 1] = numArr[numArr.length - 2]; // replaces highest
+        // value with the 2nd highest value
+        // numArr[numArr.length - 2] = highestTempNum;
+
+        // ? What if there are multiple 2nd lowest values?
+        int secondHighestValue = 0;
+        /* Loop that finds the 2nd highest value in the array */
+        for (int i = numArr.length - 1; i > 0; i--) { // starts from the end
+            // if the current iterated element is less than the number before it
+            if (numArr[i] < numArr[numArr.length - 1]) {
+                secondHighestValue = numArr[i];
+                break; // terminates the loop
+            }
+        }
+
+        /* Swaps the 2nd highest value/s to the end of the array */
+        for (int i = 0; i < numArr.length; i++) {
+            /*
+             * If the current iterated element is higher than the 2nd highest value AND the
+             * element before to the current one is greater than or equal that the 2nd
+             * highest value.
+             */
+            if (numArr[i] > secondHighestValue) {
+                for (int j = 0; j < numArr.length; j++) {
+                    if (numArr[j] == secondHighestValue) {
+                        int highestTempNum = numArr[i];
+                        numArr[i] = numArr[j];
+                        numArr[j] = highestTempNum;
+                    }
+                }
+            }
+        }
 
         /*
          * Printing results of array with 2nd lowest value 1st & 2nd highest value last
          */
-        System.out.println("# Array with 2nd lowest value 1st & 2nd highest value last");
+        System.out.println("# Array with 2nd lowest value/s first & 2nd highest value/s last");
         System.out.println(Arrays.toString(numArr));
 
         /* Display the array without odd numbers */

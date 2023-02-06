@@ -67,3 +67,7 @@
 #### 01/23/23 🏁
 - First Semester Programming Outputs (Self-assessment)
 - Summation Problem Code Translation
+
+#### 02/04/23 🧑
+- [UPANG] Integer Arrays & Methods Code
+- [UPANG] Customer Order & Information Code (NewMe)

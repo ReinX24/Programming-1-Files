@@ -2,8 +2,6 @@
 
 Contains solution for a leetcode problem regarding duplicate elements in an array.
 
-![number of unique numbers in array problem](duplicateElements.png)
-
 ## Folder Structure
 
 The workspace contains two folders by default, where:

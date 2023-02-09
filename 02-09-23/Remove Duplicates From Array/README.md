@@ -1,8 +1,8 @@
 ## About Folder
 
-Solution to a programming problem regarding the median of two sorted arrays that I saw online.
+Contains solution for a leetcode problem regarding duplicate elements in an array.
 
-![median of sorted arrays problem](medianSortedArray.png)
+![number of unique numbers in array problem](duplicateElements.png)
 
 ## Folder Structure
 

@@ -1,4 +1,4 @@
-public class DuplicateArray {
+public class CountDuplicates {
 
     public static void main(String[] args) {
 

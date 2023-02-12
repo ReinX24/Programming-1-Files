@@ -72,3 +72,7 @@
 - [UPANG] Integer Arrays & Methods Code
 - [UPANG] Customer Order & Information Code (NewMe)
 - String Array Anagram Problem & Solution
+
+#### 02/09/23 ✨
+- Count Unique Elements From Array Problem & Solution
+- Median of Two Sorted Arrays Problem & Solution

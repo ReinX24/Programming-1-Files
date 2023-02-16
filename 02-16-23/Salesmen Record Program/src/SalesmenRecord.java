@@ -85,29 +85,30 @@ public class SalesmenRecord {
                 break;
         }
         /* Calculating for Commissions */
-        // TODO: Commissions calculation for code 1 not working as intended
         switch (salesmenCode) {
             case 1:
-                salesmenCommission = sumOfMonthlySales.subtract(BigDecimal.valueOf(250000)).multiply(BigDecimal.valueOf(0.20));
+                salesmenCommission = sumOfMonthlySales.subtract(BigDecimal.valueOf(250000))
+                        .multiply(BigDecimal.valueOf(0.20));
                 break;
             case 2:
-                salesmenCommission = salesmenCommission.add((sumOfMonthlySales.subtract(BigDecimal.valueOf(300000)))
-                        .multiply(BigDecimal.valueOf((long) 0.2)));
+                salesmenCommission = sumOfMonthlySales.subtract(BigDecimal.valueOf(300000))
+                        .multiply(BigDecimal.valueOf(0.20));
                 break;
             case 3:
-                salesmenCommission = salesmenCommission.add((sumOfMonthlySales.subtract(BigDecimal.valueOf(150000)))
-                        .multiply(BigDecimal.valueOf((long) 0.25)));
+                salesmenCommission = sumOfMonthlySales.subtract(BigDecimal.valueOf(150000))
+                        .multiply(BigDecimal.valueOf(0.25));
                 break;
             case 4:
-                salesmenCommission = salesmenCommission.add((sumOfMonthlySales.subtract(BigDecimal.valueOf(200000)))
-                        .multiply(BigDecimal.valueOf((long) 0.25)));
+                salesmenCommission = sumOfMonthlySales.subtract(BigDecimal.valueOf(200000))
+                        .multiply(BigDecimal.valueOf(0.25));
                 break;
         }
         /* Calculating for workTax */
-        // TODO: workTax calculation for code 1 not working as intended
+        // TODO: debug and test workTax calculations
         switch (salesmenCode) {
             case 1:
-                workTax = basicPay.add(salesmenCommission.multiply(BigDecimal.valueOf(0.10))).multiply(BigDecimal.valueOf(0.12));
+                workTax = basicPay.add(salesmenCommission.multiply(BigDecimal.valueOf(0.10)))
+                        .multiply(BigDecimal.valueOf(0.12));
                 break;
             case 2:
                 workTax = workTax.add((basicPay.add(salesmenCommission.multiply(BigDecimal.valueOf((long) 0.15))))

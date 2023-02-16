@@ -85,10 +85,10 @@ public class SalesmenRecord {
                 break;
         }
         /* Calculating for Commissions */
+        // TODO: Commissions calculation for code 1 not working as intended
         switch (salesmenCode) {
             case 1:
-                salesmenCommission = salesmenCommission.add((sumOfMonthlySales.subtract(BigDecimal.valueOf(250000)))
-                        .multiply(BigDecimal.valueOf((long) 0.2)));
+                salesmenCommission = sumOfMonthlySales.subtract(BigDecimal.valueOf(250000)).multiply(BigDecimal.valueOf(0.20));
                 break;
             case 2:
                 salesmenCommission = salesmenCommission.add((sumOfMonthlySales.subtract(BigDecimal.valueOf(300000)))
@@ -104,10 +104,10 @@ public class SalesmenRecord {
                 break;
         }
         /* Calculating for workTax */
+        // TODO: workTax calculation for code 1 not working as intended
         switch (salesmenCode) {
             case 1:
-                workTax = workTax.add((basicPay.add(salesmenCommission.multiply(BigDecimal.valueOf((long) 0.10))))
-                        .multiply(BigDecimal.valueOf((long) 0.12)));
+                workTax = basicPay.add(salesmenCommission.multiply(BigDecimal.valueOf(0.10))).multiply(BigDecimal.valueOf(0.12));
                 break;
             case 2:
                 workTax = workTax.add((basicPay.add(salesmenCommission.multiply(BigDecimal.valueOf((long) 0.15))))
@@ -137,6 +137,7 @@ public class SalesmenRecord {
                 break;
         }
         /* Calculating for SSS deduction */
+        // TODO: SSS calculation for code 1 not working as intended
         switch (salesmenCode) {
             case 1:
                 socialSecuritySystem = socialSecuritySystem
@@ -158,15 +159,15 @@ public class SalesmenRecord {
         /* Calculating for Net Pay */
         netPay = netPay.add(basicPay.add(salesmenCommission).subtract(workTax.add(pagIbig.add(socialSecuritySystem))));
         /* Show employee information */
-        System.out.println(salesmenName);
-        System.out.println(salesmenCode);
-        System.out.println(sumOfMonthlySales);
-        System.out.println(basicPay);
-        System.out.println(workTax);
-        System.out.println(pagIbig);
-        System.out.println(socialSecuritySystem);
-        System.out.println(salesmenCommission);
-        System.out.println(netPay);
+        System.out.println("Name: " + salesmenName);
+        System.out.println("Code: " + salesmenCode);
+        System.out.println("Total Sale: " + sumOfMonthlySales);
+        System.out.println("Basic Pay: " + basicPay);
+        System.out.println("Work Tax: " + workTax);
+        System.out.println("PAG-IBIG: " + pagIbig);
+        System.out.println("SSS: " + socialSecuritySystem);
+        System.out.println("Commission: " + salesmenCommission);
+        System.out.println("Net Pay: " + netPay);
     }
 
 }

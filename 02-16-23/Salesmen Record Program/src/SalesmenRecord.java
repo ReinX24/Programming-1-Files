@@ -70,13 +70,13 @@ public class SalesmenRecord implements SalesmenMethods {
 
     @Override
     public void askName() {
-        System.out.print("\nEnter Name: ");
+        System.out.print("\n\tEnter Name: ");
         salesmenName = userInput.nextLine();
     }
 
     @Override
     public void askCode() {
-        System.out.print("\nEnter Code [1, 2, 3, 4]: ");
+        System.out.print("\n\tEnter Code [1, 2, 3, 4]: ");
         salesmenCode = userInput.nextInt();
     }
 
@@ -90,7 +90,7 @@ public class SalesmenRecord implements SalesmenMethods {
         if (validCode) {
             System.out.printf("\n%50s\n", "[Salesmen Code Validated]");
         } else {
-            System.out.printf("\n%100s\n", "[Salesmen Code NOT Recognized, Terminating Program]");
+            System.out.printf("\n%76s\n", "[Salesmen Code NOT Recognized, Terminating Program]");
             userInput.close(); // closes our Scanner object
             System.exit(0); // terminates program
         }
@@ -99,7 +99,7 @@ public class SalesmenRecord implements SalesmenMethods {
     @Override
     public void askWeeklySales() {
         for (int i = 0; i < monthlySales.length; i++) {
-            System.out.print("\nWeek " + (i + 1) + " Sales : ");
+            System.out.print("\n\tWeek " + (i + 1) + " Sales : ");
             monthlySales[i] = userInput.nextBigDecimal();
         }
 
@@ -219,15 +219,16 @@ public class SalesmenRecord implements SalesmenMethods {
 
     @Override
     public void printSalesmenInfo() {
-        System.out.println("Name: " + salesmenName);
-        System.out.println("Code: " + salesmenCode);
-        System.out.println("Total Sale: " + sumOfMonthlySales);
-        System.out.println("Basic Pay: " + basicPay);
-        System.out.println("Work Tax: " + workTax);
-        System.out.println("PAG-IBIG: " + pagIbig);
-        System.out.println("SSS: " + socialSecuritySystem);
-        System.out.println("Commission: " + salesmenCommission);
-        System.out.println("Net Pay: " + netPay);
+        System.out.printf("\n%47s\n", "[Salesmen Information]");
+        System.out.printf("[\n\t%s\t:\t%s\n]", "Salesmen Name", salesmenName);
+        System.out.printf("[\n\t%s\t:\t%s\n]","Salesmen Code" , salesmenCode);        
+        System.out.printf("[\n\t%s\t:\t%s\n]","Total Sale" ,sumOfMonthlySales);    
+        System.out.printf("[\n\t%s\t:\t%s\n]","Basic Pay" ,basicPay);    
+        System.out.printf("[\n\t%s\t:\t%s\n]","Work Tax" ,workTax);
+        System.out.printf("[\n\t%s\t:\t%s\n]","PAG-IBIG" ,pagIbig);
+        System.out.printf("[\n\t%s\t:\t%s\n]","SSS Fund" ,socialSecuritySystem);
+        System.out.printf("[\n\t%s\t:\t%s\n]","Commission" ,salesmenCommission);
+        System.out.printf("[\n\t%s\t:\t%s\n]","Total Net Pay" ,netPay);
     }
 
 }

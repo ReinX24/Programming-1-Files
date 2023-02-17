@@ -220,15 +220,15 @@ public class SalesmenRecord implements SalesmenMethods {
     @Override
     public void printSalesmenInfo() {
         System.out.printf("\n%47s\n", "[Salesmen Information]");
-        System.out.printf("[\n\t%s\t:\t%s\n]", "Salesmen Name", salesmenName);
-        System.out.printf("[\n\t%s\t:\t%s\n]","Salesmen Code" , salesmenCode);        
-        System.out.printf("[\n\t%s\t:\t%s\n]","Total Sale" ,sumOfMonthlySales);    
-        System.out.printf("[\n\t%s\t:\t%s\n]","Basic Pay" ,basicPay);    
-        System.out.printf("[\n\t%s\t:\t%s\n]","Work Tax" ,workTax);
-        System.out.printf("[\n\t%s\t:\t%s\n]","PAG-IBIG" ,pagIbig);
-        System.out.printf("[\n\t%s\t:\t%s\n]","SSS Fund" ,socialSecuritySystem);
-        System.out.printf("[\n\t%s\t:\t%s\n]","Commission" ,salesmenCommission);
-        System.out.printf("[\n\t%s\t:\t%s\n]","Total Net Pay" ,netPay);
+        System.out.printf("\n\t\t[%s\t:\t%14s]\n", "Salesmen Name", salesmenName);
+        System.out.printf("\n\t\t[%s\t:\t%14s]\n", "Salesmen Code", salesmenCode);
+        System.out.printf("\n\t\t[%s\t:\t%14s]\n", "Total Sale", sumOfMonthlySales);
+        System.out.printf("\n\t\t[%s\t:\t%14s]\n", "Basic Pay", basicPay);
+        System.out.printf("\n\t\t[%s\t:\t%14.2f]\n", "Work Tax", workTax);
+        System.out.printf("\n\t\t[%s\t:\t%14.2f]\n", "PAG-IBIG", pagIbig);
+        System.out.printf("\n\t\t[%s\t:\t%14.2f]\n", "SSS Fund", socialSecuritySystem);
+        System.out.printf("\n\t\t[%s\t:\t%14.2f]\n", "Commission", salesmenCommission);
+        System.out.printf("\n\t\t[%s\t:\t%14.2f]\n\n", "Total Net Pay", netPay);
     }
 
 }

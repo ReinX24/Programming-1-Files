@@ -4,7 +4,8 @@ public class SalesmenProgram {
 
         /*
          * The program's methods are stored in SalesmenRecord, SalesmenProgram executes
-         * the SalesmenRecord's methods.
+         * the SalesmenRecord's methods. To start the program, run the program from this
+         * class.
          */
         SalesmenRecord programStart = new SalesmenRecord();
         programStart.askInfo();

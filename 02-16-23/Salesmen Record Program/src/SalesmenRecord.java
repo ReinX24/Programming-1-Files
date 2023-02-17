@@ -1,7 +1,7 @@
 import java.math.BigDecimal;
 import java.util.Scanner;
 
-public class SalesmenRecord {
+public class SalesmenRecord implements SalesmenMethods {
 
     /* Contains the name of the salesMen */
     private String salesmenName;
@@ -37,39 +37,83 @@ public class SalesmenRecord {
     public void askInfo() {
         /* Finish creating Scanner object */
         userInput = new Scanner(System.in);
-        /* Show program title & ask for name */
-        System.out.println("[Salesmen Record Program]");
-        System.out.print("Enter Name: ");
-        salesmenName = userInput.nextLine();
+        /* Show program title */
+        System.out.printf("\n%50s\n", "[Salesmen Record Program]");
+        /* Ask for user name */
+        askName();
         /* Ask for salesmen code */
-        System.out.print("Enter Code (1, 2, 3, 4): ");
-        salesmenCode = userInput.nextInt();
+        askCode();
         /* Check if the entered salesmenCode is part of the choices */
+        checkCodeValid();
+        /* Ask for monthly sales (per week) */
+        askWeeklySales();
+        /* Add all of the monthlySales earnings */
+        addWeeklySales();
+        /* Calculate for Basic Pay */
+        /*
+         * We are going to base the basic pay calculation on the entered salesmen code
+         */
+        addBasicPay();
+        /* Calculating for Commissions */
+        calculateCommissions();
+        /* Calculating for workTax */
+        calculateWorkTax();
+        /* Calculating for PAG-IBIG deduction */
+        calculatePagIbig();
+        /* Calculating for SSS deduction */
+        calculateSSS();
+        /* Calculating for Net Pay */
+        calculateNetPay();
+        /* Show employee information */
+        printSalesmenInfo();
+    }
+
+    @Override
+    public void askName() {
+        System.out.print("\nEnter Name: ");
+        salesmenName = userInput.nextLine();
+    }
+
+    @Override
+    public void askCode() {
+        System.out.print("\nEnter Code [1, 2, 3, 4]: ");
+        salesmenCode = userInput.nextInt();
+    }
+
+    @Override
+    public void checkCodeValid() {
         for (int i = 0; i < salesmenCodeChoices.length; i++) {
             if (salesmenCode == salesmenCodeChoices[i]) {
                 validCode = true;
             }
         }
         if (validCode) {
-            System.out.println("[Salesmen Code Valid]");
+            System.out.printf("\n%50s\n", "[Salesmen Code Validated]");
         } else {
-            System.out.println("[Salesmen Code NOT Recognized, Terminating Program]");
+            System.out.printf("\n%100s\n", "[Salesmen Code NOT Recognized, Terminating Program]");
             userInput.close(); // closes our Scanner object
             System.exit(0); // terminates program
         }
-        /* Ask for monthly sales (per week) */
+    }
+
+    @Override
+    public void askWeeklySales() {
         for (int i = 0; i < monthlySales.length; i++) {
-            System.out.print("Week " + (i + 1) + " Sales : ");
+            System.out.print("\nWeek " + (i + 1) + " Sales : ");
             monthlySales[i] = userInput.nextBigDecimal();
         }
-        /* Add all of the monthlySales earnings */
+
+    }
+
+    @Override
+    public void addWeeklySales() {
         for (int i = 0; i < monthlySales.length; i++) {
             sumOfMonthlySales = sumOfMonthlySales.add(monthlySales[i]);
         }
-        /* Calculate for Basic Pay */
-        /*
-         * We are going to base the basic pay calculation on the entered salesmen code
-         */
+    }
+
+    @Override
+    public void addBasicPay() {
         switch (salesmenCode) {
             case 1:
                 basicPay = BigDecimal.valueOf(20000);
@@ -84,7 +128,10 @@ public class SalesmenRecord {
                 basicPay = BigDecimal.valueOf(15000);
                 break;
         }
-        /* Calculating for Commissions */
+    }
+
+    @Override
+    public void calculateCommissions() {
         switch (salesmenCode) {
             case 1:
                 salesmenCommission = sumOfMonthlySales.subtract(BigDecimal.valueOf(250000))
@@ -103,22 +150,31 @@ public class SalesmenRecord {
                         .multiply(BigDecimal.valueOf(0.25));
                 break;
         }
-        /* Calculating for workTax */
+    }
+
+    @Override
+    public void calculateWorkTax() {
         switch (salesmenCode) {
             case 1:
-                workTax = basicPay.add(salesmenCommission.multiply(BigDecimal.valueOf(0.10))).multiply(BigDecimal.valueOf(0.12));
+                workTax = basicPay.add(salesmenCommission.multiply(BigDecimal.valueOf(0.10)))
+                        .multiply(BigDecimal.valueOf(0.12));
                 break;
             case 2:
-                workTax = basicPay.add(salesmenCommission.multiply(BigDecimal.valueOf(0.15))).multiply(BigDecimal.valueOf(0.12));
+                workTax = basicPay.add(salesmenCommission.multiply(BigDecimal.valueOf(0.15)))
+                        .multiply(BigDecimal.valueOf(0.12));
                 break;
             case 3:
-                workTax = basicPay.add(salesmenCommission.multiply(BigDecimal.valueOf(0.10))).multiply(BigDecimal.valueOf(0.12));
+                workTax = basicPay.add(salesmenCommission.multiply(BigDecimal.valueOf(0.10)))
+                        .multiply(BigDecimal.valueOf(0.12));
                 break;
             case 4:
                 workTax = salesmenCommission.multiply(BigDecimal.valueOf(0.12));
                 break;
         }
-        /* Calculating for PAG-IBIG deduction */
+    }
+
+    @Override
+    public void calculatePagIbig() {
         switch (salesmenCode) {
             case 1:
                 pagIbig = pagIbig.add(basicPay.multiply(BigDecimal.valueOf(0.03)));
@@ -133,24 +189,36 @@ public class SalesmenRecord {
                 pagIbig = pagIbig.add(basicPay.multiply(BigDecimal.valueOf(0.015)));
                 break;
         }
-        /* Calculating for SSS deduction */
+    }
+
+    @Override
+    public void calculateSSS() {
         switch (salesmenCode) {
             case 1:
-                socialSecuritySystem = BigDecimal.valueOf(150).add(salesmenCommission.multiply(BigDecimal.valueOf(0.0275)));
+                socialSecuritySystem = BigDecimal.valueOf(150)
+                        .add(salesmenCommission.multiply(BigDecimal.valueOf(0.0275)));
                 break;
             case 2:
-                socialSecuritySystem = BigDecimal.valueOf(100).add(salesmenCommission.multiply(BigDecimal.valueOf(0.025)));
+                socialSecuritySystem = BigDecimal.valueOf(100)
+                        .add(salesmenCommission.multiply(BigDecimal.valueOf(0.025)));
                 break;
             case 3:
-                socialSecuritySystem = BigDecimal.valueOf(94).add(salesmenCommission.multiply(BigDecimal.valueOf(0.015)));
+                socialSecuritySystem = BigDecimal.valueOf(94)
+                        .add(salesmenCommission.multiply(BigDecimal.valueOf(0.015)));
                 break;
             case 4:
                 socialSecuritySystem = salesmenCommission.add(basicPay).multiply(BigDecimal.valueOf(0.015));
                 break;
         }
-        /* Calculating for Net Pay */
+    }
+
+    @Override
+    public void calculateNetPay() {
         netPay = netPay.add(basicPay.add(salesmenCommission).subtract(workTax.add(pagIbig.add(socialSecuritySystem))));
-        /* Show employee information */
+    }
+
+    @Override
+    public void printSalesmenInfo() {
         System.out.println("Name: " + salesmenName);
         System.out.println("Code: " + salesmenCode);
         System.out.println("Total Sale: " + sumOfMonthlySales);

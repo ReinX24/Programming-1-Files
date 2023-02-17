@@ -1,9 +1,6 @@
-## About Folder
+## Getting Started
 
-Contains code translation of an Introduction to Computing Excel Sheet.
-
-Link to Excel Sheet used as reference for this program: 
-https://docs.google.com/spreadsheets/d/1tp01JRLzcSXWjjyPx2rjp-1Nsc3arV5f/edit?usp=share_link&ouid=110432178074154225144&rtpof=true&sd=true
+Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
 
 ## Folder Structure
 

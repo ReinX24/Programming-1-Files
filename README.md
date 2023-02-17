@@ -76,3 +76,6 @@
 #### 02/09/23 ✨
 - Count Unique Elements From Array Problem & Solution
 - Median of Two Sorted Arrays Problem & Solution
+
+#### 02/16/23 💰
+- Salesmen Record Program (From Introduction to Computing Excel Worksheet)

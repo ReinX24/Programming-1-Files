@@ -72,16 +72,16 @@ public class SalesmenRecord {
          */
         switch (salesmenCode) {
             case 1:
-                basicPay = basicPay.add(BigDecimal.valueOf(20000));
+                basicPay = BigDecimal.valueOf(20000);
                 break;
             case 2:
-                basicPay = basicPay.add(BigDecimal.valueOf(25000));
+                basicPay = BigDecimal.valueOf(25000);
                 break;
             case 3:
-                basicPay = basicPay.add(BigDecimal.valueOf(18000));
+                basicPay = BigDecimal.valueOf(18000);
                 break;
             case 4:
-                basicPay = basicPay.add(BigDecimal.valueOf(15000));
+                basicPay = BigDecimal.valueOf(15000);
                 break;
         }
         /* Calculating for Commissions */
@@ -104,22 +104,18 @@ public class SalesmenRecord {
                 break;
         }
         /* Calculating for workTax */
-        // TODO: debug and test workTax calculations
         switch (salesmenCode) {
             case 1:
-                workTax = basicPay.add(salesmenCommission.multiply(BigDecimal.valueOf(0.10)))
-                        .multiply(BigDecimal.valueOf(0.12));
+                workTax = basicPay.add(salesmenCommission.multiply(BigDecimal.valueOf(0.10))).multiply(BigDecimal.valueOf(0.12));
                 break;
             case 2:
-                workTax = workTax.add((basicPay.add(salesmenCommission.multiply(BigDecimal.valueOf((long) 0.15))))
-                        .multiply(BigDecimal.valueOf((long) 0.12)));
+                workTax = basicPay.add(salesmenCommission.multiply(BigDecimal.valueOf(0.15))).multiply(BigDecimal.valueOf(0.12));
                 break;
             case 3:
-                workTax = workTax.add((basicPay.add(salesmenCommission.multiply(BigDecimal.valueOf((long) 0.10))))
-                        .multiply(BigDecimal.valueOf((long) 0.12)));
+                workTax = basicPay.add(salesmenCommission.multiply(BigDecimal.valueOf(0.10))).multiply(BigDecimal.valueOf(0.12));
                 break;
             case 4:
-                workTax = workTax.add(salesmenCommission.multiply(BigDecimal.valueOf((long) 0.20)));
+                workTax = salesmenCommission.multiply(BigDecimal.valueOf(0.12));
                 break;
         }
         /* Calculating for PAG-IBIG deduction */
@@ -138,23 +134,18 @@ public class SalesmenRecord {
                 break;
         }
         /* Calculating for SSS deduction */
-        // TODO: SSS calculation for code 1 not working as intended
         switch (salesmenCode) {
             case 1:
-                socialSecuritySystem = socialSecuritySystem
-                        .add(BigDecimal.valueOf(150).add(salesmenCommission.multiply(BigDecimal.valueOf(0.0275))));
+                socialSecuritySystem = BigDecimal.valueOf(150).add(salesmenCommission.multiply(BigDecimal.valueOf(0.0275)));
                 break;
             case 2:
-                socialSecuritySystem = socialSecuritySystem
-                        .add(BigDecimal.valueOf(100).add(salesmenCommission.multiply(BigDecimal.valueOf(0.025))));
+                socialSecuritySystem = BigDecimal.valueOf(100).add(salesmenCommission.multiply(BigDecimal.valueOf(0.025)));
                 break;
             case 3:
-                socialSecuritySystem = socialSecuritySystem
-                        .add(BigDecimal.valueOf(94).add(salesmenCommission.multiply(BigDecimal.valueOf(0.015))));
+                socialSecuritySystem = BigDecimal.valueOf(94).add(salesmenCommission.multiply(BigDecimal.valueOf(0.015)));
                 break;
             case 4:
-                socialSecuritySystem = socialSecuritySystem.add(salesmenCommission.add(basicPay))
-                        .multiply(BigDecimal.valueOf(0.015));
+                socialSecuritySystem = salesmenCommission.add(basicPay).multiply(BigDecimal.valueOf(0.015));
                 break;
         }
         /* Calculating for Net Pay */

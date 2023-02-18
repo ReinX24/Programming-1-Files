@@ -44,4 +44,7 @@ public interface SalesmenMethods {
      */
     void printSalesmenInfo();
 
+    /* Asks the user if they want to add another entry to the program */
+    void askRestartProgram();
+
 }

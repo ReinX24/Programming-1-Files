@@ -1,4 +1,5 @@
 import java.math.BigDecimal;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class SalesmenRecord implements SalesmenMethods {
@@ -10,7 +11,7 @@ public class SalesmenRecord implements SalesmenMethods {
     /* Array that contains all the possible choices for salesmenCode */
     private int[] salesmenCodeChoices = { 1, 2, 3, 4 };
     /* Checks if the entered code by the user is valid */
-    private boolean validCode = false;
+    private boolean validCode;
     /*
      * BigInteger array that contains weekly records of sales, we are going to use
      * the BigInteger class since the numbers that the user may input may exceed the
@@ -18,19 +19,19 @@ public class SalesmenRecord implements SalesmenMethods {
      */
     private BigDecimal[] monthlySales = new BigDecimal[4];
     /* BigInteger variable that contains the sum of all monthlySales */
-    private BigDecimal sumOfMonthlySales = BigDecimal.valueOf(0);
+    private BigDecimal sumOfMonthlySales;
     /* Basic Pay */
-    private BigDecimal basicPay = BigDecimal.valueOf(0);
+    private BigDecimal basicPay;
     /* Work Tax deduction */
-    private BigDecimal workTax = BigDecimal.valueOf(0);
+    private BigDecimal workTax;
     /* PAG-IBIG deduction */
-    private BigDecimal pagIbig = BigDecimal.valueOf(0);
+    private BigDecimal pagIbig;
     /* SSS deduction */
-    private BigDecimal socialSecuritySystem = BigDecimal.valueOf(0);
+    private BigDecimal socialSecuritySystem;
     /* Calculated commission */
-    private BigDecimal salesmenCommission = BigDecimal.valueOf(0);
+    private BigDecimal salesmenCommission;
     /* Net Pay */
-    private BigDecimal netPay = BigDecimal.valueOf(0);
+    private BigDecimal netPay;
     /* Scanner to accept user input */
     Scanner userInput;
 
@@ -66,54 +67,69 @@ public class SalesmenRecord implements SalesmenMethods {
         calculateNetPay();
         /* Show employee information */
         printSalesmenInfo();
+        /*
+         * Asks the user if they want to input another set of information or restart the
+         * program
+         */
+        askRestartProgram();
+        /* Closing our Scanner object */
+        userInput.close();
     }
 
-    @Override
     public void askName() {
         System.out.print("\n\tEnter Name: ");
         salesmenName = userInput.nextLine();
     }
 
-    @Override
     public void askCode() {
-        System.out.print("\n\tEnter Code [1, 2, 3, 4]: ");
-        salesmenCode = userInput.nextInt();
+        try {
+            salesmenCode = 0;
+            System.out.print("\n\tEnter Code [1, 2, 3, 4]: ");
+            salesmenCode = userInput.nextInt();
+        } catch (InputMismatchException ex) {
+            System.out.println("\n[Invalid Input, Restarting Program]");
+            askInfo(); // executes askInfo again
+        }
     }
 
-    @Override
     public void checkCodeValid() {
+        validCode = false;
         for (int i = 0; i < salesmenCodeChoices.length; i++) {
-            if (salesmenCode == salesmenCodeChoices[i]) {
+            if (salesmenCodeChoices[i] == salesmenCode) {
                 validCode = true;
             }
         }
         if (validCode) {
-            System.out.printf("\n%50s\n", "[Salesmen Code Validated]");
+            System.out.printf("\n%s\n", "[Code Validated]");
         } else {
-            System.out.printf("\n%76s\n", "[Salesmen Code NOT Recognized, Terminating Program]");
-            userInput.close(); // closes our Scanner object
-            System.exit(0); // terminates program
+            System.out.printf("\n%s\n", "[Code Invalid, Restarting Program]");
+            askInfo();
         }
     }
 
-    @Override
     public void askWeeklySales() {
-        for (int i = 0; i < monthlySales.length; i++) {
-            System.out.print("\n\tWeek " + (i + 1) + " Sales : ");
-            monthlySales[i] = userInput.nextBigDecimal();
+        try {
+            for (int i = 0; i < monthlySales.length; i++) {
+                monthlySales[i] = BigDecimal.valueOf(0);
+                System.out.print("\n\tWeek " + (i + 1) + " Sales : ");
+                monthlySales[i] = userInput.nextBigDecimal();
+            }
+        } catch (InputMismatchException ex) {
+            System.out.println("\n[Invalid Input, Restarting Program]");
+            askInfo();
         }
 
     }
 
-    @Override
     public void addWeeklySales() {
+        sumOfMonthlySales = BigDecimal.valueOf(0);
         for (int i = 0; i < monthlySales.length; i++) {
             sumOfMonthlySales = sumOfMonthlySales.add(monthlySales[i]);
         }
     }
 
-    @Override
     public void addBasicPay() {
+        basicPay = BigDecimal.valueOf(0);
         switch (salesmenCode) {
             case 1:
                 basicPay = BigDecimal.valueOf(20000);
@@ -130,8 +146,8 @@ public class SalesmenRecord implements SalesmenMethods {
         }
     }
 
-    @Override
     public void calculateCommissions() {
+        salesmenCommission = BigDecimal.valueOf(0);
         switch (salesmenCode) {
             case 1:
                 salesmenCommission = sumOfMonthlySales.subtract(BigDecimal.valueOf(250000))
@@ -152,8 +168,8 @@ public class SalesmenRecord implements SalesmenMethods {
         }
     }
 
-    @Override
     public void calculateWorkTax() {
+        workTax = BigDecimal.valueOf(0);
         switch (salesmenCode) {
             case 1:
                 workTax = basicPay.add(salesmenCommission.multiply(BigDecimal.valueOf(0.10)))
@@ -173,8 +189,8 @@ public class SalesmenRecord implements SalesmenMethods {
         }
     }
 
-    @Override
     public void calculatePagIbig() {
+        pagIbig = BigDecimal.valueOf(0);
         switch (salesmenCode) {
             case 1:
                 pagIbig = pagIbig.add(basicPay.multiply(BigDecimal.valueOf(0.03)));
@@ -191,8 +207,8 @@ public class SalesmenRecord implements SalesmenMethods {
         }
     }
 
-    @Override
     public void calculateSSS() {
+        socialSecuritySystem = BigDecimal.valueOf(0);
         switch (salesmenCode) {
             case 1:
                 socialSecuritySystem = BigDecimal.valueOf(150)
@@ -212,12 +228,11 @@ public class SalesmenRecord implements SalesmenMethods {
         }
     }
 
-    @Override
     public void calculateNetPay() {
+        netPay = BigDecimal.valueOf(0);
         netPay = netPay.add(basicPay.add(salesmenCommission).subtract(workTax.add(pagIbig.add(socialSecuritySystem))));
     }
 
-    @Override
     public void printSalesmenInfo() {
         System.out.printf("\n%47s\n", "[Salesmen Information]");
         System.out.printf("\n\t\t[%s\t:\t%14s]\n", "Salesmen Name", salesmenName);
@@ -229,6 +244,22 @@ public class SalesmenRecord implements SalesmenMethods {
         System.out.printf("\n\t\t[%s\t:\t%14.2f]\n", "SSS Fund", socialSecuritySystem);
         System.out.printf("\n\t\t[%s\t:\t%14.2f]\n", "Commission", salesmenCommission);
         System.out.printf("\n\t\t[%s\t:\t%14.2f]\n\n", "Total Net Pay", netPay);
+    }
+
+    public void askRestartProgram() {
+        char userChoice = ' ';
+        System.out.print("Do you want to input another data set? [y/n]: ");
+        userChoice = userInput.next().charAt(0);
+        if (Character.toLowerCase(userChoice) == 'y') {
+            System.out.println("\n[Restarting Program]");
+            askInfo();
+        } else if (Character.toLowerCase(userChoice) == 'n') {
+            System.out.println("\n[Terminated Program]");
+        } else {
+            System.out.println("\n[Invalid Choice, Restarting Program]");
+            askInfo();
+        }
+
     }
 
 }

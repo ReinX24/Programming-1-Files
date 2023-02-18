@@ -16,13 +16,29 @@ public class SequentialSearch {
         int indexOfTwelve = sequentialSearch(numArr, 12);
         System.out.println("12 is located at index: " + indexOfTwelve);
 
-        /* Sorting the array from lowest to highest using a sorting algorithm called selection sort */
+        /*
+         * Sorting the array from lowest to highest using a sorting algorithm called
+         * selection sort
+         */
         int[] sortedArray = selectionSort(numArr);
 
         /* Printing the sortedArray */
         System.out.println(toStringArr(sortedArray));
 
-        /* Finding the index of a number in an array, is using binary search */
+        /*
+         * Finding the index of a number in an array using binary search, array needs to
+         * be sorted first before using binary search
+         */
+        int indexOfSeven = binarySearch(sortedArray, 7);
+
+        /* Print the index of 7 in the sortedArray */
+        System.out.println("7 is located at index: " + indexOfSeven);
+
+        /* Find the number 13 in the sortedArray */
+        int indexOfThirteen = binarySearch(sortedArray, 13);
+
+        /* Print the index of 13 */
+        System.out.println("13 is located at index: " + indexOfThirteen); // -1 because 13 is not in sortedArray
 
     }
 
@@ -65,16 +81,30 @@ public class SequentialSearch {
     }
 
     /* Method that finds the index of a number using binary search */
-    // public static int binarySearch(int[] numArr, int targetNum) {
-    //     /* Get the index of the first and last number */
-    //     int lowIndex = 0;
-    //     int highIndex = numArr.length - 1;
-    //     while (lowIndex <= highIndex) {
-    //         /* Starts at the middle of the array */
-    //         int midIndex = (lowIndex + highIndex) / 2;
-    //         int numDiff = numArr[midIndex] - targetNum;
+    public static int binarySearch(int[] numArr, int targetNum) {
+        /* Get the index of the first and last number */
+        int lowIndex = 0;
+        int highIndex = numArr.length - 1;
+        while (lowIndex <= highIndex) {
+            /* Starts at the middle of the array */
+            int midIndex = (lowIndex + highIndex) / 2;
+            int numDiff = numArr[midIndex] - targetNum;
 
-    //     }
-    // }
+            if (numDiff == 0) {
+                return midIndex;
+            }
+            /* If the current number is lower than the targetNum */
+            else if (numDiff < 0) {
+                lowIndex = midIndex + 1;
+            }
+            /* If the current number is higher than the targetNum */
+            else {
+                highIndex = midIndex - 1;
+            }
+
+        }
+        /* If the element is not in the array, return -1 */
+        return -1;
+    }
 
 }

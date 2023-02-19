@@ -255,6 +255,7 @@ public class SalesmenRecord implements SalesmenMethods {
             askInfo();
         } else if (Character.toLowerCase(userChoice) == 'n') {
             System.out.println("\n[Terminated Program]");
+            userInput.close();
         } else {
             System.out.println("\n[Invalid Choice, Restarting Program]");
             askInfo();

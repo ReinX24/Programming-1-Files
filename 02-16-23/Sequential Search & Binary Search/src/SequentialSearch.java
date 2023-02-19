@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class SequentialSearch {
 
     public static void main(String[] args) {
@@ -51,6 +53,11 @@ public class SequentialSearch {
         /* Print the index of 13 */
         System.out.println("13 is located at index: " + indexOfThirteen); // -1 because 13 is not in sortedArray
 
+        /* Reshuffling the order of numArr elements */
+        numArr = shuffleArr(numArr);
+        System.out.println("[Shuffled numArr]");
+        System.out.println(toStringArr(numArr));
+
     }
 
     /* Method that returns a String of the Array */
@@ -90,7 +97,16 @@ public class SequentialSearch {
 
     /* Method that shuffles the elements within the array */
     public static int[] shuffleArr(int[] shuffleArr) {
-        // TODO: Program shuffleArr method & create an instance of its implementation
+        /* Random object to access Random methods */
+        Random randNum = new Random();
+        /* Start loop at the end of the array */
+        for (int i = shuffleArr.length - 1; i > 0; i--) {
+            /* Generate a number that is >= 0 && < i */
+            int randomIndex = randNum.nextInt(i);
+            /* Swap the places of i and randomIndex in the array */
+            swapNums(shuffleArr, i, randomIndex);
+        }
+        /* Return shuffleArr */
         return shuffleArr;
     }
 

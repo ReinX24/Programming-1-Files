@@ -79,3 +79,4 @@
 
 #### 02/16/23 💰
 - Salesmen Record Program (From Introduction to Computing Excel Worksheet)
+- Sequential Search & Binary Search (Also includes Selection Sort, Randomize elements' order in an Array, Sequential Search, & Binary Search)

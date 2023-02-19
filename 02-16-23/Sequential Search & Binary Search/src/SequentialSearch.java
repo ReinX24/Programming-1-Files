@@ -5,7 +5,7 @@ public class SequentialSearch {
     public static void main(String[] args) {
 
         /* Array of unsorted numbers */
-        int[] numArr = { 1, 3, 5, 2, 8, 4, 6, 10, 9, 7 };
+        int[] numArr = { 2, 3, 5, 1, 8, 4, 6, 10, 9, 7 };
 
         /* Printing numArr through a method */
         System.out.println(toStringArr(numArr));
@@ -55,7 +55,7 @@ public class SequentialSearch {
 
         /* Reshuffling the order of numArr elements */
         numArr = shuffleArr(numArr);
-        System.out.println("[Shuffled numArr]");
+        System.out.println("[Shuffled Array]");
         System.out.println(toStringArr(numArr));
 
     }

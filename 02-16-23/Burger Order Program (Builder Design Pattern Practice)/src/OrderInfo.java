@@ -43,6 +43,7 @@ public class OrderInfo implements OrderInfoMethods {
         } else {
             /* If the userChoice in invalid */
             System.out.println("\n[Invalid Input, Restarting Program]");
+            askIfOrder();
         }
     }
 

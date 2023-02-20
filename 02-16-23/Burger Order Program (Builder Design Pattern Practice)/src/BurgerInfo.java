@@ -12,6 +12,7 @@ public class BurgerInfo implements BurgerInfoMethods {
     boolean hasCucumber;
     boolean hasOnions;
     boolean hasKetchup;
+    int burgerAmount;
 
     public BurgerInfo(String customerName) {
         this.customerName = customerName;
@@ -20,7 +21,10 @@ public class BurgerInfo implements BurgerInfoMethods {
     @Override
     public StringBuilder askBurgerInfo() {
         StringBuilder burgerReceipt = new StringBuilder();
-        burgerReceipt.append("[Customer Name: " + customerName + "]\n");
+        burgerReceipt.append("\n------------------------\n");
+        burgerReceipt.append("[Order Receipt]\n");
+        burgerReceipt.append("------------------------\n");
+        burgerReceipt.append("\n[Customer Name: " + this.customerName + "]\n");
         this.bunAmount = askBunAmount();
         burgerReceipt.append("[Bun Amount: " + this.bunAmount + "]\n");
         this.pattyAmount = askPattyAmount();
@@ -35,7 +39,11 @@ public class BurgerInfo implements BurgerInfoMethods {
         burgerReceipt.append("[Has Onions: " + this.hasOnions + "]\n");
         this.hasKetchup = askHasKetchup();
         burgerReceipt.append("[Has Ketchup: " + this.hasKetchup + "]\n");
-        burgerReceipt.append("[Total Cost: " + this.orderTotalCost + "]\n");
+        this.burgerAmount = askBurgerAmount();
+        burgerReceipt.append("[Amount of Burgers: " + this.burgerAmount + "]\n");
+        burgerReceipt.append("\n[Total Cost: " + this.orderTotalCost + "]\n");
+        burgerReceipt.append("\n------------------------\n");
+        userInput.close();
         return burgerReceipt;
     }
 
@@ -108,6 +116,19 @@ public class BurgerInfo implements BurgerInfoMethods {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public int askBurgerAmount() {
+        System.out.print("Amount of burgers for order?         [Max of 5] : ");
+        int burgerAmount = userInput.nextInt();
+        if (burgerAmount >= 5) {
+            // TODO: Debug askBurgerAmount method
+            askBurgerAmount();
+        }
+        this.orderTotalCost += burgerAmount * this.orderTotalCost;
+        return burgerAmount;
+
     }
 
 }

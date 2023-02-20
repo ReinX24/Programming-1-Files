@@ -27,4 +27,7 @@ public interface BurgerInfoMethods {
     /* Method that asks if the user wants ketchup on their burger or not */
     boolean askHasKetchup();
 
+    /* Method that asks how many burgers does the user want with the same attributes */
+    int askBurgerAmount();
+
 }

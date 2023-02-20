@@ -1,9 +1,15 @@
 public interface BurgerInfoMethods {
 
-    /* Method that executes the methods that asks the user information about their burger */
+    /*
+     * Method that executes the methods that asks the user information about their
+     * burger
+     */
     StringBuilder askBurgerInfo();
 
-    /* Method that asks if the user wants 1 or 2 patties on their burger */
+    /* Method that asks how much buns the user wants */
+    int askBunAmount();
+
+    /* Method that asks if the user wants 1 or more patties on their burger */
     int askPattyAmount();
 
     /* Method that asks if the user wants cheese on their burger or not */
@@ -20,5 +26,5 @@ public interface BurgerInfoMethods {
 
     /* Method that asks if the user wants ketchup on their burger or not */
     boolean askHasKetchup();
-    
+
 }

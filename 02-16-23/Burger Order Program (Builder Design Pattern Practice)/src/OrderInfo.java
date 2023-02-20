@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class OrderInfo implements OrderInfoMethods{
+public class OrderInfo implements OrderInfoMethods {
 
     Scanner userInput = new Scanner(System.in);
     char userChoice;
@@ -17,40 +17,43 @@ public class OrderInfo implements OrderInfoMethods{
         askCustomerName();
         /* Creates an order with the name of the user */
         createOrder(customerName);
+        /* Prints orderReceipt */
+        printReceipt();
         /* Closes userInput Scanner object */
         userInput.close();
 
     }
 
     public void askConfirm() {
-        System.out.printf("%50s", "[Burger Order Program]\n");
+        System.out.printf("\n%50s\n\n", "[Burger Order Program]");
         System.out.print("Do you want to order a burger? [y/n] : ");
-        userChoice = userInput.next().charAt(0);
+        this.userChoice = userInput.next().charAt(0);
+        userInput.nextLine();
     }
 
     public void checkInput() {
-        if (Character.toLowerCase(userChoice) == 'y') {
+        if (Character.toLowerCase(this.userChoice) == 'y') {
             /* Print confirmation message & ask for userName */
-            System.out.println("[Confirmed!]");
-        } else if (Character.toLowerCase(userChoice) == 'n') {
+            System.out.println("\n[Confirmed!]\n");
+        } else if (Character.toLowerCase(this.userChoice) == 'n') {
             /* Cancels order & terminates program */
-            System.out.println("[Cancelled!]");
+            System.out.println("\n[Cancelled!]\n");
             userInput.close();
             return;
         } else {
             /* If the userChoice in invalid */
-            System.out.println("[Invalid Input, Restarting Program]");
+            System.out.println("\n[Invalid Input, Restarting Program]");
         }
     }
 
     public void askCustomerName() {
         System.out.print("Enter your name: ");
-        customerName = userInput.nextLine();
+        this.customerName = userInput.nextLine();
     }
 
     public void createOrder(String customerName) {
-        System.out.println("[Order for " + customerName + " coming right up!]");
-        BurgerInfo customerOrder = new BurgerInfo(customerName);
+        System.out.println("\n[Order for " + this.customerName + " coming right up!]\n");
+        BurgerInfo customerOrder = new BurgerInfo(this.customerName);
         this.orderReceipt = customerOrder.askBurgerInfo();
     }
 

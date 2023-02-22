@@ -57,7 +57,6 @@ public class BurgerInfo implements BurgerInfoMethods {
         this.dineIn = askIfDineIn();
         burgerReceipt.append("[Dine in: " + this.dineIn + "]\n");
         burgerReceipt.append("\n------------------------\n");
-        userInput.close();
         return burgerReceipt;
     }
 

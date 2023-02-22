@@ -22,7 +22,7 @@ public class OrderInfo implements OrderInfoMethods {
         /* Asks for the user's confirmation for their order */
         askUserOrderConfirmation();
         /* Closes userInput Scanner object */
-        this.userInput.close();
+        // this.userInput.close();
 
     }
 
@@ -40,7 +40,6 @@ public class OrderInfo implements OrderInfoMethods {
         } else if (Character.toLowerCase(this.userChoice) == 'n') {
             /* Cancels order & terminates program */
             System.out.println("\n[Cancelled!]\n");
-            this.userInput.close();
             return;
         } else {
             /* If the userChoice in invalid */
@@ -64,33 +63,24 @@ public class OrderInfo implements OrderInfoMethods {
         System.out.println(this.orderReceipt);
     }
 
-    // TODO: Ask the user for confirmation for their order
     @Override
     public void askUserOrderConfirmation() {
-        // TODO: Debug this method, shown an exception
-        Scanner test = new Scanner(System.in);
-        System.out.print("Confirm order? [y/n] : ");
-        
-        testConfirm();
-  
-    }
-
-    public void testConfirm() {
+        this.userChoice = ' ';
+        System.out.print("Confirm Order? [y/n] : ");
+        this.userChoice = this.userInput.next().charAt(0);
         if (Character.toLowerCase(this.userChoice) == 'y') {
             System.out.println("[Order Confirmed!]");
         } else if (Character.toLowerCase(this.userChoice) == 'n') {
-            System.out.println("[Order Cancelled! Restarting Order]");
-        } else {
-            System.out.println("[Invalid Input, Restarting Confirmation]");
-            System.out.println("Confirm order? [y/n] : ");
-            this.userChoice = userInput.next().charAt(0);
+            System.out.println("[Order Cancelled!]");
+        } 
+        // TODO: Debug this else statement
+        else {
+            while (Character.toLowerCase(userChoice) != 'y' || Character.toLowerCase(userChoice) != 'n') {
+                System.out.println("[Invalid Input, Restarting Confirmation]");
+                System.out.print("Confirm Order? [y/n] : ");
+                this.userChoice = this.userInput.next().charAt(0);
+            }
         }
-    }
-
-    // TODO: Ask user if they want to order a different burger
-    @Override
-    public void askIfOrderAgain() {
-        // TODO Auto-generated method stub
 
     }
 

@@ -9,7 +9,7 @@ public class OrderInfo implements OrderInfoMethods {
 
     public void askIfOrder() {
 
-        /* Ask the user if they want to order a burder */
+        /* Asks the user if they want to order a burder */
         askConfirm();
         /* If y, confirm order, create a burgerInfo object, & execute askInfo method */
         checkInput();
@@ -17,18 +17,20 @@ public class OrderInfo implements OrderInfoMethods {
         askCustomerName();
         /* Creates an order with the name of the user */
         createOrder(customerName);
-        /* Prints orderReceipt */
+        /* Prints the receipt */
         printReceipt();
+        /* Asks for the user's confirmation for their order */
+        askUserOrderConfirmation();
         /* Closes userInput Scanner object */
-        userInput.close();
+        this.userInput.close();
 
     }
 
     public void askConfirm() {
         System.out.printf("\n%50s\n\n", "[Burger Order Program]");
         System.out.print("Do you want to order a burger? [y/n] : ");
-        this.userChoice = userInput.next().charAt(0);
-        userInput.nextLine();
+        this.userChoice = this.userInput.next().charAt(0);
+        this.userInput.nextLine(); // we put nextLine here to fix console text formatting
     }
 
     public void checkInput() {
@@ -38,7 +40,7 @@ public class OrderInfo implements OrderInfoMethods {
         } else if (Character.toLowerCase(this.userChoice) == 'n') {
             /* Cancels order & terminates program */
             System.out.println("\n[Cancelled!]\n");
-            userInput.close();
+            this.userInput.close();
             return;
         } else {
             /* If the userChoice in invalid */
@@ -49,7 +51,7 @@ public class OrderInfo implements OrderInfoMethods {
 
     public void askCustomerName() {
         System.out.print("Enter your name: ");
-        this.customerName = userInput.nextLine();
+        this.customerName = this.userInput.nextLine();
     }
 
     public void createOrder(String customerName) {
@@ -60,6 +62,36 @@ public class OrderInfo implements OrderInfoMethods {
 
     public void printReceipt() {
         System.out.println(this.orderReceipt);
+    }
+
+    // TODO: Ask the user for confirmation for their order
+    @Override
+    public void askUserOrderConfirmation() {
+        // TODO: Debug this method, shown an exception
+        Scanner test = new Scanner(System.in);
+        System.out.print("Confirm order? [y/n] : ");
+        
+        testConfirm();
+  
+    }
+
+    public void testConfirm() {
+        if (Character.toLowerCase(this.userChoice) == 'y') {
+            System.out.println("[Order Confirmed!]");
+        } else if (Character.toLowerCase(this.userChoice) == 'n') {
+            System.out.println("[Order Cancelled! Restarting Order]");
+        } else {
+            System.out.println("[Invalid Input, Restarting Confirmation]");
+            System.out.println("Confirm order? [y/n] : ");
+            this.userChoice = userInput.next().charAt(0);
+        }
+    }
+
+    // TODO: Ask user if they want to order a different burger
+    @Override
+    public void askIfOrderAgain() {
+        // TODO Auto-generated method stub
+
     }
 
 }

@@ -15,4 +15,13 @@ public interface OrderInfoMethods {
     /* Method that creates a BurgerInfo object with the customerName */
     void createOrder(String customerName);
 
+    /* Method that asks the user if they are sure with their purchase */
+    void askUserOrderConfirmation();
+
+    /*
+     * Method that asks the user if they want to order another burger but with
+     * different attributes
+     */
+    void askIfOrderAgain();
+
 }

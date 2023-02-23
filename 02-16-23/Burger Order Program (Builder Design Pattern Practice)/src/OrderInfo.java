@@ -63,23 +63,17 @@ public class OrderInfo implements OrderInfoMethods {
         System.out.println(this.orderReceipt);
     }
 
-    @Override
     public void askUserOrderConfirmation() {
-        this.userChoice = ' ';
         System.out.print("Confirm Order? [y/n] : ");
         this.userChoice = this.userInput.next().charAt(0);
         if (Character.toLowerCase(this.userChoice) == 'y') {
             System.out.println("[Order Confirmed!]");
         } else if (Character.toLowerCase(this.userChoice) == 'n') {
             System.out.println("[Order Cancelled!]");
-        } 
-        // TODO: Debug this else statement
-        else {
-            while (Character.toLowerCase(userChoice) != 'y' || Character.toLowerCase(userChoice) != 'n') {
-                System.out.println("[Invalid Input, Restarting Confirmation]");
-                System.out.print("Confirm Order? [y/n] : ");
-                this.userChoice = this.userInput.next().charAt(0);
-            }
+        } else {
+            System.out.println("[Invalid Input, Restarting Confirmation]");
+            /* Asks the user for their confimation again */
+            askUserOrderConfirmation();
         }
 
     }

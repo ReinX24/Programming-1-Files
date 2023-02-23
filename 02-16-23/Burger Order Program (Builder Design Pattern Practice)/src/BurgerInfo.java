@@ -5,6 +5,7 @@ public class BurgerInfo implements BurgerInfoMethods {
     Scanner userInput = new Scanner(System.in);
     String customerName;
     int orderTotalCost;
+    /* Stores ingredients' information */
     int bunAmount;
     int pattyAmount;
     boolean hasCheese;
@@ -14,12 +15,21 @@ public class BurgerInfo implements BurgerInfoMethods {
     boolean hasKetchup;
     int burgerAmount;
     boolean dineIn;
+    /* Prices of each ingredient */
+    final int BUN_PRICE = 10;
+    final int PATTY_PRICE = 20;
+    final int CHEESE_PRICE = 5;
+    final int LETTUCE_PRICE = 8;
+    final int CUCUMBER_PRICE = 7;
+    final int ONION_PRICE = 5;
+    final int KETCHUP_PRICE = 6;
+    /* Price add on for take-out */
+    final int TAKEOUT_PRICE = 5;
 
     public BurgerInfo(String customerName) {
         this.customerName = customerName;
     }
 
-    @Override
     public StringBuilder askBurgerInfo() {
         StringBuilder burgerReceipt = new StringBuilder();
         burgerReceipt.append("\n------------------------\n");
@@ -61,96 +71,97 @@ public class BurgerInfo implements BurgerInfoMethods {
     }
 
     // TODO: Manually test different cases for creating a burger
-    // TODO: Put each ingredient amount in their own final in variables
-    @Override
     public int askBunAmount() {
         System.out.print("Amount of buns for burger?           [P10 per piece] : ");
         int bunAmount = userInput.nextInt();
-        if (bunAmount > 1) {
-            System.out.println(bunAmount + " buns ordered! P" + bunAmount * 10 + " added to total cost.");
+        /* If the burger has 0 buns */
+        if (bunAmount <= 0) {
+            System.out.println("[Burger Has No Buns!]");
+            askBunAmount();
+        } else if (bunAmount > 1) {
+            System.out.println(bunAmount + " buns ordered! P" + bunAmount * BUN_PRICE + " added to total cost.");
         } else {
-            System.out.println(bunAmount + " bun ordered! P" + bunAmount * 10 + " added to total cost.");
+            System.out.println(bunAmount + " bun ordered! P" + bunAmount * BUN_PRICE + " added to total cost.");
         }
-        // TODO: add error message that says the burger cannot have 0 buns
-        this.orderTotalCost += bunAmount * 10;
+        this.orderTotalCost += bunAmount * BUN_PRICE;
+        printTotal();
         return bunAmount;
     }
 
-    @Override
     public int askPattyAmount() {
         System.out.print("Amount of patties for burger?        [P20 per piece] : ");
         int pattyAmount = userInput.nextInt();
-        if (pattyAmount > 1) {
-            System.out.println(pattyAmount + " patties ordered! P" + pattyAmount * 20 + " added to total cost.");
+        /* If the burger has 0 patties */
+        if (pattyAmount <= 0) {
+            System.out.println("[Burger Has No Patties!]");
+            askPattyAmount();
+        } else if (pattyAmount > 1) {
+            System.out
+                    .println(pattyAmount + " patties ordered! P" + pattyAmount * PATTY_PRICE + " added to total cost.");
         } else {
-            System.out.println(pattyAmount + " patty ordered! P" + pattyAmount * 20 + " added to total cost.");
+            System.out.println(pattyAmount + " patty ordered! P" + pattyAmount * PATTY_PRICE + " added to total cost.");
         }
-        // TODO: add error message that says the burger cannot have 0 patties
-        this.orderTotalCost += pattyAmount * 20;
+        this.orderTotalCost += pattyAmount * PATTY_PRICE;
+        printTotal();
         return pattyAmount;
     }
 
-    @Override
+    // TODO: print total cost of order after each decision for each ingredient
     public boolean askHasCheese() {
         System.out.print("Do you want cheese on your burger?   [y/n] [P5 for add on] : ");
         char userChoice = userInput.next().charAt(0);
         if (Character.toLowerCase(userChoice) == 'y') {
             System.out.println("Cheese added to burger! P5 added to total cost.");
-            this.orderTotalCost += 5;
+            this.orderTotalCost += CHEESE_PRICE;
             return true;
         }
         return false;
     }
 
-    @Override
     public boolean askHasLettuce() {
         System.out.print("Do you want lettuce on your burger?  [y/n] [P8 for add on] : ");
         char userChoice = userInput.next().charAt(0);
         if (Character.toLowerCase(userChoice) == 'y') {
             System.out.println("Lettuce added to burger! P8 added to total cost.");
-            this.orderTotalCost += 8;
+            this.orderTotalCost += LETTUCE_PRICE;
             return true;
         }
         return false;
     }
 
-    @Override
     public boolean askHasCucumber() {
         System.out.print("Do you want cucumber on your burger? [y/n] [P7 for add on] : ");
         char userChoice = userInput.next().charAt(0);
         if (Character.toLowerCase(userChoice) == 'y') {
             System.out.println("Cucumber added to burger! P7 added to total cost.");
-            this.orderTotalCost += 7;
+            this.orderTotalCost += CUCUMBER_PRICE;
             return true;
         }
         return false;
     }
 
-    @Override
     public boolean askHasOnions() {
         System.out.print("Do you want onions on your burger?   [y/n] [P5 for add on] : ");
         char userChoice = userInput.next().charAt(0);
         if (Character.toLowerCase(userChoice) == 'y') {
             System.out.println("Onions added to burger! P5 added to total cost.");
-            this.orderTotalCost += 5;
+            this.orderTotalCost += ONION_PRICE;
             return true;
         }
         return false;
     }
 
-    @Override
     public boolean askHasKetchup() {
         System.out.print("Do you want ketchup on your burger?  [y/n] [P6 for add on] : ");
         char userChoice = userInput.next().charAt(0);
         if (Character.toLowerCase(userChoice) == 'y') {
             System.out.println("Ketchup added to burger! P6 added to total cost.");
-            this.orderTotalCost += 6;
+            this.orderTotalCost += KETCHUP_PRICE;
             return true;
         }
         return false;
     }
 
-    @Override
     public int askBurgerAmount() {
         System.out.print("Amount of burgers for order?         [Max of 5] : ");
         int burgerAmount = userInput.nextInt();
@@ -165,7 +176,6 @@ public class BurgerInfo implements BurgerInfoMethods {
 
     }
 
-    @Override
     public boolean askIfDineIn() {
         System.out.print("Will you be dining in?               [y/n] [P5 for take out] : ");
         char userChoice = userInput.next().charAt(0);
@@ -173,8 +183,12 @@ public class BurgerInfo implements BurgerInfoMethods {
             return true;
         }
         System.out.println("Take out chosen, P5 added to toal cost.");
-        this.orderTotalCost += 5;
+        this.orderTotalCost += TAKEOUT_PRICE;
         return false;
+    }
+
+    public void printTotal() {
+        System.out.println("Current Total Cost : " + this.orderTotalCost);
     }
 
 }

@@ -16,6 +16,13 @@ public class InitiateOrder {
          * that could be inserted in the burger.
          */
 
+        /*
+         * 2/23/23 Note: Do not close your Scanner object in a class if other classes
+         * are still going to use the Scanner class. Closing the Scanner class of one
+         * class throws an exception when using the Scanner class in another class AFTER
+         * closing the Scanner class.
+         */
+
         OrderInfo askIfOrder = new OrderInfo();
         askIfOrder.askIfOrder();
 

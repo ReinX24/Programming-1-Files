@@ -35,4 +35,7 @@ public interface BurgerInfoMethods {
     /* Ask if dine in or take out */
     boolean askIfDineIn();
 
+    /* Method that prints the totat cost of the order */
+    void printTotal();
+
 }

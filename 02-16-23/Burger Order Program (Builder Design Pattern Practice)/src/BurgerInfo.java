@@ -211,4 +211,8 @@ public class BurgerInfo implements BurgerInfoMethods {
         System.out.println("\n[Current Total Cost : P" + this.orderTotalCost + "]");
     }
 
+    public int getTotalCost() {
+        return this.orderTotalCost;
+    }
+
 }

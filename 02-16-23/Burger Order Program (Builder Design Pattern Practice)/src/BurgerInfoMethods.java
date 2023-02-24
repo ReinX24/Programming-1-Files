@@ -38,4 +38,7 @@ public interface BurgerInfoMethods {
     /* Method that prints the totat cost of the order */
     void printTotal();
 
+    /* Method that returns the total cost of the order */
+    int getTotalCost();
+
 }

@@ -64,11 +64,16 @@ public class OrderInfo implements OrderInfoMethods {
     }
 
     public void askUserOrderConfirmation() {
-        // TODO: if y, charge the user, if n, do nothing
+        // TODO: Add this feature, details below
+        /*
+         * When the user confirms their order, ask for their payment. If not, just ask
+         * them if they want to order another burger again.
+         */
         System.out.print("Confirm Order? [y/n] : ");
         this.userChoice = this.userInput.next().charAt(0);
         if (Character.toLowerCase(this.userChoice) == 'y') {
             System.out.println("\n[Order Confirmed!]\n");
+            askOrderPayment(); // method that asks for payment from the user
         } else if (Character.toLowerCase(this.userChoice) == 'n') {
             System.out.println("\n[Order Cancelled!]\n");
         } else {
@@ -90,6 +95,11 @@ public class OrderInfo implements OrderInfoMethods {
             System.out.println("\n[Invalid Input, Restarting Prompt]\n");
             askUserOrderAgain(); // executes this method again
         }
+    }
+
+    public void askOrderPayment() {
+        // TODO: Finish this method & implement it in program
+        System.out.println("Please pay ");
     }
 
 }

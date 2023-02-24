@@ -21,4 +21,7 @@ public interface OrderInfoMethods {
     /* Method that asks the user if they want to order another burger */
     void askUserOrderAgain();
 
+    /* Method that asks for payment */
+    void askOrderPayment();
+
 }

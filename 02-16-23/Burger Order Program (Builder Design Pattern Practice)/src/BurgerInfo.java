@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class BurgerInfo implements BurgerInfoMethods {
@@ -80,20 +81,29 @@ public class BurgerInfo implements BurgerInfoMethods {
 
     // TODO: Manually test different cases for creating a burger
     public int askBunAmount() {
-        System.out.print("\nAmount of buns for burger?           [P10 per piece] : ");
-        int bunAmount = userInput.nextInt();
-        /* If the burger has 0 buns */
-        if (bunAmount <= 0) {
-            System.out.println("[Burger Has No Buns!]");
+        try {
+            System.out.print("\nAmount of buns for burger?           [P10 per piece] : ");
+            int bunAmount = userInput.nextInt();
+            /* If the burger has 0 buns */
+            if (bunAmount == 0) {
+                System.out.println("[Burger Has No Buns!]");
+                askBunAmount();
+            } else if (bunAmount > 1) {
+                System.out.println(bunAmount + " buns ordered! P" + bunAmount * BUN_PRICE + " added to total cost.");
+            } else {
+                System.out.println(bunAmount + " bun ordered! P" + bunAmount * BUN_PRICE + " added to total cost.");
+            }
+            this.orderTotalCost += bunAmount * BUN_PRICE;
+            printTotal();
+
+        } catch (InputMismatchException ex) {
+            System.out.println("\n[Error, Invalid Input]");
+            userInput.next();
             askBunAmount();
-        } else if (bunAmount > 1) {
-            System.out.println(bunAmount + " buns ordered! P" + bunAmount * BUN_PRICE + " added to total cost.");
-        } else {
-            System.out.println(bunAmount + " bun ordered! P" + bunAmount * BUN_PRICE + " added to total cost.");
         }
-        this.orderTotalCost += bunAmount * BUN_PRICE;
-        printTotal();
+        // TODO: Add try catch methods to the methods in this class
         return bunAmount;
+
     }
 
     public int askPattyAmount() {

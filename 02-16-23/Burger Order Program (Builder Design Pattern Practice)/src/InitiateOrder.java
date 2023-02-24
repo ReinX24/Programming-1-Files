@@ -23,6 +23,13 @@ public class InitiateOrder {
          * closing the Scanner class.
          */
 
+        /*
+         * 2/24/23 The last major feature that will be added is that we will probably implement
+         * try catch methods within our program. This will probably be the last project
+         * that I will add to this repository and future commits will probably be just
+         * fixing the pre-existing code in this repository.
+         */
+
         OrderInfo askIfOrder = new OrderInfo();
         askIfOrder.askIfOrder();
 

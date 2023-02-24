@@ -30,10 +30,10 @@ public class OrderInfo implements OrderInfoMethods {
     }
 
     public void askIfOrderConfirm() {
-        System.out.printf("\n%50s\n\n", "[Burger Order Program]");
-        System.out.print("Do you want to order a burger? [y/n] : ");
-        this.userChoice = this.userInput.next().charAt(0);
-        this.userInput.nextLine(); // we put nextLine here to fix console text formatting
+            System.out.printf("\n%50s\n\n", "[Burger Order Program]");
+            System.out.print("Do you want to order a burger? [y/n] : ");
+            this.userChoice = this.userInput.next().charAt(0);
+            this.userInput.nextLine(); // we put nextLine here to fix console text formatting
     }
 
     public void checkInput() {

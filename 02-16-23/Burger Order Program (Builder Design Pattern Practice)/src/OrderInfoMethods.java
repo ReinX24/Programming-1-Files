@@ -4,7 +4,7 @@ public interface OrderInfoMethods {
     void askIfOrder();
 
     /* Method that asks if the user wants to order a burger or not */
-    void askConfirm();
+    void askIfOrderConfirm();
 
     /* Method that checks the user input */
     void checkInput();
@@ -17,5 +17,8 @@ public interface OrderInfoMethods {
 
     /* Method that asks the user if they want to confirm their order */
     void askUserOrderConfirmation();
+
+    /* Method that asks the user if they want to order another burger */
+    void askUserOrderAgain();
 
 }

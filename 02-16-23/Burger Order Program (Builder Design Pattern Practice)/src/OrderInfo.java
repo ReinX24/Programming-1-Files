@@ -6,6 +6,7 @@ public class OrderInfo implements OrderInfoMethods {
     char userChoice;
     String customerName;
     StringBuilder orderReceipt;
+    int orderTotalCost;
 
     public void askIfOrder() {
 
@@ -21,6 +22,8 @@ public class OrderInfo implements OrderInfoMethods {
         printReceipt();
         /* Asks for the user's confirmation for their order */
         askUserOrderConfirmation();
+        /* Asks the user to pay for their order */
+        askOrderPayment();
         /* Asks the user if they want to order another burger */
         askUserOrderAgain();
 
@@ -57,6 +60,7 @@ public class OrderInfo implements OrderInfoMethods {
         System.out.println("\n[Order for " + this.customerName + " coming right up!]");
         BurgerInfo customerOrder = new BurgerInfo(this.customerName);
         this.orderReceipt = customerOrder.askBurgerInfo();
+        this.orderTotalCost = customerOrder.getTotalCost(); // get the total cost from BurgerInfo
     }
 
     public void printReceipt() {
@@ -64,16 +68,10 @@ public class OrderInfo implements OrderInfoMethods {
     }
 
     public void askUserOrderConfirmation() {
-        // TODO: Add this feature, details below
-        /*
-         * When the user confirms their order, ask for their payment. If not, just ask
-         * them if they want to order another burger again.
-         */
         System.out.print("Confirm Order? [y/n] : ");
         this.userChoice = this.userInput.next().charAt(0);
         if (Character.toLowerCase(this.userChoice) == 'y') {
             System.out.println("\n[Order Confirmed!]\n");
-            askOrderPayment(); // method that asks for payment from the user
         } else if (Character.toLowerCase(this.userChoice) == 'n') {
             System.out.println("\n[Order Cancelled!]\n");
         } else {
@@ -98,8 +96,17 @@ public class OrderInfo implements OrderInfoMethods {
     }
 
     public void askOrderPayment() {
-        // TODO: Finish this method & implement it in program
-        System.out.println("Please pay ");
+        System.out.println("[Please pay P" + this.orderTotalCost + " to complete your transaction]\n");
+        System.out.print("Do you agree to pay P" + this.orderTotalCost + " [y/n] : ");
+        this.userChoice = this.userInput.next().charAt(0);
+        if (Character.toLowerCase(this.userChoice) == 'y') {
+            System.out.println("\n[Transaction Successful]\n");
+        } else if (Character.toLowerCase(this.userChoice) == 'n') {
+            System.out.println("\n[Transaction Cancelled]\n");
+        } else {
+            System.out.println("\n[Invalid Input, Restarting Prompt]\n");
+            askOrderPayment();
+        }
     }
 
 }

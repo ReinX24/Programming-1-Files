@@ -1,4 +1,3 @@
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class BurgerInfo implements BurgerInfoMethods {
@@ -54,10 +53,10 @@ public class BurgerInfo implements BurgerInfoMethods {
         askPattyAmount();
         burgerReceipt.append("[Patty Amount\t: " + this.pattyBurgerAmount + "\t]\n");
         /* Asking if the burger has cheese and recording in receipt */
-        this.hasCheese = askHasCheese();
+        askHasCheese();
         burgerReceipt.append("[Has Cheese\t: " + this.hasCheese + "\t]\n");
         /* Asking if the burger has lettuce and recording in receipt */
-        this.hasLettuce = askHasLettuce();
+        askHasLettuce();
         burgerReceipt.append("[Has Lettuce\t: " + this.hasLettuce + "\t]\n");
         /* Asking if the burger has cucumber and recording in receipt */
         this.hasCucumber = askHasCucumber();
@@ -104,56 +103,86 @@ public class BurgerInfo implements BurgerInfoMethods {
             } else {
                 this.errorExist = true;
                 userInput.next();
-                System.out.println("[Invalid Input Detected!]");
+                System.out.println("\n[Invalid Input Detected!]");
                 continue;
             }
         } while (errorExist);
     }
 
-    // TODO: Implement hasNextInt in this method
     public void askPattyAmount() {
-        System.out.print("\nAmount of patties for burger?        [P20 per piece] : ");
-        int pattyAmount = userInput.nextInt();
-        /* If the burger has 0 patties */
-        if (pattyAmount <= 0) {
-            System.out.println("[Burger Has No Patties!]");
-            askPattyAmount();
-        } else if (pattyAmount > 1) {
-            System.out
-                    .println(pattyAmount + " patties ordered! P" + pattyAmount * PATTY_PRICE + " added to total cost.");
-        } else {
-            System.out.println(pattyAmount + " patty ordered! P" + pattyAmount * PATTY_PRICE + " added to total cost.");
-        }
-        this.orderTotalCost += pattyAmount * PATTY_PRICE;
-        printTotal();
-        this.pattyBurgerAmount = pattyAmount;
+        do {
+            System.out.print("\nAmount of patties for burger?        [P20 per piece] : ");
+            if (userInput.hasNextInt()) {
+                int pattyAmount = userInput.nextInt();
+                /* If the burger has 0 patties */
+                if (pattyAmount <= 0) {
+                    System.out.println("[Burger Has No Patties!]");
+                    askPattyAmount();
+                } else if (pattyAmount > 1) {
+                    System.out
+                            .println(pattyAmount + " patties ordered! P" + pattyAmount * PATTY_PRICE
+                                    + " added to total cost.");
+                } else {
+                    System.out.println(
+                            pattyAmount + " patty ordered! P" + pattyAmount * PATTY_PRICE + " added to total cost.");
+                }
+                this.orderTotalCost += pattyAmount * PATTY_PRICE;
+                printTotal();
+                this.pattyBurgerAmount = pattyAmount;
+                this.errorExist = false;
+            } else {
+                this.errorExist = true;
+                userInput.next(); // just next for int
+                System.out.println("\n[Invalid Input Detected!]");
+                continue;
+            }
+        } while (errorExist);
     }
 
-    // TODO: Implement hasNextInt but for booleans
-    public boolean askHasCheese() {
-        System.out.print("\nDo you want cheese on your burger?   [y/n] [P5 for add on] : ");
-        char userChoice = userInput.next().charAt(0);
-        if (Character.toLowerCase(userChoice) == 'y') {
-            System.out.println("Cheese added to burger! P5 added to total cost.");
-            this.orderTotalCost += CHEESE_PRICE;
-            printTotal();
-            return true;
-        }
+    public void askHasCheese() {
+        // ! Needs to misinput 2 times to trigger error message
+        do {
+            System.out.print("\nDo you want cheese on your burger?   [y/n] [P5 for add on] : ");
+            char userChoice = userInput.next().charAt(0);
+            if (Character.toLowerCase(userChoice) == 'y') {
+                System.out.println("Cheese added to burger! P5 added to total cost.");
+                this.orderTotalCost += CHEESE_PRICE;
+                this.hasCheese = true;
+                this.errorExist = false;
+            } else if (Character.toLowerCase(userChoice) == 'n') {
+                this.hasCheese = false;
+                this.errorExist = false;
+            } else {
+                this.errorExist = true;
+                userInput.nextLine(); // nextLine for char
+                System.out.println("\n[Invalid Input Detected!]");
+                continue;
+            }
+        } while (errorExist);
         printTotal();
-        return false;
     }
 
-    public boolean askHasLettuce() {
+    // TODO: Test askHasLettuce
+    public void askHasLettuce() {
         System.out.print("\nDo you want lettuce on your burger?  [y/n] [P8 for add on] : ");
         char userChoice = userInput.next().charAt(0);
-        if (Character.toLowerCase(userChoice) == 'y') {
-            System.out.println("Lettuce added to burger! P8 added to total cost.");
-            this.orderTotalCost += LETTUCE_PRICE;
-            printTotal();
-            return true;
-        }
+        do {
+            if (Character.toLowerCase(userChoice) == 'y') {
+                System.out.println("Lettuce added to burger! P8 added to total cost.");
+                this.orderTotalCost += LETTUCE_PRICE;
+                this.hasLettuce = true;
+                this.errorExist = false;
+            } else if (Character.toLowerCase(userChoice) == 'n') {
+                this.hasLettuce = false;
+                this.errorExist = false;
+            } else {
+                this.errorExist = true;
+                userInput.nextLine();
+                System.out.println("\n[Invalid Input Detected!]");
+                continue;
+            }
+        } while (errorExist);
         printTotal();
-        return false;
     }
 
     public boolean askHasCucumber() {

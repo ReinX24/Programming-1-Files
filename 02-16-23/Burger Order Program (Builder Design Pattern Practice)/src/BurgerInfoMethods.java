@@ -13,10 +13,10 @@ public interface BurgerInfoMethods {
     void askPattyAmount();
 
     /* Method that asks if the user wants cheese on their burger or not */
-    boolean askHasCheese();
+    void askHasCheese();
 
     /* Method that asks if the user wants lettuce on their burger or not */
-    boolean askHasLettuce();
+    void askHasLettuce();
 
     /* Method that asks if the user wants cucumber on their burger or not */
     boolean askHasCucumber();
@@ -40,5 +40,7 @@ public interface BurgerInfoMethods {
 
     /* Method that returns the total cost of the order */
     int getTotalCost();
+
+    /* Method that converts a char value to a num value */
 
 }

@@ -59,21 +59,21 @@ public class BurgerInfo implements BurgerInfoMethods {
         askHasLettuce();
         burgerReceipt.append("[Has Lettuce\t: " + this.hasLettuce + "\t]\n");
         /* Asking if the burger has cucumber and recording in receipt */
-        this.hasCucumber = askHasCucumber();
+        askHasCucumber();
         burgerReceipt.append("[Has Cucumber\t: " + this.hasCucumber + "\t]\n");
         /* Asking if the burger has onions and recording in receipt */
-        this.hasOnions = askHasOnions();
+        askHasOnions();
         burgerReceipt.append("[Has Onions\t: " + this.hasOnions + "\t]\n");
         /* Asking if the burger has ketchup and recording in receipt */
-        this.hasKetchup = askHasKetchup();
+        askHasKetchup();
         burgerReceipt.append("[Has Ketchup\t: " + this.hasKetchup + "\t]\n");
         /* Asking how many burgers does the customer want with the same attributes */
-        this.burgerAmount = askBurgerAmount();
+        askBurgerAmount();
         /* Records amount of burgers ordered in receipt */
         burgerReceipt.append("[Burger Amount\t: " + this.burgerAmount + "\t]\n");
         burgerReceipt.append("\n[Total Cost\t: " + this.orderTotalCost + "\t]\n");
         /* Asking if the order is dine in or take out and record in receipt */
-        this.dineIn = askIfDineIn();
+        askIfDineIn();
         burgerReceipt.append("[Dine in\t: " + this.dineIn + "\t]\n");
         burgerReceipt.append("\n-------------------------\n");
         serialNumberOrder++;
@@ -185,71 +185,125 @@ public class BurgerInfo implements BurgerInfoMethods {
         printTotal();
     }
 
-    public boolean askHasCucumber() {
+    public void askHasCucumber() {
         System.out.print("\nDo you want cucumber on your burger? [y/n] [P7 for add on] : ");
         char userChoice = userInput.next().charAt(0);
-        if (Character.toLowerCase(userChoice) == 'y') {
-            System.out.println("Cucumber added to burger! P7 added to total cost.");
-            this.orderTotalCost += CUCUMBER_PRICE;
-            printTotal();
-            return true;
-        }
+        do {
+            if (Character.toLowerCase(userChoice) == 'y') {
+                System.out.println("Cucumber added to burger! P7 added to total cost.");
+                this.orderTotalCost += CUCUMBER_PRICE;
+                this.hasCucumber = true;
+                this.errorExist = false;
+            } else if (Character.toLowerCase(userChoice) == 'n') {
+                this.hasCucumber = false;
+                this.errorExist = false;
+            } else {
+                this.errorExist = true;
+                userInput.nextLine();
+                System.out.println("\n[Invalid Input Detected!]");
+                continue;
+            }
+        } while (errorExist);
         printTotal();
-        return false;
     }
 
-    public boolean askHasOnions() {
+    public void askHasOnions() {
         System.out.print("\nDo you want onions on your burger?   [y/n] [P5 for add on] : ");
         char userChoice = userInput.next().charAt(0);
-        if (Character.toLowerCase(userChoice) == 'y') {
-            System.out.println("Onions added to burger! P5 added to total cost.");
-            this.orderTotalCost += ONION_PRICE;
-            printTotal();
-            return true;
-        }
+        do {
+            if (Character.toLowerCase(userChoice) == 'y') {
+                System.out.println("Onions added to burger! P5 added to total cost.");
+                this.orderTotalCost += ONION_PRICE;
+                printTotal();
+                this.hasOnions = true;
+                this.errorExist = false;
+            } else if (Character.toLowerCase(userChoice) == 'n') {
+                this.hasOnions = false;
+                this.errorExist = false;
+            } else {
+                this.errorExist = true;
+                userInput.nextLine();
+                System.out.println("\n[Invalid Input Detected!]");
+                continue;
+            }
+        } while (errorExist);
         printTotal();
-        return false;
-    }
-
-    public boolean askHasKetchup() {
-        System.out.print("\nDo you want ketchup on your burger?  [y/n] [P6 for add on] : ");
-        char userChoice = userInput.next().charAt(0);
-        if (Character.toLowerCase(userChoice) == 'y') {
-            System.out.println("Ketchup added to burger! P6 added to total cost.");
-            this.orderTotalCost += KETCHUP_PRICE;
-            printTotal();
-            return true;
-        }
-        printTotal();
-        return false;
-    }
-
-    public int askBurgerAmount() {
-        System.out.print("\nAmount of burgers for order?         [Max of 5] : ");
-        int burgerAmount = userInput.nextInt();
-        while (burgerAmount > 5) {
-            System.out.println("[You can only order a maximum of 5 burgers!]");
-            System.out.print("Amount of burgers for order?         [Max of 5] : ");
-            burgerAmount = userInput.nextInt();
-        }
-        System.out.println("Ordered a total of " + burgerAmount + " burgers.");
-        this.orderTotalCost *= burgerAmount;
-        printTotal();
-        return burgerAmount;
 
     }
 
-    public boolean askIfDineIn() {
-        System.out.print("\nWill you be dining in?               [y/n] [P5 for take out] : ");
-        char userChoice = userInput.next().charAt(0);
-        if (Character.toLowerCase(userChoice) == 'y') {
-            printTotal();
-            return true;
-        }
-        System.out.println("Take out chosen, P5 added to toal cost.");
-        this.orderTotalCost += TAKEOUT_PRICE;
+    public void askHasKetchup() {
+        do {
+            System.out.print("\nDo you want ketchup on your burger?  [y/n] [P6 for add on] : ");
+            char userChoice = userInput.next().charAt(0);
+            if (Character.toLowerCase(userChoice) == 'y') {
+                System.out.println("Ketchup added to burger! P6 added to total cost.");
+                this.orderTotalCost += KETCHUP_PRICE;
+                printTotal();
+                this.hasKetchup = true;
+                this.errorExist = false;
+            } else if (Character.toLowerCase(userChoice) == 'n') {
+                this.hasKetchup = false;
+                this.errorExist = false;
+            } else {
+                this.errorExist = true;
+                userInput.nextLine();
+                System.out.println("\n[Invalid Input Detected!]");
+                continue;
+            }
+        } while (errorExist);
         printTotal();
-        return false;
+
+    }
+
+    public void askBurgerAmount() {
+        do {
+            System.out.print("\nAmount of burgers for order?         [Max of 5] : ");
+            if (userInput.hasNextInt()) {
+                int burgerAmount = userInput.nextInt();
+                while (burgerAmount > 5) {
+                    System.out.println("[You can only order a maximum of 5 burgers!]");
+                    System.out.print("Amount of burgers for order?         [Max of 5] : ");
+                    burgerAmount = userInput.nextInt();
+                }
+                System.out.println("Ordered a total of " + burgerAmount + " burgers.");
+                this.orderTotalCost *= burgerAmount;
+                printTotal();
+                this.burgerAmount = burgerAmount;
+                this.errorExist = false;
+            } else {
+                this.errorExist = true;
+                userInput.next();
+                System.out.println("\n[Invalid Input Detected!]");
+                continue;
+            }
+        } while (errorExist);
+
+    }
+
+    public void askIfDineIn() {
+        do {
+            System.out.print("\nWill you be dining in?               [y/n] [P5 for take out] : ");
+            char userChoice = userInput.next().charAt(0);
+            if (Character.toLowerCase(userChoice) == 'y') {
+                printTotal();
+                this.dineIn = true;
+                this.errorExist = false;
+                System.out.println("Dine in chosen, none added to total cost.");
+            } else if (Character.toLowerCase(userChoice) == 'n') {
+                printTotal();
+                this.dineIn = false;
+                this.errorExist = false;
+                System.out.println("Take out chosen, P" + TAKEOUT_PRICE + " added to total cost.");
+                this.orderTotalCost += TAKEOUT_PRICE;
+            } else {
+                this.errorExist = true;
+                userInput.next();
+                System.out.println("\n[Invalid Input Detected!]");
+                continue;
+            }
+
+        } while (errorExist);
+
     }
 
     public void printTotal() {

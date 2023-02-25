@@ -19,28 +19,26 @@ public interface BurgerInfoMethods {
     void askHasLettuce();
 
     /* Method that asks if the user wants cucumber on their burger or not */
-    boolean askHasCucumber();
+    void askHasCucumber();
 
     /* Method that asks if the user wants onions on their burger or not */
-    boolean askHasOnions();
+    void askHasOnions();
 
     /* Method that asks if the user wants ketchup on their burger or not */
-    boolean askHasKetchup();
+    void askHasKetchup();
 
     /*
      * Method that asks how many burgers does the user want with the same attributes
      */
-    int askBurgerAmount();
+    void askBurgerAmount();
 
     /* Ask if dine in or take out */
-    boolean askIfDineIn();
+    void askIfDineIn();
 
     /* Method that prints the totat cost of the order */
     void printTotal();
 
     /* Method that returns the total cost of the order */
     int getTotalCost();
-
-    /* Method that converts a char value to a num value */
 
 }

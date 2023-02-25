@@ -71,7 +71,7 @@ public class BurgerInfo implements BurgerInfoMethods {
         askBurgerAmount();
         /* Records amount of burgers ordered in receipt */
         burgerReceipt.append("[Burger Amount\t: " + this.burgerAmount + "\t]\n");
-        burgerReceipt.append("\n[Total Cost\t: " + this.orderTotalCost + "\t]\n");
+        burgerReceipt.append("\n[Total Cost\t: P" + this.orderTotalCost + "\t]\n");
         /* Asking if the order is dine in or take out and record in receipt */
         askIfDineIn();
         burgerReceipt.append("[Dine in\t: " + this.dineIn + "\t]\n");
@@ -80,7 +80,6 @@ public class BurgerInfo implements BurgerInfoMethods {
         return burgerReceipt;
     }
 
-    // TODO: Manually test different cases for creating a burger
     public void askBunAmount() {
         do {
             System.out.print("\nAmount of buns for burger?           [P10 per piece] : ");
@@ -162,11 +161,10 @@ public class BurgerInfo implements BurgerInfoMethods {
         printTotal();
     }
 
-    // TODO: Test askHasLettuce
     public void askHasLettuce() {
-        System.out.print("\nDo you want lettuce on your burger?  [y/n] [P8 for add on] : ");
-        char userChoice = userInput.next().charAt(0);
         do {
+            System.out.print("\nDo you want lettuce on your burger?  [y/n] [P8 for add on] : ");
+            char userChoice = userInput.next().charAt(0);
             if (Character.toLowerCase(userChoice) == 'y') {
                 System.out.println("Lettuce added to burger! P8 added to total cost.");
                 this.orderTotalCost += LETTUCE_PRICE;
@@ -186,9 +184,9 @@ public class BurgerInfo implements BurgerInfoMethods {
     }
 
     public void askHasCucumber() {
-        System.out.print("\nDo you want cucumber on your burger? [y/n] [P7 for add on] : ");
-        char userChoice = userInput.next().charAt(0);
         do {
+            System.out.print("\nDo you want cucumber on your burger? [y/n] [P7 for add on] : ");
+            char userChoice = userInput.next().charAt(0);
             if (Character.toLowerCase(userChoice) == 'y') {
                 System.out.println("Cucumber added to burger! P7 added to total cost.");
                 this.orderTotalCost += CUCUMBER_PRICE;
@@ -207,14 +205,14 @@ public class BurgerInfo implements BurgerInfoMethods {
         printTotal();
     }
 
+    // ! Test method
     public void askHasOnions() {
-        System.out.print("\nDo you want onions on your burger?   [y/n] [P5 for add on] : ");
-        char userChoice = userInput.next().charAt(0);
         do {
+            System.out.print("\nDo you want onions on your burger?   [y/n] [P5 for add on] : ");
+            char userChoice = userInput.next().charAt(0);
             if (Character.toLowerCase(userChoice) == 'y') {
                 System.out.println("Onions added to burger! P5 added to total cost.");
                 this.orderTotalCost += ONION_PRICE;
-                printTotal();
                 this.hasOnions = true;
                 this.errorExist = false;
             } else if (Character.toLowerCase(userChoice) == 'n') {
@@ -231,6 +229,7 @@ public class BurgerInfo implements BurgerInfoMethods {
 
     }
 
+    // ! Test method
     public void askHasKetchup() {
         do {
             System.out.print("\nDo you want ketchup on your burger?  [y/n] [P6 for add on] : ");
@@ -238,7 +237,6 @@ public class BurgerInfo implements BurgerInfoMethods {
             if (Character.toLowerCase(userChoice) == 'y') {
                 System.out.println("Ketchup added to burger! P6 added to total cost.");
                 this.orderTotalCost += KETCHUP_PRICE;
-                printTotal();
                 this.hasKetchup = true;
                 this.errorExist = false;
             } else if (Character.toLowerCase(userChoice) == 'n') {
@@ -280,6 +278,7 @@ public class BurgerInfo implements BurgerInfoMethods {
 
     }
 
+    // ! Need to misinput twice to trigger error code
     public void askIfDineIn() {
         do {
             System.out.print("\nWill you be dining in?               [y/n] [P5 for take out] : ");
@@ -297,7 +296,7 @@ public class BurgerInfo implements BurgerInfoMethods {
                 this.orderTotalCost += TAKEOUT_PRICE;
             } else {
                 this.errorExist = true;
-                userInput.next();
+                userInput.nextLine();
                 System.out.println("\n[Invalid Input Detected!]");
                 continue;
             }

@@ -7,10 +7,10 @@ public interface BurgerInfoMethods {
     StringBuilder askBurgerInfo();
 
     /* Method that asks how much buns the user wants */
-    int askBunAmount();
+    void askBunAmount();
 
     /* Method that asks if the user wants 1 or more patties on their burger */
-    int askPattyAmount();
+    void askPattyAmount();
 
     /* Method that asks if the user wants cheese on their burger or not */
     boolean askHasCheese();

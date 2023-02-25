@@ -7,8 +7,8 @@ public class BurgerInfo implements BurgerInfoMethods {
     String customerName;
     int orderTotalCost;
     /* Stores ingredients' information */
-    int bunAmount;
-    int pattyAmount;
+    int bunBurgerAmount;
+    int pattyBurgerAmount;
     boolean hasCheese;
     boolean hasLettuce;
     boolean hasCucumber;
@@ -33,6 +33,8 @@ public class BurgerInfo implements BurgerInfoMethods {
      * resetted when we create a new object.
      */
     static int serialNumberOrder = 0;
+    /* Boolean that will loop method if there is an error */
+    boolean errorExist;
 
     public BurgerInfo(String customerName) {
         this.customerName = customerName;
@@ -46,11 +48,11 @@ public class BurgerInfo implements BurgerInfoMethods {
         /* Adding the customerName to the receipt */
         burgerReceipt.append("\n[Customer Name\t: " + this.customerName + "\t]\n");
         /* Asking for bun amount and recording in receipt */
-        this.bunAmount = askBunAmount();
-        burgerReceipt.append("[Bun Amount\t: " + this.bunAmount + "\t]\n");
+        askBunAmount();
+        burgerReceipt.append("[Bun Amount\t: " + this.bunBurgerAmount + "\t]\n");
         /* Asking for patty amount and recording in receipt */
-        this.pattyAmount = askPattyAmount();
-        burgerReceipt.append("[Patty Amount\t: " + this.pattyAmount + "\t]\n");
+        askPattyAmount();
+        burgerReceipt.append("[Patty Amount\t: " + this.pattyBurgerAmount + "\t]\n");
         /* Asking if the burger has cheese and recording in receipt */
         this.hasCheese = askHasCheese();
         burgerReceipt.append("[Has Cheese\t: " + this.hasCheese + "\t]\n");
@@ -80,33 +82,36 @@ public class BurgerInfo implements BurgerInfoMethods {
     }
 
     // TODO: Manually test different cases for creating a burger
-    public int askBunAmount() {
-        try {
+    public void askBunAmount() {
+        do {
             System.out.print("\nAmount of buns for burger?           [P10 per piece] : ");
-            int bunAmount = userInput.nextInt();
-            /* If the burger has 0 buns */
-            if (bunAmount == 0) {
-                System.out.println("[Burger Has No Buns!]");
-                askBunAmount();
-            } else if (bunAmount > 1) {
-                System.out.println(bunAmount + " buns ordered! P" + bunAmount * BUN_PRICE + " added to total cost.");
+            if (userInput.hasNextInt()) {
+                int bunAmount = userInput.nextInt();
+                /* If the burger has 0 buns */
+                if (bunAmount == 0) {
+                    System.out.println("[Burger Has No Buns!]");
+                    askBunAmount();
+                } else if (bunAmount > 1) {
+                    System.out
+                            .println(bunAmount + " buns ordered! P" + bunAmount * BUN_PRICE + " added to total cost.");
+                } else {
+                    System.out.println(bunAmount + " bun ordered! P" + bunAmount * BUN_PRICE + " added to total cost.");
+                }
+                this.orderTotalCost += bunAmount * BUN_PRICE;
+                printTotal();
+                this.bunBurgerAmount = bunAmount;
+                this.errorExist = false;
             } else {
-                System.out.println(bunAmount + " bun ordered! P" + bunAmount * BUN_PRICE + " added to total cost.");
+                this.errorExist = true;
+                userInput.next();
+                System.out.println("[Invalid Input Detected!]");
+                continue;
             }
-            this.orderTotalCost += bunAmount * BUN_PRICE;
-            printTotal();
-
-        } catch (InputMismatchException ex) {
-            System.out.println("\n[Error, Invalid Input]");
-            userInput.next();
-            askBunAmount();
-        }
-        // TODO: Add try catch methods to the methods in this class
-        return bunAmount;
-
+        } while (errorExist);
     }
 
-    public int askPattyAmount() {
+    // TODO: Implement hasNextInt in this method
+    public void askPattyAmount() {
         System.out.print("\nAmount of patties for burger?        [P20 per piece] : ");
         int pattyAmount = userInput.nextInt();
         /* If the burger has 0 patties */
@@ -121,9 +126,10 @@ public class BurgerInfo implements BurgerInfoMethods {
         }
         this.orderTotalCost += pattyAmount * PATTY_PRICE;
         printTotal();
-        return pattyAmount;
+        this.pattyBurgerAmount = pattyAmount;
     }
 
+    // TODO: Implement hasNextInt but for booleans
     public boolean askHasCheese() {
         System.out.print("\nDo you want cheese on your burger?   [y/n] [P5 for add on] : ");
         char userChoice = userInput.next().charAt(0);

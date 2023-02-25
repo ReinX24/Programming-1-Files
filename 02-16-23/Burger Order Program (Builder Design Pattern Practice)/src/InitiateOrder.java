@@ -24,10 +24,26 @@ public class InitiateOrder {
          */
 
         /*
-         * 2/24/23 The last major feature that will be added is that we will probably implement
+         * 2/24/23 The last major feature that will be added is that we will probably
+         * implement
          * try catch methods within our program. This will probably be the last project
          * that I will add to this repository and future commits will probably be just
          * fixing the pre-existing code in this repository.
+         */
+
+        /*
+         * 2/25/23 Instead of the methods returning values in BurgerInfo, I have decided
+         * to make them void instead. This is because as of the writing of this note, I
+         * do not know how to handle exceptions within methods that have a return
+         * statement.
+         * While I did try to handle them, there appears to be an issue in regards to
+         * the return statement of these methods. To circumvent this, I have decided
+         * instead that these methods will directly modify the classes' attributes
+         * instead of them being modified in another method.
+         * 
+         * Another thing that I have decided to change is that we will NOT be using try
+         * catch methods, but instead we will be using the hasNextInt methods and other
+         * similar methods to check if the input of the user is valid.
          */
 
         OrderInfo askIfOrder = new OrderInfo();

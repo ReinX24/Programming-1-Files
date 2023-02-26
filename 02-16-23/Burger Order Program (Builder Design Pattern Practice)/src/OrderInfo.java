@@ -26,7 +26,6 @@ public class OrderInfo implements OrderInfoMethods {
 
     }
 
-    // TODO: Test newly added do while loops
     public void askIfOrderConfirm() {
         System.out.printf("\n%50s\n\n", "[Burger Order Program]");
         do {
@@ -40,11 +39,11 @@ public class OrderInfo implements OrderInfoMethods {
     public void checkInput() {
         if (Character.toLowerCase(this.userChoice) == 'y') {
             /* Print confirmation message & ask for userName */
-            System.out.println("\n[Confirmed!]\n");
+            System.out.println("\n[Confirmed! Proceeding with order process!]\n");
             this.errorExists = false;
         } else if (Character.toLowerCase(this.userChoice) == 'n') {
             /* Cancels order & terminates program */
-            System.out.println("\n[Cancelled!]\n");
+            System.out.println("\n[Cancelled! Have a nice day!]\n");
             this.errorExists = false;
             System.exit(0);
         } else {

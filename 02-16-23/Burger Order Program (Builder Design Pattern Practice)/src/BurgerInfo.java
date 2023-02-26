@@ -139,7 +139,6 @@ public class BurgerInfo implements BurgerInfoMethods {
     }
 
     public void askHasCheese() {
-        // ! Needs to misinput 2 times to trigger error message
         do {
             System.out.print("\nDo you want cheese on your burger?   [y/n] [P5 for add on] : ");
             char userChoice = userInput.next().charAt(0);
@@ -149,6 +148,7 @@ public class BurgerInfo implements BurgerInfoMethods {
                 this.hasCheese = true;
                 this.errorExist = false;
             } else if (Character.toLowerCase(userChoice) == 'n') {
+                System.out.println("[No Cheese added to burger!]");
                 this.hasCheese = false;
                 this.errorExist = false;
             } else {
@@ -171,6 +171,7 @@ public class BurgerInfo implements BurgerInfoMethods {
                 this.hasLettuce = true;
                 this.errorExist = false;
             } else if (Character.toLowerCase(userChoice) == 'n') {
+                System.out.println("[No Lettuce added to burger!]");
                 this.hasLettuce = false;
                 this.errorExist = false;
             } else {
@@ -193,6 +194,7 @@ public class BurgerInfo implements BurgerInfoMethods {
                 this.hasCucumber = true;
                 this.errorExist = false;
             } else if (Character.toLowerCase(userChoice) == 'n') {
+                System.out.println("[No Cucumber added to burger!]");
                 this.hasCucumber = false;
                 this.errorExist = false;
             } else {
@@ -205,7 +207,6 @@ public class BurgerInfo implements BurgerInfoMethods {
         printTotal();
     }
 
-    // ! Test method
     public void askHasOnions() {
         do {
             System.out.print("\nDo you want onions on your burger?   [y/n] [P5 for add on] : ");
@@ -216,6 +217,7 @@ public class BurgerInfo implements BurgerInfoMethods {
                 this.hasOnions = true;
                 this.errorExist = false;
             } else if (Character.toLowerCase(userChoice) == 'n') {
+                System.out.println("[No Onions added to burger!]");
                 this.hasOnions = false;
                 this.errorExist = false;
             } else {
@@ -229,7 +231,6 @@ public class BurgerInfo implements BurgerInfoMethods {
 
     }
 
-    // ! Test method
     public void askHasKetchup() {
         do {
             System.out.print("\nDo you want ketchup on your burger?  [y/n] [P6 for add on] : ");
@@ -240,6 +241,7 @@ public class BurgerInfo implements BurgerInfoMethods {
                 this.hasKetchup = true;
                 this.errorExist = false;
             } else if (Character.toLowerCase(userChoice) == 'n') {
+                System.out.println("[No Ketchup added to burger!]");
                 this.hasKetchup = false;
                 this.errorExist = false;
             } else {
@@ -258,12 +260,26 @@ public class BurgerInfo implements BurgerInfoMethods {
             System.out.print("\nAmount of burgers for order?         [Max of 5] : ");
             if (userInput.hasNextInt()) {
                 int burgerAmount = userInput.nextInt();
-                while (burgerAmount > 5) {
-                    System.out.println("[You can only order a maximum of 5 burgers!]");
-                    System.out.print("Amount of burgers for order?         [Max of 5] : ");
-                    burgerAmount = userInput.nextInt();
+                // TODO: fix bug here where only one while loop is checked at times
+                if (burgerAmount < 1 || burgerAmount > 5) {
+                    if (burgerAmount < 1) {
+                        while (burgerAmount < 1) {
+                            System.out.println("[Invalid Burger Amount!]");
+                            System.out.print("Amount of burgers for order?         [Max of 5] : ");
+                            burgerAmount = userInput.nextInt();
+                        }
+                    } else {
+                        while (burgerAmount > 5) {
+                            System.out.println("[You can only order a maximum of 5 burgers!]");
+                            System.out.print("Amount of burgers for order?         [Max of 5] : ");
+                            burgerAmount = userInput.nextInt();
+                        }
+                    }
+                } else if (burgerAmount > 1) {
+                    System.out.println("Ordered a total of " + burgerAmount + " burgers.");
+                } else if (burgerAmount == 1) {
+                    System.out.println("Ordered a total of " + burgerAmount + " burgers.");
                 }
-                System.out.println("Ordered a total of " + burgerAmount + " burgers.");
                 this.orderTotalCost *= burgerAmount;
                 printTotal();
                 this.burgerAmount = burgerAmount;
@@ -278,7 +294,6 @@ public class BurgerInfo implements BurgerInfoMethods {
 
     }
 
-    // ! Need to misinput twice to trigger error code
     public void askIfDineIn() {
         do {
             System.out.print("\nWill you be dining in?               [y/n] [P5 for take out] : ");

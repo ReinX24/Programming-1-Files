@@ -7,13 +7,12 @@ public class OrderInfo implements OrderInfoMethods {
     String customerName;
     StringBuilder orderReceipt;
     int orderTotalCost;
+    boolean errorExists;
 
     public void askIfOrder() {
 
         /* Asks the user if they want to order a burder */
         askIfOrderConfirm();
-        /* If y, confirm order, create a burgerInfo object, & execute askInfo method */
-        checkInput();
         /* Asks the user for their customer name */
         askCustomerName();
         /* Creates an order with the name of the user */
@@ -27,25 +26,31 @@ public class OrderInfo implements OrderInfoMethods {
 
     }
 
+    // TODO: Test newly added do while loops
     public void askIfOrderConfirm() {
         System.out.printf("\n%50s\n\n", "[Burger Order Program]");
-        System.out.print("Do you want to order a burger? [y/n] : ");
-        this.userChoice = this.userInput.next().charAt(0);
-        this.userInput.nextLine(); // we put nextLine here to fix console text formatting
+        do {
+            System.out.print("Do you want to order a burger? [y/n] : ");
+            this.userChoice = this.userInput.next().charAt(0);
+            this.userInput.nextLine(); // we put nextLine here to fix console text formatting
+            checkInput();
+        } while (errorExists);
     }
 
     public void checkInput() {
         if (Character.toLowerCase(this.userChoice) == 'y') {
             /* Print confirmation message & ask for userName */
             System.out.println("\n[Confirmed!]\n");
+            this.errorExists = false;
         } else if (Character.toLowerCase(this.userChoice) == 'n') {
             /* Cancels order & terminates program */
             System.out.println("\n[Cancelled!]\n");
+            this.errorExists = false;
             System.exit(0);
         } else {
             /* If the userChoice in invalid */
-            System.out.println("\n[Invalid Input, Restarting Program]");
-            askIfOrder();
+            System.out.println("\n[Invalid Input, Restarting Program]\n");
+            this.errorExists = true;
         }
     }
 
@@ -66,47 +71,59 @@ public class OrderInfo implements OrderInfoMethods {
     }
 
     public void askUserOrderConfirmation() {
-        System.out.print("Confirm Order? [y/n] : ");
-        this.userChoice = this.userInput.next().charAt(0);
-        if (Character.toLowerCase(this.userChoice) == 'y') {
-            System.out.println("\n[Order Confirmed!]\n");
-            askOrderPayment(); // ask for payment if order is confirmed
-        } else if (Character.toLowerCase(this.userChoice) == 'n') {
-            System.out.println("\n[Order Cancelled!]\n"); // print cancel message
-        } else {
-            System.out.println("\n[Invalid Input, Restarting Confirmation]\n");
-            askUserOrderConfirmation(); // runs this method again
-        }
+        do {
+            System.out.print("Confirm Order? [y/n] : ");
+            this.userChoice = this.userInput.next().charAt(0);
+            if (Character.toLowerCase(this.userChoice) == 'y') {
+                System.out.println("\n[Order Confirmed!]\n");
+                askOrderPayment(); // ask for payment if order is confirmed
+                this.errorExists = false;
+            } else if (Character.toLowerCase(this.userChoice) == 'n') {
+                System.out.println("\n[Order Cancelled!]\n"); // print cancel message
+                this.errorExists = false;
+            } else {
+                System.out.println("\n[Invalid Input, Restarting Confirmation]\n");
+                this.errorExists = true;
+            }
+        } while (errorExists);
 
     }
 
     public void askUserOrderAgain() {
-        System.out.print("Do you want to order another burger? [y/n] : ");
-        this.userChoice = this.userInput.next().charAt(0);
-        if (Character.toLowerCase(this.userChoice) == 'y') {
-            askIfOrder(); // runs the entire program again
-        } else if (Character.toLowerCase(this.userChoice) == 'n') {
-            System.out.println("\n[Understood, Enjoy Your Day!]\n");
-            System.exit(0); // terminates the JVM, stops the program
-        } else {
-            System.out.println("\n[Invalid Input, Restarting Prompt]\n");
-            askUserOrderAgain(); // executes this method again
-        }
+        do {
+            System.out.print("Do you want to order another burger? [y/n] : ");
+            this.userChoice = this.userInput.next().charAt(0);
+            if (Character.toLowerCase(this.userChoice) == 'y') {
+                this.errorExists = false;
+                askIfOrder(); // runs the entire program again
+            } else if (Character.toLowerCase(this.userChoice) == 'n') {
+                System.out.println("\n[Understood, Enjoy Your Day!]\n");
+                this.errorExists = false;
+                System.exit(0); // terminates the JVM, stops the program
+            } else {
+                System.out.println("\n[Invalid Input, Restarting Prompt]\n");
+                this.errorExists = true;
+            }
+        } while (errorExists);
     }
 
     public void askOrderPayment() {
-        System.out.println("[Please pay P" + this.orderTotalCost + " to complete your transaction]\n");
-        System.out.print("Do you agree to pay P" + this.orderTotalCost + " [y/n] : ");
-        this.userChoice = this.userInput.next().charAt(0);
-        if (Character.toLowerCase(this.userChoice) == 'y') {
-            System.out.println("\n[Transaction Successful]\n");
-            System.out.println("[P" + this.orderTotalCost + " deducted from account]\n");
-        } else if (Character.toLowerCase(this.userChoice) == 'n') {
-            System.out.println("\n[Transaction Cancelled]\n");
-        } else {
-            System.out.println("\n[Invalid Input, Restarting Prompt]\n");
-            askOrderPayment();
-        }
+        do {
+            System.out.println("[Please pay P" + this.orderTotalCost + " to complete your transaction]\n");
+            System.out.print("Do you agree to pay P" + this.orderTotalCost + " [y/n] : ");
+            this.userChoice = this.userInput.next().charAt(0);
+            if (Character.toLowerCase(this.userChoice) == 'y') {
+                System.out.println("\n[Transaction Successful]\n");
+                this.errorExists = false;
+                System.out.println("[P" + this.orderTotalCost + " deducted from account]\n");
+            } else if (Character.toLowerCase(this.userChoice) == 'n') {
+                System.out.println("\n[Transaction Cancelled]\n");
+                this.errorExists = false;
+            } else {
+                System.out.println("\n[Invalid Input, Restarting Prompt]\n");
+                this.errorExists = true;
+            }
+        } while (errorExists);
     }
 
 }

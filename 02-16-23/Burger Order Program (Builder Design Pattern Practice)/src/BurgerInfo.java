@@ -15,7 +15,7 @@ public class BurgerInfo implements BurgerInfoMethods {
     boolean hasKetchup;
     int burgerAmount;
     boolean dineIn;
-    /* Prices of each ingredient */
+    /* Prices of each ingredient, final int since they will remain constant */
     final int BUN_PRICE = 10;
     final int PATTY_PRICE = 20;
     final int CHEESE_PRICE = 5;
@@ -40,7 +40,9 @@ public class BurgerInfo implements BurgerInfoMethods {
     }
 
     public StringBuilder askBurgerInfo() {
+        /* Creating a StringBuilder object to store the burger's information */
         StringBuilder burgerReceipt = new StringBuilder();
+        /* Adding header for burgerReceipt */
         burgerReceipt.append("\n-------------------------\n");
         burgerReceipt.append("[Order Receipt\t: " + serialNumberOrder + "\t]\n");
         burgerReceipt.append("-------------------------\n");
@@ -83,12 +85,14 @@ public class BurgerInfo implements BurgerInfoMethods {
     public void askBunAmount() {
         do {
             System.out.print("\nAmount of buns for burger?           [P10 per piece] : ");
-            if (userInput.hasNextInt()) {
+            /* If the user enters an integer */
+            if (userInput.hasNextInt() && userInput.nextInt() > 0) {
+                // TODO: fix bug where we need to misinput a num <= 0 twice for error message
                 int bunAmount = userInput.nextInt();
                 /* If the burger has 0 buns */
-                if (bunAmount == 0) {
+                if (bunAmount == 0) { // ? Remove this if statement
                     System.out.println("[Burger Has No Buns!]");
-                    askBunAmount();
+                    askBunAmount(); // TODO: replace this with a solution that does not call the method
                 } else if (bunAmount > 1) {
                     System.out
                             .println(bunAmount + " buns ordered! P" + bunAmount * BUN_PRICE + " added to total cost.");
@@ -99,7 +103,9 @@ public class BurgerInfo implements BurgerInfoMethods {
                 printTotal();
                 this.bunBurgerAmount = bunAmount;
                 this.errorExist = false;
-            } else {
+            }
+            /* If the user does not enter an integer, loop the method */
+            else {
                 this.errorExist = true;
                 userInput.next();
                 System.out.println("\n[Invalid Input Detected!]");
@@ -260,22 +266,18 @@ public class BurgerInfo implements BurgerInfoMethods {
             System.out.print("\nAmount of burgers for order?         [Max of 5] : ");
             if (userInput.hasNextInt()) {
                 int burgerAmount = userInput.nextInt();
-                // TODO: fix bug here where only one while loop is checked at times
-                if (burgerAmount < 1 || burgerAmount > 5) {
+                while (burgerAmount < 1 || burgerAmount > 5) {
                     if (burgerAmount < 1) {
-                        while (burgerAmount < 1) {
-                            System.out.println("[Invalid Burger Amount!]");
-                            System.out.print("Amount of burgers for order?         [Max of 5] : ");
-                            burgerAmount = userInput.nextInt();
-                        }
+                        System.out.println("[Invalid Burger Amount!]");
+                        System.out.print("Amount of burgers for order?         [Max of 5] : ");
+                        burgerAmount = userInput.nextInt();
                     } else {
-                        while (burgerAmount > 5) {
-                            System.out.println("[You can only order a maximum of 5 burgers!]");
-                            System.out.print("Amount of burgers for order?         [Max of 5] : ");
-                            burgerAmount = userInput.nextInt();
-                        }
+                        System.out.println("[You can only order a maximum of 5 burgers!]");
+                        System.out.print("Amount of burgers for order?         [Max of 5] : ");
+                        burgerAmount = userInput.nextInt();
                     }
-                } else if (burgerAmount > 1) {
+                }
+                if (burgerAmount > 1) {
                     System.out.println("Ordered a total of " + burgerAmount + " burgers.");
                 } else if (burgerAmount == 1) {
                     System.out.println("Ordered a total of " + burgerAmount + " burgers.");

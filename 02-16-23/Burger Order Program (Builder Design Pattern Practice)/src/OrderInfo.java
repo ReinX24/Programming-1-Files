@@ -2,11 +2,17 @@ import java.util.Scanner;
 
 public class OrderInfo implements OrderInfoMethods {
 
+    /* Scanner object to accept user input */
     Scanner userInput = new Scanner(System.in);
+    /* Holds the choices of the user for each prompt */
     char userChoice;
+    /* Contain's the customer's name */
     String customerName;
+    /* Contains information about the order of the user */
     StringBuilder orderReceipt;
+    /* Storing the total cost of the user's order */
     int orderTotalCost;
+    /* For detecting and handling errors and misinputs */
     boolean errorExists;
 
     public void askIfOrder() {
@@ -28,6 +34,7 @@ public class OrderInfo implements OrderInfoMethods {
 
     public void askIfOrderConfirm() {
         System.out.printf("\n%50s\n\n", "[Burger Order Program]");
+        /* Loops until the user either types in y or n */
         do {
             System.out.print("Do you want to order a burger? [y/n] : ");
             this.userChoice = this.userInput.next().charAt(0);
@@ -37,16 +44,21 @@ public class OrderInfo implements OrderInfoMethods {
     }
 
     public void checkInput() {
+        /* If y, confirm order and make errorExist false */
         if (Character.toLowerCase(this.userChoice) == 'y') {
             /* Print confirmation message & ask for userName */
             System.out.println("\n[Confirmed! Proceeding with order process!]\n");
             this.errorExists = false;
-        } else if (Character.toLowerCase(this.userChoice) == 'n') {
+        }
+        /* If n, cancel and make errorExist false */
+        else if (Character.toLowerCase(this.userChoice) == 'n') {
             /* Cancels order & terminates program */
             System.out.println("\n[Cancelled! Have a nice day!]\n");
             this.errorExists = false;
             System.exit(0);
-        } else {
+        }
+        /* If the user's input is not y or n, set errorExists to true */
+        else {
             /* If the userChoice in invalid */
             System.out.println("\n[Invalid Input, Restarting Program]\n");
             this.errorExists = true;
@@ -60,9 +72,12 @@ public class OrderInfo implements OrderInfoMethods {
 
     public void createOrder(String customerName) {
         System.out.println("\n[Order for " + this.customerName + " coming right up!]");
+        /* Creates a BurgerInfo object */
         BurgerInfo customerOrder = new BurgerInfo(this.customerName);
+        /* Info about order from BurgerInfo object referenced by orderReceipt */
         this.orderReceipt = customerOrder.askBurgerInfo();
-        this.orderTotalCost = customerOrder.getTotalCost(); // get the total cost from BurgerInfo
+        /* Gets total cost from our BurgerInfo object */
+        this.orderTotalCost = customerOrder.getTotalCost();
     }
 
     public void printReceipt() {
@@ -70,6 +85,7 @@ public class OrderInfo implements OrderInfoMethods {
     }
 
     public void askUserOrderConfirmation() {
+        /* Loops until the user either chooses y or n */
         do {
             System.out.print("Confirm Order? [y/n] : ");
             this.userChoice = this.userInput.next().charAt(0);
@@ -82,13 +98,14 @@ public class OrderInfo implements OrderInfoMethods {
                 this.errorExists = false;
             } else {
                 System.out.println("\n[Invalid Input, Restarting Confirmation]\n");
-                this.errorExists = true;
+                this.errorExists = true; // loops do while loop
             }
         } while (errorExists);
 
     }
 
     public void askUserOrderAgain() {
+        /* Loops until the user either chooses y or n */
         do {
             System.out.print("Do you want to order another burger? [y/n] : ");
             this.userChoice = this.userInput.next().charAt(0);
@@ -107,6 +124,7 @@ public class OrderInfo implements OrderInfoMethods {
     }
 
     public void askOrderPayment() {
+        /* Loops until the user either chooses y or n */
         do {
             System.out.println("[Please pay P" + this.orderTotalCost + " to complete your transaction]\n");
             System.out.print("Do you agree to pay P" + this.orderTotalCost + " [y/n] : ");

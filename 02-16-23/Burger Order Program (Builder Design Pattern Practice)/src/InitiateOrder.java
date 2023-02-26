@@ -36,6 +36,7 @@ public class InitiateOrder {
          * to make them void instead. This is because as of the writing of this note, I
          * do not know how to handle exceptions within methods that have a return
          * statement.
+         * 
          * While I did try to handle them, there appears to be an issue in regards to
          * the return statement of these methods. To circumvent this, I have decided
          * instead that these methods will directly modify the classes' attributes

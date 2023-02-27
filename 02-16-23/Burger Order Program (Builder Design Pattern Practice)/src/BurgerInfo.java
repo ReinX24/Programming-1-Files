@@ -82,7 +82,6 @@ public class BurgerInfo implements BurgerInfoMethods {
         return burgerReceipt;
     }
 
-    // TODO : Test method
     public void askBunAmount() {
         do {
             System.out.print("\nAmount of buns for burger?           [P10 per piece] : ");
@@ -94,23 +93,27 @@ public class BurgerInfo implements BurgerInfoMethods {
                     System.out
                             .println(bunAmount + " buns ordered! P" + bunAmount * BUN_PRICE
                                     + " added to total cost.");
+                    /* Add bunAmount multiplied by BUN_PRICE to orderTotalCost */
+                    this.orderTotalCost += bunAmount * BUN_PRICE;
+                    printTotal();
+                    this.bunBurgerAmount = bunAmount;
+                    this.errorExist = false;
                 }
                 /* If the burger has exactly one bun */
                 else if (burgerAmount == 1) {
                     System.out.println(
                             bunAmount + " bun ordered! P" + bunAmount * BUN_PRICE + " added to total cost.");
+                    /* Add bunAmount multiplied by BUN_PRICE to orderTotalCost */
+                    this.orderTotalCost += bunAmount * BUN_PRICE;
+                    printTotal();
+                    this.bunBurgerAmount = bunAmount;
+                    this.errorExist = false;
                 }
                 /* If the burger has no buns or entered a negative integer */
                 else if (burgerAmount <= 0) {
-                    this.errorExist = true;
                     System.out.println("\n[Burger Has No Buns!]");
                     askBunAmount();
                 }
-                /* Add bunAmount multiplied by BUN_PRICE to orderTotalCost */
-                this.orderTotalCost += bunAmount * BUN_PRICE;
-                printTotal();
-                this.bunBurgerAmount = bunAmount;
-                this.errorExist = false;
             }
             /* If the user does not enter an integer, loop the method */
             else {
@@ -129,7 +132,7 @@ public class BurgerInfo implements BurgerInfoMethods {
                 int pattyAmount = userInput.nextInt();
                 /* If the burger has 0 patties */
                 if (pattyAmount <= 0) {
-                    System.out.println("[Burger Has No Patties!]");
+                    System.out.println("\n[Burger Has No Patties!]");
                     askPattyAmount();
                 }
                 /* If the burger has more than 1 patty */
@@ -137,16 +140,20 @@ public class BurgerInfo implements BurgerInfoMethods {
                     System.out
                             .println(pattyAmount + " patties ordered! P" + pattyAmount * PATTY_PRICE
                                     + " added to total cost.");
+                    this.orderTotalCost += pattyAmount * PATTY_PRICE;
+                    printTotal();
+                    this.pattyBurgerAmount = pattyAmount;
+                    this.errorExist = false;
                 }
                 /* If the burger only has 1 patty */
                 else {
                     System.out.println(
                             pattyAmount + " patty ordered! P" + pattyAmount * PATTY_PRICE + " added to total cost.");
+                    this.orderTotalCost += pattyAmount * PATTY_PRICE;
+                    printTotal();
+                    this.pattyBurgerAmount = pattyAmount;
+                    this.errorExist = false;
                 }
-                this.orderTotalCost += pattyAmount * PATTY_PRICE;
-                printTotal();
-                this.pattyBurgerAmount = pattyAmount;
-                this.errorExist = false;
             } else {
                 this.errorExist = true;
                 userInput.next(); // just next for int
@@ -171,7 +178,8 @@ public class BurgerInfo implements BurgerInfoMethods {
                 this.errorExist = false;
             } else {
                 this.errorExist = true;
-                userInput.nextLine(); // nextLine for char
+                // TODO: Test if the program runs properly without nextLine() in error blocks
+                // userInput.nextLine(); // nextLine for char
                 System.out.println("\n[Invalid Input Detected!]");
                 continue;
             }
@@ -194,7 +202,7 @@ public class BurgerInfo implements BurgerInfoMethods {
                 this.errorExist = false;
             } else {
                 this.errorExist = true;
-                userInput.nextLine();
+                // userInput.nextLine();
                 System.out.println("\n[Invalid Input Detected!]");
                 continue;
             }
@@ -217,7 +225,7 @@ public class BurgerInfo implements BurgerInfoMethods {
                 this.errorExist = false;
             } else {
                 this.errorExist = true;
-                userInput.nextLine();
+                // userInput.nextLine();
                 System.out.println("\n[Invalid Input Detected!]");
                 continue;
             }
@@ -240,7 +248,7 @@ public class BurgerInfo implements BurgerInfoMethods {
                 this.errorExist = false;
             } else {
                 this.errorExist = true;
-                userInput.nextLine();
+                // userInput.nextLine();
                 System.out.println("\n[Invalid Input Detected!]");
                 continue;
             }
@@ -264,7 +272,7 @@ public class BurgerInfo implements BurgerInfoMethods {
                 this.errorExist = false;
             } else {
                 this.errorExist = true;
-                userInput.nextLine();
+                // userInput.nextLine();
                 System.out.println("\n[Invalid Input Detected!]");
                 continue;
             }
@@ -280,11 +288,11 @@ public class BurgerInfo implements BurgerInfoMethods {
                 int burgerAmount = userInput.nextInt();
                 while (burgerAmount < 1 || burgerAmount > 5) {
                     if (burgerAmount < 1) {
-                        System.out.println("[Invalid Burger Amount!]");
+                        System.out.println("\n[Invalid Burger Amount!]\n");
                         System.out.print("Amount of burgers for order?         [Max of 5] : ");
                         burgerAmount = userInput.nextInt();
                     } else {
-                        System.out.println("[You can only order a maximum of 5 burgers!]");
+                        System.out.println("\n[You can only order a maximum of 5 burgers!]\n");
                         System.out.print("Amount of burgers for order?         [Max of 5] : ");
                         burgerAmount = userInput.nextInt();
                     }
@@ -292,7 +300,7 @@ public class BurgerInfo implements BurgerInfoMethods {
                 if (burgerAmount > 1) {
                     System.out.println("Ordered a total of " + burgerAmount + " burgers.");
                 } else if (burgerAmount == 1) {
-                    System.out.println("Ordered a total of " + burgerAmount + " burgers.");
+                    System.out.println("Ordered a total of " + burgerAmount + " burger.");
                 }
                 this.orderTotalCost *= burgerAmount;
                 printTotal();
@@ -300,7 +308,7 @@ public class BurgerInfo implements BurgerInfoMethods {
                 this.errorExist = false;
             } else {
                 this.errorExist = true;
-                userInput.next();
+                // userInput.next();
                 System.out.println("\n[Invalid Input Detected!]");
                 continue;
             }
@@ -325,7 +333,7 @@ public class BurgerInfo implements BurgerInfoMethods {
                 this.orderTotalCost += TAKEOUT_PRICE;
             } else {
                 this.errorExist = true;
-                userInput.nextLine();
+                // userInput.nextLine();
                 System.out.println("\n[Invalid Input Detected!]");
                 continue;
             }

@@ -82,23 +82,31 @@ public class BurgerInfo implements BurgerInfoMethods {
         return burgerReceipt;
     }
 
+    // TODO : Test method
     public void askBunAmount() {
         do {
             System.out.print("\nAmount of buns for burger?           [P10 per piece] : ");
             /* If the user enters an integer */
-            if (userInput.hasNextInt() && userInput.nextInt() > 0) {
-                // TODO: fix bug where we need to misinput a num <= 0 twice for error message
+            if (userInput.hasNextInt()) {
                 int bunAmount = userInput.nextInt();
-                /* If the burger has 0 buns */
-                if (bunAmount == 0) { // ? Remove this if statement
-                    System.out.println("[Burger Has No Buns!]");
-                    askBunAmount(); // TODO: replace this with a solution that does not call the method
-                } else if (bunAmount > 1) {
+                /* If the burger has more than 1 bun */
+                if (bunAmount > 1) {
                     System.out
-                            .println(bunAmount + " buns ordered! P" + bunAmount * BUN_PRICE + " added to total cost.");
-                } else {
-                    System.out.println(bunAmount + " bun ordered! P" + bunAmount * BUN_PRICE + " added to total cost.");
+                            .println(bunAmount + " buns ordered! P" + bunAmount * BUN_PRICE
+                                    + " added to total cost.");
                 }
+                /* If the burger has exactly one bun */
+                else if (burgerAmount == 1) {
+                    System.out.println(
+                            bunAmount + " bun ordered! P" + bunAmount * BUN_PRICE + " added to total cost.");
+                }
+                /* If the burger has no buns or entered a negative integer */
+                else if (burgerAmount <= 0) {
+                    this.errorExist = true;
+                    System.out.println("\n[Burger Has No Buns!]");
+                    askBunAmount();
+                }
+                /* Add bunAmount multiplied by BUN_PRICE to orderTotalCost */
                 this.orderTotalCost += bunAmount * BUN_PRICE;
                 printTotal();
                 this.bunBurgerAmount = bunAmount;
@@ -123,11 +131,15 @@ public class BurgerInfo implements BurgerInfoMethods {
                 if (pattyAmount <= 0) {
                     System.out.println("[Burger Has No Patties!]");
                     askPattyAmount();
-                } else if (pattyAmount > 1) {
+                }
+                /* If the burger has more than 1 patty */
+                else if (pattyAmount > 1) {
                     System.out
                             .println(pattyAmount + " patties ordered! P" + pattyAmount * PATTY_PRICE
                                     + " added to total cost.");
-                } else {
+                }
+                /* If the burger only has 1 patty */
+                else {
                     System.out.println(
                             pattyAmount + " patty ordered! P" + pattyAmount * PATTY_PRICE + " added to total cost.");
                 }
